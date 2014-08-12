@@ -1,0 +1,19 @@
+{
+  "name": "esri-leaflet-renderers",
+  "version": "0.0.0",
+  "description": "\"esri-leaflet plugin for rendering\"",
+  "main": "EsriLeafletRenderers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.5.1"
+  }
+}
