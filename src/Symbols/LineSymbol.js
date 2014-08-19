@@ -1,0 +1,47 @@
+L.esri.Renderers.LineSymbol = L.esri.Renderers.Symbol.extend({
+  statics: {
+    //Not implemented 'esriSLSNull'
+    LINETYPES:  ['esriSLSDash','esriSLSDot','esriSLSDashDotDot','esriSLSDashDot','esriSLSSolid']
+  },
+  initialize: function(symbolJson){
+    L.esri.Renderers.Symbol.prototype.initialize.call(this, symbolJson);
+    this._fillStyles(); 
+  },
+
+  _fillStyles: function(){
+    //set the defaults that show up on arcgis online
+    this._styles.lineCap = 'butt';
+    this._styles.lineJoin = 'miter';
+
+    this._styles.weight = this.pixelValue(this._symbolJson.width);
+    this._styles.color = this.colorValue(this._symbolJson.color);
+    this._styles.opacity = this.alphaValue(this._symbolJson.color);
+
+    //usuing dash patterns pulled from arcgis online (converted to pixels)
+    switch(this._symbolJson.style){
+      case 'esriSLSDash':
+        //4,3
+        this._styles.dashArray = '5,4';
+        break;
+      case 'esriSLSDot':
+        //1,3
+        this._styles.dashArray = '1,4';
+        break;
+      case 'esriSLSDashDot':
+        //8,3,1,3
+        this._styles.dashArray = '11,4,1,4';
+        break;
+      case 'esriSLSDashDotDot':
+        //8,3,1,3,1,3
+        this._styles.dashArray = '11,4,1,4,1,4';
+        break;
+    }
+  },
+
+  style: function(){
+    return this._styles;
+  }
+});
+L.esri.Renderers.lineSymbol = function(symbolJson){
+  return new L.esri.Renderers.LineSymbol(symbolJson);
+};

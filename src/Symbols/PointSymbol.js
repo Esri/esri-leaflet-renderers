@@ -1,0 +1,71 @@
+L.esri.Renderers.PointSymbol = L.esri.Renderers.Symbol.extend({
+  statics: {
+    MARKERTYPES:  ['esriSMSCircle','esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
+  },
+  initialize: function(symbolJson, options){
+    L.esri.Renderers.Symbol.prototype.initialize.call(this, symbolJson);
+    this.serviceUrl = options.url;
+    if(symbolJson.type === 'esriPMS'){
+      this._createIcon();
+    } else {
+      this._fillStyles(); 
+    }
+  },
+
+  _fillStyles: function(){
+    if(this._symbolJson.type === 'esriPMS') {
+      return;
+    }
+
+    if(this._symbolJson.outline && this._symbolJson.size > 0){
+      this._styles.stroke = true;
+      this._styles.weight = this.pixelValue(this._symbolJson.outline.width);
+      this._styles.color = this.colorValue(this._symbolJson.outline.color);
+      this._styles.opacity = this.alphaValue(this._symbolJson.outline.color);
+    }else{
+      this._styles.stroke = false;
+    }
+    this._styles.fillColor = this.colorValue(this._symbolJson.color);
+    this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
+
+    if(this._symbolJson.style === 'esriSMSCircle'){
+      this._styles.radius = this.pixelValue(this._symbolJson.size) / 2.0;
+    }
+  },
+
+  _createIcon: function(){
+    var height = this.pixelValue(this._symbolJson.height);
+    var width = this.pixelValue(this._symbolJson.width);
+    var xOffset = width / 2.0 + this.pixelValue(this._symbolJson.xoffset);
+    var yOffset = height / 2.0 + this.pixelValue(this._symbolJson.yoffset);
+    var url = this.serviceUrl + 'images/' + this._symbolJson.url;
+
+    this.icon = L.icon({
+      iconUrl: url,
+      iconSize: [width, height],
+      iconAnchor: [xOffset, yOffset]
+    });
+  },
+  pointToLayer: function(geojson, latlng){
+    if (this._symbolJson.type === 'esriPMS'){
+      return L.marker(latlng, {icon: this.icon});
+    }
+
+    var size = this.pixelValue(this._symbolJson.size);
+
+    switch(this._symbolJson.style){
+      case 'esriSMSSquare':
+        return L.esri.Renderers.squareMarker(latlng, size, this._styles);
+      case 'esriSMSDiamond':
+        return L.esri.Renderers.diamondMarker(latlng, size, this._styles);
+      case 'esriSMSCross':
+        return L.esri.Renderers.crossMarker(latlng, size, this._styles);
+      case 'esriSMSX':
+        return L.esri.Renderers.xMarker(latlng, size, this._styles);
+    }
+    return L.circleMarker(latlng, this._styles);
+  }
+});
+L.esri.Renderers.pointSymbol = function(symbolJson, options){
+  return new L.esri.Renderers.PointSymbol(symbolJson, options);
+};
