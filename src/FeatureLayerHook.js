@@ -1,21 +1,20 @@
 L.esri.FeatureLayer.addInitHook(function() {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
+  var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
+  var oldOnRemove = L.Util.bind(this.onRemove, this);
   L.Util.bind(this.createNewLayer, this);
 
   this._metadataLoaded = false;
 
   this.metadata(function(error, response) {
-    if(response && response.drawingInfo){
+    if(response && response.drawingInfo && !this.options.style){
       this._setRenderers(response);
     }
     this._metadataLoaded = true;
     /* jshint ignore:start */
     if(this._addToMap){
       oldOnAdd(map);
-      if(this._pointLayer){
-        this._pointLayer.addTo(map);
-        this._pointLayer.bringToFront();
-      }
+      this._addPointLayer(map);
     }
     /* jshint ignore:end */
   }, this);
@@ -24,24 +23,59 @@ L.esri.FeatureLayer.addInitHook(function() {
     this._addToMap = true;
     if(this._metadataLoaded){
       oldOnAdd(map);
-      if(this._pointLayer){
-        this._pointLayer.addTo(map);
-        this._pointLayer.bringToFront();
+      this._addPointLayer(map);
+    }
+  };
+
+  this.onRemove = function(map){
+    oldOnRemove(map);
+    if(this._pointLayer){
+      var pointLayers = this._pointLayer.getLayers();
+      for(var i in pointLayers){
+        map.removeLayer(pointLayers[i]);
+      }
+    }
+  };
+
+  this.unbindPopup = function(){
+    oldUnbindPopup();
+    if(this._pointLayer){
+      var pointLayers = this._pointLayer.getLayers();
+      for(var i in pointLayers){
+        pointLayers[i].unbindPopup();
+      }
+    }
+  };
+
+  this._addPointLayer = function(map){
+    if(this._pointLayer){
+      this._pointLayer.addTo(map);
+      this._pointLayer.bringToFront();
+    }
+  };
+
+  this._createPointLayer = function(){
+    if(!this._pointLayer){
+      this._pointLayer = L.geoJson();
+
+      if(this._popup){
+        var popupFunction = function (feature, layer) {
+          layer.bindPopup(this._popup(feature, layer), this._popupOptions);
+        }
+        this._pointLayer.options.onEachFeature = L.Util.bind(popupFunction, this);
       }
     }
   };
 
   this.createNewLayer = function(geojson){
+
     var fLayer = L.GeoJSON.geometryToLayer(geojson, this.options.pointToLayer, L.GeoJSON.coordsToLatLng, this.options);
 
     //add a point layer when the polygon is represented as proportional marker symbols
     if(this._hasProportionalSymbols){
       var centroid = this.getPolygonCentroid(geojson.geometry.coordinates);
       if(!(isNaN(centroid[0]) || isNaN(centroid[0]))){
-        if(!this._pointLayer){
-          this._pointLayer = L.geoJson();
-
-        }
+        this._createPointLayer();
 
         var pointjson = this.getPointJson(geojson, centroid);
         this._pointLayer.addData(pointjson);
@@ -113,9 +147,7 @@ L.esri.FeatureLayer.addInitHook(function() {
       case 'classBreaks': 
         this._checkForProportionalSymbols(geojson.geometryType, rendererInfo);
         if(this._hasProportionalSymbols){
-          if(!this._pointLayer){
-            this._pointLayer = L.geoJson();
-          }
+          this._createPointLayer();
           var pRend = L.esri.Renderers.classBreaksRenderer(rendererInfo, options);
           pRend.attachStylesToLayer(this._pointLayer);
           options.proportionalPolygon = true;
