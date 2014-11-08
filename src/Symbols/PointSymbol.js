@@ -57,13 +57,13 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
 
     switch(this._symbolJson.style){
       case 'esriSMSSquare':
-        return EsriLeafletRenderers.squareMarker(latlng, size, this._styles);
+        return L.squareMarker(latlng, size, this._styles);
       case 'esriSMSDiamond':
-        return EsriLeafletRenderers.diamondMarker(latlng, size, this._styles);
+        return L.diamondMarker(latlng, size, this._styles);
       case 'esriSMSCross':
-        return EsriLeafletRenderers.crossMarker(latlng, size, this._styles);
+        return L.crossMarker(latlng, size, this._styles);
       case 'esriSMSX':
-        return EsriLeafletRenderers.xMarker(latlng, size, this._styles);
+        return L.xMarker(latlng, size, this._styles);
     }
     return L.circleMarker(latlng, this._styles);
   }

@@ -1,46 +1,68 @@
-EsriLeafletRenderers.DiamondMarker = L.Path.extend({
+//TODO Canvas rendering
+/* jshint ignore:start */
+L.Canvas.include({
+  _updateDiamondMarker: function(layer){
+    var latlng = layer._point,
+        offset = layer._size / 2.0;
+  }
+});
+/* jshint ignore:end */
+
+L.SVG.include({
+  _updateDiamondMarker: function(layer){
+    var latlng = layer._point,
+        offset = layer._size / 2.0;
+
+    if(L.Browser.vml){
+      latlng._round();
+      offset = Math.round(offset);
+    }
+
+    var str = 'M' + latlng.x + ',' + (latlng.y + offset) +
+      'L' + (latlng.x - offset) + ',' + latlng.y +
+      'L' + latlng.x + ',' + (latlng.y - offset) +
+      'L' + (latlng.x + offset) + ',' + latlng.y;
+
+    str =  str + (L.Browser.svg ? 'z' : 'x');
+
+    this._setPath(layer, str);
+  }
+});
+
+L.DiamondMarker = L.Path.extend({
   options: {
     fill: true
   },
 
-  initialize: function(center, size, options){
-    L.Path.prototype.initialize.call(this, options);
+  initialize: function(latlng, size, options){
+    L.setOptions(this, options);
     this._size = size;
-    this._center = center;
+    this._latlng = L.latLng(latlng);
   },
 
-  projectLatlngs: function(){
-    this._point = this._map.latLngToLayerPoint(this._center);
+  _project: function(){
+    this._point = this._map.latLngToLayerPoint(this._latlng);
   },
 
-  getPathString: function(){
-    if (!this._map){
-      return '';
+  _update: function(){
+    if(this._map){
+      this._updatePath();
     }
-
-    var center = this._point,
-        offset = this._size / 2.0;
-
-    if(L.Path.VML){
-      center._round();
-      offset = Math.round(offset);
-    }
-
-    var str = 'M' + center.x + ',' + (center.y + offset) +
-      'L' + (center.x - offset) + ',' + center.y +
-      'L' + center.x + ',' + (center.y - offset) +
-      'L' + (center.x + offset) + ',' + center.y;
-
-    return str + (L.Browser.svg ? 'z' : 'x');
   },
+
+  _updatePath: function(){
+    this._renderer._updateDiamondMarker(this);
+  },
+
 
   setLatLng: function(latlng){
-    this._center = latlng;
-    return this.redraw();
+    this._latlng = L.latLng(latlng);
+    this.redraw();
+    return this.fire('move', {latlng: this._latlng});
   },
 
   getLatLng: function(){
-    return L.latLng(this._center);
+    return this._latlng;
   },
 
   getSize: function(){
@@ -53,6 +75,6 @@ EsriLeafletRenderers.DiamondMarker = L.Path.extend({
   }
 });
 
-EsriLeafletRenderers.diamondMarker = function(center, size, options){
-  return new EsriLeafletRenderers.DiamondMarker(center, size, options);
+L.diamondMarker = function(latlng, size, options){
+  return new L.DiamondMarker(latlng, size, options);
 };
