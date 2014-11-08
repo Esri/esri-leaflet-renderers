@@ -39,7 +39,8 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        wrap: false
+        wrap: false,
+        sourceMap: true
       },
       build: {
         src: [

@@ -61,15 +61,14 @@ L.esri.FeatureLayer.addInitHook(function() {
       if(this._popup){
         var popupFunction = function (feature, layer) {
           layer.bindPopup(this._popup(feature, layer), this._popupOptions);
-        }
+        };
         this._pointLayer.options.onEachFeature = L.Util.bind(popupFunction, this);
       }
     }
   };
 
   this.createNewLayer = function(geojson){
-
-    var fLayer = L.GeoJSON.geometryToLayer(geojson, this.options.pointToLayer, L.GeoJSON.coordsToLatLng, this.options);
+    var fLayer = L.GeoJSON.geometryToLayer(geojson, this.options);
 
     //add a point layer when the polygon is represented as proportional marker symbols
     if(this._hasProportionalSymbols){
