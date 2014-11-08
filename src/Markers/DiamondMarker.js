@@ -46,7 +46,7 @@ L.DiamondMarker = L.Path.extend({
   initialize: function(latlng, size, options){
     L.setOptions(this, options);
     this._size = size;
-    this._latlng = latlng;
+    this._latlng = L.latLng(latlng);
   },
 
   _project: function(){
@@ -62,6 +62,7 @@ L.DiamondMarker = L.Path.extend({
   _updatePath: function(){
     this._renderer._updateDiamondMarker(this);
   },
+
 
   setLatLng: function(latlng){
     this._latlng = L.latLng(latlng);
