@@ -1,12 +1,21 @@
-//TODO Canvas rendering
-/* jshint ignore:start */
 L.Canvas.include({
   _updateSquareMarker: function(layer){
     var latlng = layer._point,
-        offset = layer._size / 2.0;
+        offset = layer._size / 2.0,
+        ctx = this._ctx;
+
+    ctx.beginPath();
+
+    ctx.moveTo(latlng.x+offset, latlng.y+offset);
+    ctx.lineTo(latlng.x - offset, latlng.y + offset);
+    ctx.lineTo(latlng.x - offset, latlng.y - offset);
+    ctx.lineTo(latlng.x + offset, latlng.y - offset);
+
+    ctx.closePath();
+
+    this._fillStroke(ctx, layer);
   }
 });
-/* jshint ignore:end */
 
 L.SVG.include({
   _updateSquareMarker: function(layer){
