@@ -4,7 +4,8 @@
   "description": "\"esri-leaflet plugin for rendering\"",
   "main": "EsriLeafletRenderers.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node scripts/install.js"
   },
   "author": "Rachel Nehmer <rnehmer@esri.com>",
   "contributors": [
@@ -31,7 +32,6 @@
     "karma-sauce-launcher": "^0.2.10"
   },
   "dependencies": {
-    "leaflet": "^0.7.0",
-    "esri-leaflet": "^1.0.0"
+     "esri-leaflet": "git://github.com/kneemer/esri-leaflet.git#build-leaflet-1.0-dependency"
   }
 }
