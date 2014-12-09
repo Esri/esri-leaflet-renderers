@@ -32,6 +32,6 @@
     "karma-sauce-launcher": "^0.2.10"
   },
   "dependencies": {
-     "esri-leaflet": "git://github.com/kneemer/esri-leaflet.git#build-leaflet-1.0-dependency"
+     "esri-leaflet": "git://github.com/Esri/esri-leaflet.git#leaflet-1.0"
   }
 }
