@@ -2,7 +2,7 @@ L.esri.Renderers.Symbol = L.Class.extend({
 
   initialize: function(symbolJson){
     this._symbolJson = symbolJson;
-    this.val = 0;
+    this.val = null;
     this._styles = {};
   },
 

@@ -1,0 +1,104 @@
+body {
+  margin:0;
+  padding:0;
+  font-family: "Lucida Grande", "Segoe UI", "Arial", sans-serif;
+  color: #4d4d4d;
+}
+
+a {
+  text-decoration: none;
+  color: #007AC2;
+}
+
+h3 {
+  padding: 5px;
+  margin: 5px;
+}
+
+label {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.mapContainer {
+  position: absolute;
+  background-color: #DDD;
+  width:700px;
+  height:600px;
+  top:100;
+  bottom:0;
+  right:0;
+}
+#map{
+  left: 0px;
+}
+
+#esrimap {
+  left: 705px;
+}
+
+#featureSelection {
+  position: absolute;
+  top: 10px;
+  left: 705px;
+}
+
+#esriLabel {
+  position: absolute;
+  left: 705px;
+  width: 700px;
+  top: 700px;
+  text-align: center;
+}
+#leafletLabel {
+  position: absolute;
+  left: 0px;
+  width: 700px;
+  top: 700px;
+  text-align: center;
+}
+
+#serviceUrl {
+  padding: 0.5em;
+  border: 1px solid #ededed;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+
+  min-width: 500px;
+}
+#serviceUrl:focus {
+  outline: none;
+}
+#selector {
+  padding: 0.5em;
+  height: 32px;
+  border: 1px solid #ededed;
+  min-width: 200px;
+  -webkit-appearance: menulist-button;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#selector:focus {
+  outline: none;
+}
+
+#loadServiceBtn {
+  background-color: white;
+  color: #007AC2;
+  padding: 0.5em;
+  border: 1px solid #ededed;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  cursor: pointer;
+}
+#loadServiceBtn:hover {
+  background-color: #007AC2;
+  color: white;
+}
+#loadServiceBtn:focus {
+  outline: none;
+}
+

@@ -17,6 +17,7 @@ L.esri.Renderers.UniqueValueRenderer = L.esri.Renderers.Renderer.extend({
       symbol.val = uniques[i].value;
       this._symbols.push(symbol);
     }
+    this._createDefaultSymbol();
   },
 
   /* jshint ignore:start */

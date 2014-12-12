@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 module.exports = function(grunt) {
+  var browsers = grunt.option('browser') ? grunt.option('browser').split(',') : ['PhantomJS'];
 
   pkg: grunt.file.readJSON('package.json'),
 
@@ -15,6 +16,27 @@ module.exports = function(grunt) {
           'src/*.js',
           'src/**/*.js'
         ]
+      }
+    },
+    karma: {
+      options: {
+        configFile: 'karma.conf.js'
+      },
+      run: {
+        reporters: ['progress'],
+        browsers: browsers
+      },
+      coverage: {
+        reporters: ['progress', 'coverage'],
+        browsers: browsers,
+        preprocessors: {
+          'src/**/*.js': 'coverage'
+        }
+      },
+      watch: {
+        singleRun: false,
+        autoWatch: true,
+        browsers: browsers
       }
     },
 
@@ -34,12 +56,12 @@ module.exports = function(grunt) {
       options: {
         logConcurrentOutput: true
       },
-      dev: ['watch:scripts']
+      dev: ['watch:scripts', 'karma:watch']
     },
-
     uglify: {
       options: {
-        wrap: false
+        wrap: false,
+        sourceMap: true
       },
       build: {
         src: [
@@ -59,7 +81,7 @@ module.exports = function(grunt) {
           'src/FeatureLayerHook.js'
 
         ],
-        dest: 'build/esri-leaflet-renderers.min.js'
+        dest: 'dist/esri-leaflet-renderers.min.js'
       }
     }
   });
@@ -67,6 +89,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('default', ['jshint','uglify', 'watch']);
+  grunt.registerTask('build', ['jshint', 'karma:coverage', 'uglify']);
+  grunt.registerTask('test', ['jshint', 'karma:run']);
 }

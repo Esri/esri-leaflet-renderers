@@ -29,12 +29,12 @@ L.esri.Renderers.XMarker = L.Path.extend({
   },
 
   setLatLng: function(latlng){
-    this._center = L.latLng(latlng);
+    this._center = latlng;
     return this.redraw();
   },
 
   getLatLng: function(){
-    return this._center;
+    return L.latLng(this._center);
   },
 
   getSize: function(){
