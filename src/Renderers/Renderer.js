@@ -8,7 +8,6 @@ L.esri.Renderers.Renderer = L.Class.extend({
   initialize: function(rendererJson, options){
     this._rendererJson = rendererJson;
     this._pointSymbols = false;
-    //this._options = options || {};
     this._symbols = [];
     L.Util.setOptions(this, options);
   },

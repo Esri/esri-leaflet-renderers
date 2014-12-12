@@ -4,19 +4,19 @@ L.esri.Renderers.PointSymbol = L.esri.Renderers.Symbol.extend({
   },
   initialize: function(symbolJson, options){
     L.esri.Renderers.Symbol.prototype.initialize.call(this, symbolJson);
-    this.serviceUrl = options.url;
-    if(symbolJson.type === 'esriPMS'){
-      this._createIcon();
-    } else {
-      this._fillStyles(); 
+    if(options) {
+      this.serviceUrl = options.url;
+    }
+    if(symbolJson){
+      if(symbolJson.type === 'esriPMS'){
+        this._createIcon();
+      } else {
+        this._fillStyles();
+      }
     }
   },
 
   _fillStyles: function(){
-    if(this._symbolJson.type === 'esriPMS') {
-      return;
-    }
-
     if(this._symbolJson.outline && this._symbolJson.size > 0){
       this._styles.stroke = true;
       this._styles.weight = this.pixelValue(this._symbolJson.outline.width);
@@ -25,8 +25,10 @@ L.esri.Renderers.PointSymbol = L.esri.Renderers.Symbol.extend({
     }else{
       this._styles.stroke = false;
     }
-    this._styles.fillColor = this.colorValue(this._symbolJson.color);
-    this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
+    if(this._symbolJson.color){
+      this._styles.fillColor = this.colorValue(this._symbolJson.color);
+      this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
+    }
 
     if(this._symbolJson.style === 'esriSMSCircle'){
       this._styles.radius = this.pixelValue(this._symbolJson.size) / 2.0;

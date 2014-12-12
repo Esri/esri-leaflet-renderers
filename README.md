@@ -2,10 +2,10 @@
 
 Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri Leaflet Renderers works in conjunction with the Esri Leaflet Plugin to draw [feature services](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) using the defined renderers.
 
-**Currently Esri Leaflet Renderers is in development and should be thought of as a beta or preview.**
+**Esri Leaflet Renderers is currently in development and should be thought of as a beta or preview.**
 
 ### Example
-Here is a quick example using the Esri Leaflet [simple feature layer](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) example. Just change the paths to point to the proper libraries and go.
+Here is a quick example using the Esri Leaflet [simple feature layer](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) example. Just change the paths to point to the proper libraries and go. This file can be found in the repo at spec/sample.html.
 
 
 ```html
@@ -25,7 +25,7 @@ Here is a quick example using the Esri Leaflet [simple feature layer](http://esr
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet and draw the predefined Portland Heritage Tree symbols -->
-    <script src="./esri-leaflet-renderers/build/esri-leaflet-renderers.min.js"></script>
+    <script src="../dist/esri-leaflet-renderers.min.js"></script>
 
     <style>
       body {margin:0;padding:0;}

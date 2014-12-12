@@ -6,16 +6,31 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "."
-  },
-  "author": "",
-  "license": "ISC",
+  "author": "Rachel Nehmer <rnehmer@esri.com>",
+  "contributors": [
+    "Rachel Nehmer <rnehmer@esri.com>"
+  ],
+  "license": "Apache",
+  "readmeFilename": "README.md",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.5.1",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "^0.8.3",
+    "karma": "^0.12.16",
+    "karma-chai-sinon": "^0.1.3",
+    "karma-chrome-launcher": "^0.1.3",
+    "karma-coverage": "^0.1",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-mocha": "^0.1.0",
+    "karma-mocha-reporter": "^0.2.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-sauce-launcher": "^0.2.10"
+  },
+  "dependencies": {
+    "leaflet": "^0.7.0",
+     "esri-leaflet": "^1.0.0"
   }
 }

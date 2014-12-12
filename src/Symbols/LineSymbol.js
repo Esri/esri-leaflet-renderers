@@ -13,9 +13,19 @@ L.esri.Renderers.LineSymbol = L.esri.Renderers.Symbol.extend({
     this._styles.lineCap = 'butt';
     this._styles.lineJoin = 'miter';
 
-    this._styles.weight = this.pixelValue(this._symbolJson.width);
-    this._styles.color = this.colorValue(this._symbolJson.color);
-    this._styles.opacity = this.alphaValue(this._symbolJson.color);
+
+    if (!this._symbolJson){
+      return;
+    }
+
+    if(this._symbolJson.width){
+      this._styles.weight = this.pixelValue(this._symbolJson.width);
+    }
+
+    if(this._symbolJson.color ){
+      this._styles.color = this.colorValue(this._symbolJson.color);
+      this._styles.opacity = this.alphaValue(this._symbolJson.color);
+    }
 
     //usuing dash patterns pulled from arcgis online (converted to pixels)
     switch(this._symbolJson.style){
