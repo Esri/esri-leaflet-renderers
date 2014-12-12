@@ -1,4 +1,4 @@
-L.esri.FeatureLayer.addInitHook(function() {
+Esri.FeatureLayer.addInitHook(function() {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
@@ -144,21 +144,21 @@ L.esri.FeatureLayer.addInitHook(function() {
     options = {url: this.url};
 
     switch(rendererInfo.type){
-      case 'classBreaks': 
+      case 'classBreaks':
         this._checkForProportionalSymbols(geojson.geometryType, rendererInfo);
         if(this._hasProportionalSymbols){
           this._createPointLayer();
-          var pRend = L.esri.Renderers.classBreaksRenderer(rendererInfo, options);
+          var pRend = EsriLeafletRenderers.classBreaksRenderer(rendererInfo, options);
           pRend.attachStylesToLayer(this._pointLayer);
           options.proportionalPolygon = true;
         }
-        rend = L.esri.Renderers.classBreaksRenderer(rendererInfo, options);
+        rend = EsriLeafletRenderers.classBreaksRenderer(rendererInfo, options);
         break;
       case 'uniqueValue':
-        rend = L.esri.Renderers.uniqueValueRenderer(rendererInfo, options);
+        rend = EsriLeafletRenderers.uniqueValueRenderer(rendererInfo, options);
         break;
-      default: 
-        rend = L.esri.Renderers.simpleRenderer(rendererInfo, options);
+      default:
+        rend = EsriLeafletRenderers.simpleRenderer(rendererInfo, options);
     }
     rend.attachStylesToLayer(this);
   };

@@ -1,4 +1,4 @@
-L.esri.Renderers.DiamondMarker = L.Path.extend({
+EsriLeafletRenderers.DiamondMarker = L.Path.extend({
   options: {
     fill: true
   },
@@ -53,6 +53,6 @@ L.esri.Renderers.DiamondMarker = L.Path.extend({
   }
 });
 
-L.esri.Renderers.diamondMarker = function(center, size, options){
-  return new L.esri.Renderers.DiamondMarker(center, size, options);
+EsriLeafletRenderers.diamondMarker = function(center, size, options){
+  return new EsriLeafletRenderers.DiamondMarker(center, size, options);
 };

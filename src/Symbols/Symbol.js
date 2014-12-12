@@ -1,4 +1,4 @@
-L.esri.Renderers.Symbol = L.Class.extend({
+EsriLeafletRenderers.Symbol = L.Class.extend({
 
   initialize: function(symbolJson){
     this._symbolJson = symbolJson;

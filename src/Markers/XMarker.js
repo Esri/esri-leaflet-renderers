@@ -1,4 +1,4 @@
-L.esri.Renderers.XMarker = L.Path.extend({
+EsriLeafletRenderers.XMarker = L.Path.extend({
   initialize: function(center, size, options){
     L.Path.prototype.initialize.call(this, options);
     this._size = size;
@@ -47,6 +47,6 @@ L.esri.Renderers.XMarker = L.Path.extend({
   }
 });
 
-L.esri.Renderers.xMarker = function(center, size, options){
-  return new L.esri.Renderers.XMarker(center, size, options);
+EsriLeafletRenderers.xMarker = function(center, size, options){
+  return new EsriLeafletRenderers.XMarker(center, size, options);
 };
