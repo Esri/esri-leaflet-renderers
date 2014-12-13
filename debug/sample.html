@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>Simple FeatureLayer</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <!--script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script-->
+    <script src="../node_modules/esri-leaflet/dist/esri-leaflet.js"></script>
+
+
+    <!-- Load Esri Leaflet Renderers from source -->
+    <script src="../src/EsriLeafletRenderers.js"></script>
+    <script src="../src/FeatureLayerHook.js"></script>
+    <script src="../src/Markers/CrossMarker.js"></script>
+    <script src="../src/Markers/DiamondMarker.js"></script>
+    <script src="../src/Markers/SquareMarker.js"></script>
+    <script src="../src/Markers/XMarker.js"></script>
+
+    <script src="../src/Renderers/Renderer.js"></script>
+    <script src="../src/Renderers/SimpleRenderer.js"></script>
+    <script src="../src/Renderers/ClassBreaksRenderer.js"></script>
+    <script src="../src/Renderers/UniqueValueRenderer.js"></script>
+
+    <script src="../src/Symbols/Symbol.js"></script>
+    <script src="../src/Symbols/PointSymbol.js"></script>
+    <script src="../src/Symbols/LineSymbol.js"></script>
+    <script src="../src/Symbols/PolygonSymbol.js"></script>
+
+    <style>
+      body {margin:0;padding:0;}
+      #map {position: absolute;top:0;bottom:0;right:0;left:0;}
+    </style>
+  </head>
+  <body>
+
+    <div id="map"></div>
+
+    <script>
+      /*
+      make a copy of this file in the same folder if you'd like git to ignore your local changes
+      */
+      var map = L.map('map').setView([45.526, -122.667], 3);
+
+      L.esri.basemapLayer('Streets').addTo(map);
+
+      //draw the predefined Portland Heritage Tree symbols
+      L.esri.featureLayer('http://sampleserver6.arcgisonline.com/arcgis/rest/services/ServiceRequest/MapServer/0').addTo(map);
+    </script>
+
+  </body>
+</html>

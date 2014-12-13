@@ -1,7 +1,7 @@
-L.esri.Renderers.UniqueValueRenderer = L.esri.Renderers.Renderer.extend({
+EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend({
 
   initialize: function(rendererJson, options){
-    L.esri.Renderers.Renderer.prototype.initialize.call(this, rendererJson, options);
+    EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
 
     //what to do when there are other fields?
     this._field = this._rendererJson.field1;
@@ -36,6 +36,6 @@ L.esri.Renderers.UniqueValueRenderer = L.esri.Renderers.Renderer.extend({
   /* jshint ignore:end */
 });
 
-L.esri.Renderers.uniqueValueRenderer = function(rendererJson, options){
-  return new L.esri.Renderers.UniqueValueRenderer(rendererJson, options);
+EsriLeafletRenderers.uniqueValueRenderer = function(rendererJson, options){
+  return new EsriLeafletRenderers.UniqueValueRenderer(rendererJson, options);
 };

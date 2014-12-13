@@ -1,4 +1,4 @@
-L.esri.Renderers.SquareMarker = L.Path.extend({
+EsriLeafletRenderers.SquareMarker = L.Path.extend({
   options: {
     fill: true
   },
@@ -53,6 +53,6 @@ L.esri.Renderers.SquareMarker = L.Path.extend({
   }
 });
 
-L.esri.Renderers.squareMarker = function(center, size, options){
-  return new L.esri.Renderers.SquareMarker(center, size, options);
+EsriLeafletRenderers.squareMarker = function(center, size, options){
+  return new EsriLeafletRenderers.SquareMarker(center, size, options);
 };

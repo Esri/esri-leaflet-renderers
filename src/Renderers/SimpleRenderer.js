@@ -1,7 +1,7 @@
-L.esri.Renderers.SimpleRenderer = L.esri.Renderers.Renderer.extend({
+EsriLeafletRenderers.SimpleRenderer = EsriLeafletRenderers.Renderer.extend({
 
   initialize: function(rendererJson, options){
-    L.esri.Renderers.Renderer.prototype.initialize.call(this, rendererJson, options);
+    EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
     this._createSymbol();
   },
 
@@ -16,6 +16,6 @@ L.esri.Renderers.SimpleRenderer = L.esri.Renderers.Renderer.extend({
   }
 });
 
-L.esri.Renderers.simpleRenderer = function(rendererJson, options){
-  return new L.esri.Renderers.SimpleRenderer(rendererJson, options);
+EsriLeafletRenderers.simpleRenderer = function(rendererJson, options){
+  return new EsriLeafletRenderers.SimpleRenderer(rendererJson, options);
 };

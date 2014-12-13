@@ -1,4 +1,4 @@
-L.esri.Renderers.CrossMarker = L.Path.extend({
+EsriLeafletRenderers.CrossMarker = L.Path.extend({
   initialize: function (center, size, options){
     L.Path.prototype.initialize.call(this, options);
     this._size = size;
@@ -47,6 +47,6 @@ L.esri.Renderers.CrossMarker = L.Path.extend({
   }
 });
 
-L.esri.Renderers.crossMarker = function(center, size, options){
-  return new L.esri.Renderers.CrossMarker(center, size, options);
+EsriLeafletRenderers.crossMarker = function(center, size, options){
+  return new EsriLeafletRenderers.CrossMarker(center, size, options);
 };
