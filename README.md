@@ -1,19 +1,20 @@
 # Esri Leaflet Renderers
 
-Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri Leaflet Renderers works in conjunction with the Esri Leaflet Plugin to draw [feature services](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) using the defined renderers.
+Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri Leaflet Renderers works in conjunction with the Esri Leaflet Plugin to draw [feature services](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) using renderers defined by the service.
 
 **Esri Leaflet Renderers is currently in development and should be thought of as a beta or preview.**
 
 ### Example
-Here is a quick example using the Esri Leaflet [simple feature layer](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) example. Just change the paths to point to the proper libraries and go. This file can be found in the repo at spec/sample.html.
+Take a look at the [live demo](http://esri.github.io/esri-leaflet-renderers/index.html).
 
+You can also find a side by side comparison of the ArcGIS API for JavaScript [here](http://esri.github.io/esri-leaflet-renderers/spec/comparisons.html).
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset=utf-8 />
-    <title>Simple FeatureLayer</title>
+    <title>Renderer from Service</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <!-- Load Leaflet from CDN-->
@@ -25,7 +26,7 @@ Here is a quick example using the Esri Leaflet [simple feature layer](http://esr
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet and draw the predefined Portland Heritage Tree symbols -->
-    <script src="../dist/esri-leaflet-renderers.min.js"></script>
+    <script src="https://dl.dropboxusercontent.com/u/59331579/0.7.3/esri-leaflet-renderers-0.0.1-beta.1.min.js"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -49,12 +50,12 @@ Here is a quick example using the Esri Leaflet [simple feature layer](http://esr
 
 ### Development Instructions
 
-Make Sure you have the [Grunt CLI](http://gruntjs.com/getting-started) installed.
+Make sure you have the [Grunt CLI](http://gruntjs.com/getting-started) installed.
 
 1. [Fork and clone Esri Leaflet Renderers](https://help.github.com/articles/fork-a-repo)
 2. `cd` into the `esri-leaflet-renderers` folder
 5. Install the dependencies with `npm install`
-5. run `grunt` from the command line. This will start watching the source files and running linting commands.
+5. run `grunt` from the command line. This will create minified source, run linting, and start watching the source files for changes.
 6. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
 
 ### Dependencies
