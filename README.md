@@ -5,7 +5,9 @@ Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri
 **Esri Leaflet Renderers is currently in development and should be thought of as a beta or preview.**
 
 ### Example
-Take a look at the [live demo](http://esri.github.io/esri-leaflet-renderers/index.html).  You can also find an application which renders alongside the ArcGIS API for JavaScript [here](http://esri.github.io/esri-leaflet-renderers/spec/comparisons.html).
+Take a look at the [live demo](http://esri.github.io/esri-leaflet-renderers/index.html).
+
+You can also find a side by side comparison of the ArcGIS API for JavaScript [here](http://esri.github.io/esri-leaflet-renderers/spec/comparisons.html).
 
 ```html
 <!DOCTYPE html>
