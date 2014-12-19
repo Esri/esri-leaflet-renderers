@@ -1,4 +1,4 @@
-L.esri.Renderers.Renderer = L.Class.extend({
+EsriLeafletRenderers.Renderer = L.Class.extend({
 
   options: {
     proportionalPolygon: false,
@@ -8,7 +8,6 @@ L.esri.Renderers.Renderer = L.Class.extend({
   initialize: function(rendererJson, options){
     this._rendererJson = rendererJson;
     this._pointSymbols = false;
-    //this._options = options || {};
     this._symbols = [];
     L.Util.setOptions(this, options);
   },
@@ -23,13 +22,13 @@ L.esri.Renderers.Renderer = L.Class.extend({
   _newSymbol: function(symbolJson){
     if(symbolJson.type === 'esriSMS' || symbolJson.type === 'esriPMS'){
       this._pointSymbols = true;
-      return L.esri.Renderers.pointSymbol(symbolJson, this.options);
+      return EsriLeafletRenderers.pointSymbol(symbolJson, this.options);
     }
     if(symbolJson.type === 'esriSLS'){
-      return L.esri.Renderers.lineSymbol(symbolJson);
+      return EsriLeafletRenderers.lineSymbol(symbolJson);
     }
     if(symbolJson.type === 'esriSFS'){
-      return L.esri.Renderers.polygonSymbol(symbolJson);
+      return EsriLeafletRenderers.polygonSymbol(symbolJson);
     }
   },
 
