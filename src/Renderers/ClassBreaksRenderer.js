@@ -1,7 +1,7 @@
-L.esri.Renderers.ClassBreaksRenderer = L.esri.Renderers.Renderer.extend({
+EsriLeafletRenderers.ClassBreaksRenderer = EsriLeafletRenderers.Renderer.extend({
 
   initialize: function(rendererJson, options){
-    L.esri.Renderers.Renderer.prototype.initialize.call(this, rendererJson, options);
+    EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
     this._field = this._rendererJson.field;
     this._createSymbols();
   },
@@ -12,7 +12,7 @@ L.esri.Renderers.ClassBreaksRenderer = L.esri.Renderers.Renderer.extend({
 
     this._symbols = [];
 
-    //create a symbol for each class break 
+    //create a symbol for each class break
     for (var i = classbreaks.length  - 1; i >= 0; i--){
       if(this.options.proportionalPolygon && this._rendererJson.backgroundFillSymbol){
         symbol = this._newSymbol(this._rendererJson.backgroundFillSymbol);
@@ -46,6 +46,6 @@ L.esri.Renderers.ClassBreaksRenderer = L.esri.Renderers.Renderer.extend({
   }
 });
 
-L.esri.Renderers.classBreaksRenderer = function(rendererJson, options){
-  return new L.esri.Renderers.ClassBreaksRenderer(rendererJson, options);
+EsriLeafletRenderers.classBreaksRenderer = function(rendererJson, options){
+  return new EsriLeafletRenderers.ClassBreaksRenderer(rendererJson, options);
 };

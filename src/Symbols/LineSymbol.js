@@ -1,11 +1,11 @@
-L.esri.Renderers.LineSymbol = L.esri.Renderers.Symbol.extend({
+EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
   statics: {
     //Not implemented 'esriSLSNull'
     LINETYPES:  ['esriSLSDash','esriSLSDot','esriSLSDashDotDot','esriSLSDashDot','esriSLSSolid']
   },
   initialize: function(symbolJson){
-    L.esri.Renderers.Symbol.prototype.initialize.call(this, symbolJson);
-    this._fillStyles(); 
+    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+    this._fillStyles();
   },
 
   _fillStyles: function(){
@@ -13,9 +13,19 @@ L.esri.Renderers.LineSymbol = L.esri.Renderers.Symbol.extend({
     this._styles.lineCap = 'butt';
     this._styles.lineJoin = 'miter';
 
-    this._styles.weight = this.pixelValue(this._symbolJson.width);
-    this._styles.color = this.colorValue(this._symbolJson.color);
-    this._styles.opacity = this.alphaValue(this._symbolJson.color);
+
+    if (!this._symbolJson){
+      return;
+    }
+
+    if(this._symbolJson.width){
+      this._styles.weight = this.pixelValue(this._symbolJson.width);
+    }
+
+    if(this._symbolJson.color ){
+      this._styles.color = this.colorValue(this._symbolJson.color);
+      this._styles.opacity = this.alphaValue(this._symbolJson.color);
+    }
 
     //usuing dash patterns pulled from arcgis online (converted to pixels)
     switch(this._symbolJson.style){
@@ -42,6 +52,6 @@ L.esri.Renderers.LineSymbol = L.esri.Renderers.Symbol.extend({
     return this._styles;
   }
 });
-L.esri.Renderers.lineSymbol = function(symbolJson){
-  return new L.esri.Renderers.LineSymbol(symbolJson);
+EsriLeafletRenderers.lineSymbol = function(symbolJson){
+  return new EsriLeafletRenderers.LineSymbol(symbolJson);
 };

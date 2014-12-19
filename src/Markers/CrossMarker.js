@@ -39,7 +39,7 @@ L.CrossMarker = L.Path.extend({
   initialize: function (latlng, size, options){
     L.setOptions(this, options);
     this._size = size;
-    this._latlng = latlng;
+    this._latlng = L.latLng(latlng);
   },
 
   _project: function () {
