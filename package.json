@@ -8,7 +8,8 @@
   },
   "author": "Rachel Nehmer <rnehmer@esri.com>",
   "contributors": [
-    "Rachel Nehmer <rnehmer@esri.com>"
+    "Rachel Nehmer <rnehmer@esri.com>",
+    "John Gravois <jgravois@esri.com>"
   ],
   "license": "Apache",
   "readmeFilename": "README.md",
@@ -31,6 +32,6 @@
   },
   "dependencies": {
     "leaflet": "^0.7.0",
-     "esri-leaflet": "^1.0.0"
+    "esri-leaflet": "^1.0.0"
   }
 }
