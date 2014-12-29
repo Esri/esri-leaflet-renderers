@@ -31,6 +31,7 @@
     "karma-sauce-launcher": "^0.2.10"
   },
   "dependencies": {
-     "esri-leaflet": "git://github.com/Esri/esri-leaflet.git#leaflet-1.0"
+     "esri-leaflet": "Esri/esri-leaflet.git#leaflet-1.0",
+     "leaflet-shape-markers": "Esri/Leaflet.ShapeMarkers"
   }
 }

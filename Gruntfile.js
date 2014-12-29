@@ -74,12 +74,8 @@ module.exports = function(grunt) {
           'src/Renderers/SimpleRenderer.js',
           'src/Renderers/ClassBreaksRenderer.js',
           'src/Renderers/UniqueValueRenderer.js',
-          'src/Markers/SquareMarker.js',
-          'src/Markers/DiamondMarker.js',
-          'src/Markers/CrossMarker.js',
-          'src/Markers/XMarker.js',
+          'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.min.js',
           'src/FeatureLayerHook.js'
-
         ],
         dest: 'dist/esri-leaflet-renderers.min.js'
       }
@@ -91,8 +87,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
 
-  grunt.registerTask('default', ['build']);
-  //grunt.registerTask('default', ['jshint','uglify', 'watch']);
+  grunt.registerTask('default', ['jshint','uglify', 'watch']);
   grunt.registerTask('build', ['jshint', 'uglify', 'karma:coverage', 'watch']);
   grunt.registerTask('test', ['jshint', 'karma:run']);
 }
