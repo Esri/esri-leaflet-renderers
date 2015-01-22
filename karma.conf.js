@@ -16,6 +16,7 @@ module.exports = function(config) {
       'node_modules/esri-leaflet/node_modules/leaflet/dist/leaflet.css',
       'node_modules/esri-leaflet/node_modules/leaflet/dist/leaflet.js',
       'node_modules/esri-leaflet/dist/esri-leaflet.js',
+      'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.min.js',
       'spec/**/*Spec.js',
       'src/EsriLeafletRenderers.js',
       'src/Symbols/Symbol.js',
@@ -26,10 +27,6 @@ module.exports = function(config) {
       'src/Renderers/SimpleRenderer.js',
       'src/Renderers/ClassBreaksRenderer.js',
       'src/Renderers/UniqueValueRenderer.js',
-      'src/Markers/SquareMarker.js',
-      'src/Markers/DiamondMarker.js',
-      'src/Markers/CrossMarker.js',
-      'src/Markers/XMarker.js',
       'src/FeatureLayerHook.js'
     ],
 
