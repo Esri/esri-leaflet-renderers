@@ -1,20 +1,22 @@
 {
   "name": "esri-leaflet-renderers",
-  "version": "0.0.0",
-  "description": "\"esri-leaflet plugin for rendering\"",
-  "main": "EsriLeafletRenderers.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.0.1-beta.1",
+  "description": "Esri Rendering plugin for Leaflet.",
+  "homepage": "https://github.com/Esri/esri-leaflet-renderers",
+  "main": "dist/esri-leaflet-renderers.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Esri/esri-leaflet-renderers.git"
   },
-  "author": "Rachel Nehmer <rnehmer@esri.com>",
-  "contributors": [
-    "Rachel Nehmer <rnehmer@esri.com>",
-    "John Gravois <jgravois@esri.com>"
-  ],
-  "license": "Apache",
+  "scripts": {
+    "prepublish": "node -e \"require('grunt').tasks(['prepublish']);\"",
+    "test": "node -e \"require('grunt').tasks(['test']);\""
+  },
+  "license": "Apache 2.0",
   "readmeFilename": "README.md",
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.3.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.5.1",
     "grunt-contrib-watch": "^0.6.1",
@@ -30,8 +32,13 @@
     "karma-safari-launcher": "^0.1.1",
     "karma-sauce-launcher": "^0.2.10"
   },
+  "author": "Rachel Nehmer <rnehmer@esri.com>",
+  "contributors": [
+    "Rachel Nehmer <rnehmer@esri.com>",
+    "John Gravois <jgravois@esri.com>"
+  ],
   "dependencies": {
     "leaflet": "^0.7.0",
-    "esri-leaflet": "^1.0.0"
+    "esri-leaflet": "1.0.0-rc.5"
   }
 }

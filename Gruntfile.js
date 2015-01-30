@@ -1,12 +1,31 @@
-var fs = require('fs');
-
 module.exports = function(grunt) {
   var browsers = grunt.option('browser') ? grunt.option('browser').split(',') : ['PhantomJS'];
 
-  pkg: grunt.file.readJSON('package.json'),
+  var copyright = '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+                   '*   Copyright (c) <%= grunt.template.today("yyyy") %> Environmental Systems Research Institute, Inc.\n' +
+                   '*   Apache 2.0 License ' +
+                   '*/\n\n';
+
+  var files = [
+    'src/EsriLeafletRenderers.js',
+    'src/Symbols/Symbol.js',
+    'src/Symbols/PointSymbol.js',
+    'src/Symbols/LineSymbol.js',
+    'src/Symbols/PolygonSymbol.js',
+    'src/Renderers/Renderer.js',
+    'src/Renderers/SimpleRenderer.js',
+    'src/Renderers/ClassBreaksRenderer.js',
+    'src/Renderers/UniqueValueRenderer.js',
+    'src/Markers/SquareMarker.js',
+    'src/Markers/DiamondMarker.js',
+    'src/Markers/CrossMarker.js',
+    'src/Markers/XMarker.js',
+    'src/FeatureLayerHook.js'
+  ];
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -18,6 +37,38 @@ module.exports = function(grunt) {
         ]
       }
     },
+
+    concat: {
+      options: {
+        sourceMap: true,
+        separator: '\n\n',
+        banner: copyright,
+      },
+      js: {
+        src: files,
+        dest: 'dist/esri-leaflet-renderers-src.js'
+      },
+    },
+
+    uglify: {
+      options: {
+        wrap: false,
+        mangle: {
+          except: ['L']
+        },
+        preserveComments: 'some',
+        report: 'gzip',
+        banner: copyright,
+        sourceMap: true,
+        sourceMapIncludeSources: true,
+      },
+      dist: {
+        files: {
+          'dist/esri-leaflet-renderers.js': files
+        }
+      }
+    },
+
     karma: {
       options: {
         configFile: 'karma.conf.js'
@@ -81,18 +132,19 @@ module.exports = function(grunt) {
           'src/FeatureLayerHook.js'
 
         ],
-        dest: 'dist/esri-leaflet-renderers.min.js'
+        dest: 'dist/esri-leaflet-renderers.js'
       }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('default', ['build']);
-  //grunt.registerTask('default', ['jshint','uglify', 'watch']);
-  grunt.registerTask('build', ['jshint', 'uglify', 'karma:coverage', 'watch']);
+  grunt.registerTask('build', ['test', 'concat', 'uglify', 'watch']);
   grunt.registerTask('test', ['jshint', 'karma:run']);
+  grunt.registerTask('prepublish', ['concat', 'uglify']);
 }
