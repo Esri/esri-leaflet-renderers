@@ -34,8 +34,8 @@
         var symbol = L.esri.Renderers.pointSymbol(pointSymbolJson);
         var styles = symbol._styles;
 
-        expect(symbol.icon).to.be.undefined();
-        expect(styles).not.to.be.undefined();
+        expect(symbol.icon).to.be.eq(undefined);
+        expect(styles).not.to.be.eq(undefined);
       });
     });
 
@@ -61,9 +61,9 @@
         var symbol = L.esri.Renderers.pointSymbol(iconSymbolJson, {url: fLayer});
         var styles = symbol._styles;
 
-        expect(symbol.icon).not.to.be.undefined();
+        expect(symbol.icon).not.to.be.eq(undefined);
         expect(symbol.serviceUrl).to.be.eq(fLayer);
-        expect(styles.stroke).to.be.undefined();
+        expect(styles.stroke).to.be.eq(undefined);
       });
     });
   });

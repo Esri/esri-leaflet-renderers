@@ -11,9 +11,9 @@
       var styles = symbol.style();
       expect(styles.lineCap).to.be.eq('butt');
       expect(styles.lineJoin).to.be.eq('miter');
-      expect(styles.width).to.be.undefined();
-      expect(styles.color).to.be.undefined();
-      expect(styles.dashArray).to.be.undefined();
+      expect(styles.width).to.be.eq(undefined);
+      expect(styles.color).to.be.eq(undefined);
+      expect(styles.dashArray).to.be.eq(undefined);
     });
 
     describe("should set style from solid line symbol 'esriSLSSolid'", function () {
@@ -35,7 +35,7 @@
         var o = symbolHelper.alphaValue(solidLine.color);
         expect(styles.color).to.be.eq(c);
         expect(styles.opacity).to.be.eq(o);
-        expect(styles.dashArray).to.be.undefined();
+        expect(styles.dashArray).to.be.eq(undefined);
         expect(styles.weight).to.be.eq(symbolHelper.pixelValue(solidLine.width));
       });
     });
@@ -54,25 +54,25 @@
         dashedLine.style = "esriSLSDot";
         var symbol = L.esri.Renderers.lineSymbol(dashedLine);
         var styles = symbol.style();
-        expect(styles.dashArray).not.to.be.undefined();
+        expect(styles.dashArray).not.to.be.eq(undefined);
       });
       it("should set esriSLSDash line parameters", function () {
         dashedLine.style = "esriSLSDash";
         var symbol = L.esri.Renderers.lineSymbol(dashedLine);
         var styles = symbol.style();
-        expect(styles.dashArray).not.to.be.undefined();
+        expect(styles.dashArray).not.to.be.eq(undefined);
       });
       it("should set esriSLSDashDot line parameters", function () {
         dashedLine.style = "esriSLSDashDot";
         var symbol = L.esri.Renderers.lineSymbol(dashedLine);
         var styles = symbol.style();
-        expect(styles.dashArray).not.to.be.undefined();
+        expect(styles.dashArray).not.to.be.eq(undefined);
       });
       it("should set esriSLSDashDotDot line parameters", function () {
         dashedLine.style = "esriSLSDashDotDot";
         var symbol = L.esri.Renderers.lineSymbol(dashedLine);
         var styles = symbol.style();
-        expect(styles.dashArray).not.to.be.undefined();
+        expect(styles.dashArray).not.to.be.eq(undefined);
       });
     });
 	});
