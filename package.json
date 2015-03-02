@@ -74,6 +74,7 @@
     "type": "git",
     "url": "git@github.com:Esri/esri-leaflet-renderers.git"
   },
+
   "scripts": {
     "prebuild": "mkdirp dist",
     "build": "./scripts/build.js",
