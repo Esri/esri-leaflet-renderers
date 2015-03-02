@@ -11,26 +11,24 @@ L.esri.FeatureLayer.addInitHook(function () {
   var oldOnRemove = L.Util.bind(this.onRemove, this);
   L.Util.bind(this.createNewLayer, this);
 
-  this._metadataLoaded = false;
-
-  this.metadata(function (error, response) {
-    if (response && response.drawingInfo && !this.options.style) {
+  this.metadata(function(error, response) {
+    if(response && response.drawingInfo && !this.options.style){
       this._setRenderers(response);
     }
+
     this._metadataLoaded = true;
-    /* jshint ignore:start */
-    if (this._addToMap) {
-      oldOnAdd(map);
-      this._addPointLayer(map);
+    if(this._loadedMap){
+      oldOnAdd(this._loadedMap);
+      this._addPointLayer(this._loadedMap);
     }
-  /* jshint ignore:end */
   }, this);
 
-  this.onAdd = function (map) {
-    this._addToMap = true;
-    if (this._metadataLoaded) {
-      oldOnAdd(map);
-      this._addPointLayer(map);
+  this.onAdd = function(map){
+
+    this._loadedMap = map;
+    if(this._metadataLoaded){
+      oldOnAdd(this._loadedMap);
+      this._addPointLayer(this._loadedMap);
     }
   };
 
