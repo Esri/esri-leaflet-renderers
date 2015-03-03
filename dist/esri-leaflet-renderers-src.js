@@ -3,8 +3,7 @@
 *   Apache 2.0 License */
 
 var EsriLeafletRenderers = {
-  VERSION: '0.0.1'//,
-  //Renderers: {}
+  VERSION: '0.0.1-beta.2'
 };
 
 // attach to the L.esri global if we can
@@ -16,6 +15,7 @@ if(typeof window !== 'undefined' && window.L && window.L.esri) {
 if(!Esri){
   var Esri = window.L.esri;
 }
+
 
 EsriLeafletRenderers.Symbol = L.Class.extend({
 
