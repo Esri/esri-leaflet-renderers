@@ -1,6 +1,5 @@
 var EsriLeafletRenderers = {
-  VERSION: '0.0.1'//,
-  //Renderers: {}
+  VERSION: '0.0.1-beta.2'
 };
 
 // attach to the L.esri global if we can
