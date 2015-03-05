@@ -22,11 +22,11 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
-    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.5/esri-leaflet.js"></script>
+    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.6/esri-leaflet.js"></script>
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet and draw the predefined Portland Heritage Tree symbols -->
-    <script src="https://dl.dropboxusercontent.com/u/59331579/0.7.3/esri-leaflet-renderers-0.0.1-beta.2.min.js"></script>
+    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-renderers/v0.0.1-beta.2/esri-leaflet-renderers.js"></script>
 
     <style>
       body {margin:0;padding:0;}
