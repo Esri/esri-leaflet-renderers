@@ -107,7 +107,41 @@ module.exports = function(grunt) {
         src: files,
         dest: 'dist/esri-leaflet-renderers.js'
       }
+    },
+
+    s3: {
+      options: {
+        key: '<%= aws.key %>',
+        secret: '<%= aws.secret %>',
+        bucket: '<%= aws.bucket %>',
+        access: 'public-read',
+        headers: {
+          // 1 Year cache policy (1000 * 60 * 60 * 24 * 365)
+          "Cache-Control": "max-age=630720000, public",
+          "Expires": new Date(Date.now() + 63072000000).toUTCString()
+        }
+      },
+      dev: {
+        upload: [
+          {
+            src: 'dist/*',
+            dest: 'esri-leaflet-renderers/<%= pkg.version %>/'
+          }
+        ]
+      }
+    },
+
+    releaseable: {
+      release: {
+        options: {
+          remote: 'upstream',
+          dryRun: grunt.option('dryRun') ? grunt.option('dryRun') : false,
+          silent: false
+        },
+        src: [ 'dist/**/*.js','dist/**/*.map' ]
+      }
     }
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -115,9 +149,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-s3');
+  grunt.loadNpmTasks('grunt-releaseable');
 
   grunt.registerTask('default', ['build', 'watch']);
   grunt.registerTask('build', ['test', 'concat', 'uglify']);
   grunt.registerTask('test', ['jshint', 'karma:run']);
   grunt.registerTask('prepublish', ['concat', 'uglify']);
+  grunt.registerTask('release', ['releaseable', 's3']);
 }
