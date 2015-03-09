@@ -27,20 +27,18 @@ export var Symbol = L.Class.extend({
     sizeInfo = options || this.sizeInfo,
     field = sizeInfo && sizeInfo.field,
     size = 0,
-    userDefValue = false,
     value = null;
 
     if (field) {
+      value = attr[field];
       var minSize = sizeInfo.minSize,
-      value = attr[field],
       maxSize = sizeInfo.maxSize,
       minDataValue = sizeInfo.minDataValue,
       maxDataValue = sizeInfo.maxDataValue,
-      unit = sizeInfo.valueUnit || "unknown",
       featureRatio,
       normField = sizeInfo.normalizationField,
       normValue = attr ? parseFloat(attr[normField]) : undefined;
-      if ( value == null || ( normField && ((isNaN(normValue) || normValue === 0)))) {
+      if ( value === null || ( normField && ((isNaN(normValue) || normValue === 0)))) {
        return null;
       }
 
@@ -48,7 +46,7 @@ export var Symbol = L.Class.extend({
         value = value / normValue;
       }
 
-      if ( minSize != null && maxSize != null && minDataValue != null && maxDataValue != null) {
+      if ( minSize !== null && maxSize !== null && minDataValue !== null && maxDataValue !== null) {
         if (value <= minDataValue) {
           size = minSize;
         }

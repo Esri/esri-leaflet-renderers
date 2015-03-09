@@ -33,7 +33,7 @@ export var ClassBreaksRenderer = Renderer.extend({
 
   _getSymbol: function (feature) {
     var val = feature.properties[this._field];
-    if (this._rendererJson.normalizationType && this._rendererJson.normalizationType == 'esriNormalizeByField'){
+    if (this._rendererJson.normalizationType && this._rendererJson.normalizationType === 'esriNormalizeByField'){
       var normValue = feature.properties[this._rendererJson.normalizationField];
       if (!isNaN(normValue) && normValue !== 0) {
         val = val / normValue;
