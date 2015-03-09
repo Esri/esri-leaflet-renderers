@@ -32,6 +32,8 @@ export var PointSymbol = Symbol.extend({
     if (this._symbolJson.color) {
       this._styles.fillColor = this.colorValue(this._symbolJson.color);
       this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
+    } else {
+      this._styles.fillOpacity = 0;
     }
 
     if (this._symbolJson.style === 'esriSMSCircle') {
@@ -52,14 +54,24 @@ export var PointSymbol = Symbol.extend({
       iconAnchor: [xOffset, yOffset]
     });
   },
-  pointToLayer: function (geojson, latlng) {
-    if (this._symbolJson.type === 'esriPMS') {
+
+  pointToLayer: function(geojson, latlng, visualVariables){
+    if (this._symbolJson.type === 'esriPMS'){
       return L.marker(latlng, {icon: this.icon});
     }
 
     var size = this.pixelValue(this._symbolJson.size);
 
-    switch (this._symbolJson.style) {
+    if (visualVariables) {
+      for (var i = 0; i < visualVariables.length; i++){
+        if (visualVariables[i].type === 'sizeInfo'){
+          size = this.pixelValue(this.getSize(geojson, visualVariables[i]));
+        }
+      }
+    }
+
+
+    switch(this._symbolJson.style){
       case 'esriSMSSquare':
         return squareMarker(latlng, size, this._styles);
       case 'esriSMSDiamond':
@@ -69,6 +81,7 @@ export var PointSymbol = Symbol.extend({
       case 'esriSMSX':
         return xMarker(latlng, size, this._styles);
     }
+    this._styles.radius = size / 2.0;
     return L.circleMarker(latlng, this._styles);
   }
 });

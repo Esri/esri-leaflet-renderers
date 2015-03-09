@@ -12,13 +12,14 @@ export var Renderer = L.Class.extend({
 
   initialize: function (rendererJson, options) {
     this._rendererJson = rendererJson;
+    this._visualVariables = rendererJson.visualVariables;
     this._pointSymbols = false;
     this._symbols = [];
     L.Util.setOptions(this, options);
   },
 
-  _createDefaultSymbol: function () {
-    if (this._rendererJson.defaultSymbol) {
+  _createDefaultSymbol: function(){
+    if(this._rendererJson.defaultSymbol){
       this._defaultSymbol = this._newSymbol(this._rendererJson.defaultSymbol);
     }
   },
@@ -50,8 +51,8 @@ export var Renderer = L.Class.extend({
 
   pointToLayer: function (geojson, latlng) {
     var sym = this._getSymbol(geojson);
-    if (sym) {
-      return sym.pointToLayer(geojson, latlng);
+    if(sym){
+      return sym.pointToLayer(geojson, latlng, this._visualVariables);
     }
     // invisible symbology
     return L.circleMarker(latlng, {radius: 0});
@@ -60,14 +61,13 @@ export var Renderer = L.Class.extend({
   style: function (feature) {
     // find the symbol to represent this feature
     var sym = this._getSymbol(feature);
-    if (sym) {
-      return sym.style(feature);
-    } else {
-      // invisible symbology
+    if(sym){
+      return sym.style(feature, this._visualVariables);
+    }else{
+      //invisible symbology
       return {opacity: 0, fillOpacity: 0};
     }
   }
-
 });
 
 export function renderer (rendererJson, options) {

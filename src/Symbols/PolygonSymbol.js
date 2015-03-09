@@ -14,11 +14,15 @@ export var PolygonSymbol = Symbol.extend({
     }
   },
 
-  _fillStyles: function () {
-    // set the fill for the polygon
-    if (this._symbolJson && this._symbolJson.color) {
-      this._styles.fillColor = this.colorValue(this._symbolJson.color);
-      this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
+  _fillStyles: function(){
+    //set the fill for the polygon
+    if (this._symbolJson) {
+      if (this._symbolJson.color) {
+        this._styles.fillColor = this.colorValue(this._symbolJson.color);
+        this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
+      } else {
+        this._styles.fillOpacity = 0;
+      }
     }
 
     if (this._lineStyles) {
