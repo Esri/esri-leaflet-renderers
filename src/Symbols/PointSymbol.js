@@ -65,11 +65,13 @@ export var PointSymbol = Symbol.extend({
     if (visualVariables) {
       for (var i = 0; i < visualVariables.length; i++){
         if (visualVariables[i].type === 'sizeInfo'){
-          size = this.pixelValue(this.getSize(geojson, visualVariables[i]));
+          var calculatedSize = this.pixelValue(this.getSize(geojson, visualVariables[i]));
+          if (calculatedSize) {
+            size = calculatedSize;
+          }
         }
       }
     }
-
 
     switch(this._symbolJson.style){
       case 'esriSMSSquare':
