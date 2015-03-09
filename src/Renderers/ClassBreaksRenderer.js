@@ -32,6 +32,12 @@ EsriLeafletRenderers.ClassBreaksRenderer = EsriLeafletRenderers.Renderer.extend(
 
   _getSymbol: function(feature){
     var val = feature.properties[this._field];
+    if (this._rendererJson.normalizationType && this._rendererJson.normalizationType == 'esriNormalizeByField'){
+      var normValue = feature.properties[this._rendererJson.normalizationField];
+      if (!isNaN(normValue) && normValue !== 0) {
+        val = val / normValue;
+      }
+    }
     if(val > this._maxValue){
       return this._defaultSymbol;
     }
