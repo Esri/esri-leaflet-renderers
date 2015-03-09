@@ -39,8 +39,7 @@ EsriLeafletRenderers.Symbol = L.Class.extend({
       featureRatio,
       normField = sizeInfo.normalizationField,
       normValue = attr ? parseFloat(attr[normField]) : undefined;
-
-      if ( value == null || isNaN(normValue) || normValue === 0) {
+      if ( value == null || ( normField && ((isNaN(normValue) || normValue === 0)))) {
        return null;
       }
 
