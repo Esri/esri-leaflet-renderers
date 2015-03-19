@@ -12,10 +12,20 @@ export var Renderer = L.Class.extend({
 
   initialize: function (rendererJson, options) {
     this._rendererJson = rendererJson;
-    this._visualVariables = rendererJson.visualVariables;
     this._pointSymbols = false;
     this._symbols = [];
+    this._visualVariables = this._parseVisualVariables(rendererJson.visualVariables);
     L.Util.setOptions(this, options);
+  },
+
+  _parseVisualVariables: function(visualVariables){
+    var visVars = {}
+    if (visualVariables) {
+      for (var i = 0; i < visualVariables.length; i++){
+        visVars[visualVariables[i].type] = visualVariables[i];
+      }
+    }
+    return visVars;
   },
 
   _createDefaultSymbol: function(){
