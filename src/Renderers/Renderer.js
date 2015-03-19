@@ -26,6 +26,7 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
   _createDefaultSymbol: function(){
     if(this._rendererJson.defaultSymbol){
       this._defaultSymbol = this._newSymbol(this._rendererJson.defaultSymbol);
+      this._defaultSymbol._isDefault = true;
     }
   },
 
@@ -56,11 +57,11 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
 
   pointToLayer: function(geojson, latlng){
     var sym = this._getSymbol(geojson);
-    if(sym){
+    if(sym && sym.pointToLayer){
       return sym.pointToLayer(geojson, latlng, this._visualVariables);
     }
     //invisible symbology
-    return L.circleMarker(latlng, {radius: 0});
+    return L.circleMarker(latlng, {radius: 0, opacity: 0});
   },
 
   style: function(feature){

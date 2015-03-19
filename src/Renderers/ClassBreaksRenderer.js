@@ -39,8 +39,11 @@ EsriLeafletRenderers.ClassBreaksRenderer = EsriLeafletRenderers.Renderer.extend(
       var normValue = feature.properties[this._normalizationField];
       if (!isNaN(normValue) && normValue !== 0) {
         val = val / normValue;
+      } else {
+        return this._defaultSymbol;
       }
     }
+
     if(val > this._maxValue){
       return this._defaultSymbol;
     }

@@ -36,7 +36,14 @@ EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
     }
   },
 
-  style: function() {
+  style: function(feature, visualVariables) {
+    if(!this._isDefault && visualVariables && visualVariables.colorInfo){
+      var color = this.getColor(feature, visualVariables.colorInfo);
+      if(color){
+        this._styles.fillColor = this.colorValue(color);
+        this._styles.fillOpacity = this.alphaValue(color);
+      }
+    }
     return this._styles;
   }
 });
