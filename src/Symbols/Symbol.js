@@ -5,6 +5,7 @@ export var Symbol = L.Class.extend({
     this._symbolJson = symbolJson;
     this.val = null;
     this._styles = {};
+    this._isDefault = false;
   },
 
   // the geojson values returned are in points
@@ -98,7 +99,7 @@ export var Symbol = L.Class.extend({
       }
 
       //interplate the colors if the feature value falls between two colors
-      if(lowerBound && upperBound){
+      if(!isNaN(lowerBound) && !isNaN(upperBound)){
         var range = upperBound - lowerBound;
         if(range > 0){
           //more weight the further it is from the lower bound
@@ -125,14 +126,14 @@ export var Symbol = L.Class.extend({
           }
         }
       }
-      //if there are color info stops and one the feature value did not fall between
+      //if there are color info stops and the feature value did not fall between
       //two bounds then this is either less than the min stop or greater than
       //the max stop
       if(colorInfo.stops.length){
-        if(!lowerBound){
+        if(isNaN(lowerBound)){
           return colorInfo.stops[0].color;
         }
-        if(!upperBound){
+        if(isNaN(upperBound)){
           return colorInfo.stops[colorInfo.stops.length - 1].color;
         }
       }

@@ -49,7 +49,22 @@ export var LineSymbol = Symbol.extend({
     }
   },
 
-  style: function () {
+  style: function(feature, visualVariables){
+    if(!this._isDefault && visualVariables){
+      if(visualVariables.sizeInfo){
+        var calculatedSize = this.pixelValue(this.getSize(feature, visualVariables.sizeInfo));
+        if (calculatedSize) {
+          this._styles.weight = calculatedSize;
+        }
+      }
+      if(visualVariables.colorInfo){
+        var color = this.getColor(feature, visualVariables.colorInfo);
+        if(color){
+          this._styles.color = this.colorValue(color);
+          this._styles.opacity = this.alphaValue(color);
+        }
+      }
+    }
     return this._styles;
   }
 });

@@ -62,17 +62,19 @@ export var PointSymbol = Symbol.extend({
 
     var size = this.pixelValue(this._symbolJson.size);
 
-    if (visualVariables.sizeInfo) {
-      var calculatedSize = this.pixelValue(this.getSize(geojson, visualVariables.sizeInfo));
-      if (calculatedSize) {
-        size = calculatedSize;
+    if(!this._isDefault){
+      if( visualVariables.sizeInfo) {
+        var calculatedSize = this.pixelValue(this.getSize(geojson, visualVariables.sizeInfo));
+        if (calculatedSize) {
+          size = calculatedSize;
+        }
       }
-    }
-    if(visualVariables.colorInfo){
-      var color = this.getColor(geojson, visualVariables.colorInfo);
-      if(color){
-        this._styles.fillColor = this.colorValue(color);
-        this._styles.fillOpacity = this.alphaValue(color);
+      if(visualVariables.colorInfo){
+        var color = this.getColor(geojson, visualVariables.colorInfo);
+        if(color){
+          this._styles.fillColor = this.colorValue(color);
+          this._styles.fillOpacity = this.alphaValue(color);
+        }
       }
     }
 
