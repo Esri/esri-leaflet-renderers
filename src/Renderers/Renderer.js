@@ -19,7 +19,7 @@ export var Renderer = L.Class.extend({
   },
 
   _parseVisualVariables: function(visualVariables){
-    var visVars = {}
+    var visVars = {};
     if (visualVariables) {
       for (var i = 0; i < visualVariables.length; i++){
         visVars[visualVariables[i].type] = visualVariables[i];
