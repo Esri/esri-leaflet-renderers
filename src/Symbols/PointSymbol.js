@@ -11,9 +11,14 @@ export var PointSymbol = Symbol.extend({
     if (options) {
       this.serviceUrl = options.url;
     }
-    if (symbolJson) {
-      if (symbolJson.type === 'esriPMS') {
-        this._createIcon();
+    if(symbolJson){
+      if(symbolJson.type === 'esriPMS'){
+        this._iconUrl = this.serviceUrl + 'images/' + this._symbolJson.url;
+        //leaflet does not allow resizing icons so keep a hash of different
+        //icon sizes to try and keep down on the number of icons created
+        this._icons = {};
+        //create base icon
+        this.icon = this._createIcon(this._symbolJson);
       } else {
         this._fillStyles();
       }
@@ -41,30 +46,46 @@ export var PointSymbol = Symbol.extend({
     }
   },
 
-  _createIcon: function () {
-    var height = this.pixelValue(this._symbolJson.height);
-    var width = this.pixelValue(this._symbolJson.width);
-    var xOffset = width / 2.0 + this.pixelValue(this._symbolJson.xoffset);
-    var yOffset = height / 2.0 + this.pixelValue(this._symbolJson.yoffset);
-    var url = this.serviceUrl + 'images/' + this._symbolJson.url;
+  _createIcon: function(options){
+    var width = this.pixelValue(options.width);
+    var height = width;
+    if(options.height){
+      height = this.pixelValue(options.height);
+    }
+    var xOffset = width / 2.0;
+    var yOffset = height / 2.0;
 
-    this.icon = L.icon({
-      iconUrl: url,
+
+    if(options.xoffset){
+       xOffset += this.pixelValue(options.xoffset);
+    }
+    if(options.yoffset){
+      yOffset += this.pixelValue(options.yoffset);
+    }
+
+    var icon = L.icon({
+      iconUrl: this._iconUrl,
       iconSize: [width, height],
       iconAnchor: [xOffset, yOffset]
     });
+    this._icons[options.width.toString()] = icon;
+    return icon;
+  },
+
+  _getIcon: function(size) {
+    //check to see if it is already created by size
+    var icon = this._icons[size.toString()];
+    if(!icon){
+      icon = this._createIcon({width: size});
+    }
+    return icon;
   },
 
   pointToLayer: function(geojson, latlng, visualVariables){
-    if (this._symbolJson.type === 'esriPMS'){
-      return L.marker(latlng, {icon: this.icon});
-    }
-
-    var size = this.pixelValue(this._symbolJson.size);
-
+    var size = this._symbolJson.size || this._symbolJson.width;
     if(!this._isDefault){
       if( visualVariables.sizeInfo) {
-        var calculatedSize = this.pixelValue(this.getSize(geojson, visualVariables.sizeInfo));
+        var calculatedSize = this.getSize(geojson, visualVariables.sizeInfo);
         if (calculatedSize) {
           size = calculatedSize;
         }
@@ -77,6 +98,11 @@ export var PointSymbol = Symbol.extend({
         }
       }
     }
+
+    if (this._symbolJson.type === 'esriPMS'){
+      return L.marker(latlng, {icon: this._getIcon(size)});
+    }
+    size = this.pixelValue(size);
 
     switch(this._symbolJson.style){
       case 'esriSMSSquare':
