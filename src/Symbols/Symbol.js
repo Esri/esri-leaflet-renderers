@@ -82,11 +82,19 @@ EsriLeafletRenderers.Symbol = L.Class.extend({
       featureValue /= normValue;
     }
 
+    if(featureValue <= colorInfo.stops[0].value){
+      return colorInfo.stops[0].color;
+    }
+    var lastStop = colorInfo.stops[colorInfo.stops.length - 1];
+    if(featureValue >= lastStop.value){
+      return lastStop.color;
+    }
+
     //go through the stops to find min and max
     for(var i=0; i<colorInfo.stops.length; i++){
       var stopInfo = colorInfo.stops[i];
 
-      if(stopInfo.value < featureValue){
+      if(stopInfo.value <= featureValue){
         lowerBoundColor = stopInfo.color;
         lowerBound = stopInfo.value;
 
@@ -95,16 +103,6 @@ EsriLeafletRenderers.Symbol = L.Class.extend({
         upperBound = stopInfo.value;
         break;
       }
-    }
-
-    //if the feature value did not fall between two bounds
-    //then this is either less than the first stop or
-    //greater than the last stop
-    if(isNaN(lowerBound)){
-      return colorInfo.stops[0].color;
-    }
-    if(isNaN(upperBound)){
-      return colorInfo.stops[colorInfo.stops.length - 1].color;
     }
 
     //feature falls between two stops, interplate the colors
