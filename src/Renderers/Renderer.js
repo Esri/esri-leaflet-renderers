@@ -9,13 +9,24 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
     this._rendererJson = rendererJson;
     this._pointSymbols = false;
     this._symbols = [];
+    this._visualVariables = this._parseVisualVariables(rendererJson.visualVariables);
     L.Util.setOptions(this, options);
   },
 
+  _parseVisualVariables: function(visualVariables){
+    var visVars = {};
+    if (visualVariables) {
+      for (var i = 0; i < visualVariables.length; i++){
+        visVars[visualVariables[i].type] = visualVariables[i];
+      }
+    }
+    return visVars;
+  },
 
   _createDefaultSymbol: function(){
     if(this._rendererJson.defaultSymbol){
       this._defaultSymbol = this._newSymbol(this._rendererJson.defaultSymbol);
+      this._defaultSymbol._isDefault = true;
     }
   },
 
@@ -46,18 +57,18 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
 
   pointToLayer: function(geojson, latlng){
     var sym = this._getSymbol(geojson);
-    if(sym){
-      return sym.pointToLayer(geojson, latlng);
+    if(sym && sym.pointToLayer){
+      return sym.pointToLayer(geojson, latlng, this._visualVariables);
     }
     //invisible symbology
-    return L.circleMarker(latlng, {radius: 0});
+    return L.circleMarker(latlng, {radius: 0, opacity: 0});
   },
 
   style: function(feature){
     //find the symbol to represent this feature
     var sym = this._getSymbol(feature);
     if(sym){
-      return sym.style(feature);
+      return sym.style(feature, this._visualVariables);
     }else{
       //invisible symbology
       return {opacity: 0, fillOpacity: 0};

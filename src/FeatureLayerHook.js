@@ -55,6 +55,8 @@ Esri.FeatureLayer.addInitHook(function() {
   this._createPointLayer = function(){
     if(!this._pointLayer){
       this._pointLayer = L.geoJson();
+      //store the feature ids that have already been added to the map
+      this._pointLayerIds = {};
 
       if(this._popup){
         var popupFunction = function (feature, layer) {
@@ -75,8 +77,15 @@ Esri.FeatureLayer.addInitHook(function() {
       if(!(isNaN(centroid[0]) || isNaN(centroid[0]))){
         this._createPointLayer();
 
-        var pointjson = this.getPointJson(geojson, centroid);
-        this._pointLayer.addData(pointjson);
+        var featureId = geojson.id.toString();
+        //only add the feature if it does not already exist on the map
+        if(!this._pointLayerIds[featureId]){
+          var pointjson = this.getPointJson(geojson, centroid);
+
+          this._pointLayer.addData(pointjson);
+          this._pointLayerIds[featureId] = true;
+        }
+
         this._pointLayer.bringToFront();
       }
     }
