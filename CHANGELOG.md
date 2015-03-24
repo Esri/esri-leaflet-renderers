@@ -7,7 +7,7 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## 0.0.1-beta.3 - 2015-03-24
 * Render from the new visualVariables objects in the renderer JSON
-* Still backwards compatible with classic rendererers
+* Still backwards compatible with classic renderers
 
 ## 0.0.1-beta.2 - 2015-03-02
 * Fix to work with Browserify
@@ -19,5 +19,5 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 * Works with esri-leaflet 1.0.0-rc.4
 
 [Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.3...HEAD
-[0.0.1-beta.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.2...v0.0.1-beta.3
+[0.0.1-beta.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.2...v0.0.1-beta.3
 [0.0.1-beta.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.1...v0.0.1-beta.2
