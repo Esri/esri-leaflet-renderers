@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = function(grunt) {
   var browsers = grunt.option('browser') ? grunt.option('browser').split(',') : ['PhantomJS'];
 
@@ -143,6 +145,12 @@ module.exports = function(grunt) {
     }
 
   });
+
+  var awsExists = fs.existsSync(process.env.HOME + '/esri-leaflet-s3.json');
+
+  if (awsExists) {
+    grunt.config.set('aws', grunt.file.readJSON(process.env.HOME + '/esri-leaflet-s3.json'));
+  }
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
