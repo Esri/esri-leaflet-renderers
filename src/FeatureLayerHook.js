@@ -152,7 +152,10 @@ L.esri.FeatureLayer.addInitHook(function () {
   this._setRenderers = function (geojson) {
     var rend,
     rendererInfo = geojson.drawingInfo.renderer,
-    options = {url: this.url ? this.url : this._service.options.url};
+    options = {
+        url: this.url ? this.url : this._service.options.url,
+        token: this._service.options.token
+    };
 
     switch (rendererInfo.type) {
       case 'classBreaks':
