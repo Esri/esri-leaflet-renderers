@@ -9,7 +9,8 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
     }
     if(symbolJson){
       if(symbolJson.type === 'esriPMS'){
-        this._iconUrl = this.serviceUrl + 'images/' + this._symbolJson.url;
+        var url = this.serviceUrl + 'images/' + this._symbolJson.url;
+        this._iconUrl = options && options.token ? url + '?token=' + options.token : url;
         //leaflet does not allow resizing icons so keep a hash of different
         //icon sizes to try and keep down on the number of icons created
         this._icons = {};
