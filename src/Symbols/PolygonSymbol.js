@@ -17,7 +17,10 @@ export var PolygonSymbol = Symbol.extend({
   _fillStyles: function(){
     //set the fill for the polygon
     if (this._symbolJson) {
-      if (this._symbolJson.color) {
+      if (this._symbolJson.color &&
+          //don't fill polygon if type is not supported
+          EsriLeafletRenderers.PolygonSymbol.POLYGONTYPES.indexOf(this._symbolJson.style >= 0)) {
+
         this._styles.fillColor = this.colorValue(this._symbolJson.color);
         this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
       } else {
