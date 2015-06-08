@@ -12,14 +12,10 @@ EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
     //set the defaults that show up on arcgis online
     this._styles.lineCap = 'butt';
     this._styles.lineJoin = 'miter';
-
+    this._styles.fill = false;
 
     if (!this._symbolJson){
       return;
-    }
-
-    if(this._symbolJson.width){
-      this._styles.weight = this.pixelValue(this._symbolJson.width);
     }
 
     if(this._symbolJson.color ){
@@ -27,24 +23,34 @@ EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
       this._styles.opacity = this.alphaValue(this._symbolJson.color);
     }
 
-    //usuing dash patterns pulled from arcgis online (converted to pixels)
-    switch(this._symbolJson.style){
-      case 'esriSLSDash':
-        //4,3
-        this._styles.dashArray = '5,4';
-        break;
-      case 'esriSLSDot':
-        //1,3
-        this._styles.dashArray = '1,4';
-        break;
-      case 'esriSLSDashDot':
-        //8,3,1,3
-        this._styles.dashArray = '11,4,1,4';
-        break;
-      case 'esriSLSDashDotDot':
-        //8,3,1,3,1,3
-        this._styles.dashArray = '11,4,1,4,1,4';
-        break;
+    if(this._symbolJson.width){
+      this._styles.weight = this.pixelValue(this._symbolJson.width);
+      
+      var dashValues = [];
+
+      switch(this._symbolJson.style){
+        case 'esriSLSDash':
+          dashValues = [4,3];
+          break;
+        case 'esriSLSDot':
+          dashValues = [1,3];
+          break;
+        case 'esriSLSDashDot':
+          dashValues = [8,3,1,3];
+          break;
+        case 'esriSLSDashDotDot':
+          dashValues = [8,3,1,3,1,3];
+          break;
+      }
+
+      //use the dash values and the line weight to set dash array
+      if (dashValues.length > 0) {
+        for (var i = 0; i < dashValues.length; i++){
+          dashValues[i] *= this._styles.weight;
+        }
+
+        this._styles.dashArray = dashValues.join(',');
+      }
     }
   },
 

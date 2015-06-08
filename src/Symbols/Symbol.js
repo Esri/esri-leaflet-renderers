@@ -9,7 +9,8 @@ EsriLeafletRenderers.Symbol = L.Class.extend({
 
   //the geojson values returned are in points
   pixelValue: function(pointValue){
-    return pointValue * 1.3333333333333;
+    //round the values so that pixel values are always integers
+    return Math.round(pointValue * 1.3333333333333);
   },
 
   //color is an array [r,g,b,a]
