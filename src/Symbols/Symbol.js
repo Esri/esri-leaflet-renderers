@@ -8,9 +8,9 @@ export var Symbol = L.Class.extend({
     this._isDefault = false;
   },
 
-  // the geojson values returned are in points
-  pixelValue: function (pointValue) {
-    return pointValue * 1.3333333333333;
+  //the geojson values returned are in points
+  pixelValue: function(pointValue){
+    return pointValue * 1.333;
   },
 
   // color is an array [r,g,b,a]
