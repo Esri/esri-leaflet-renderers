@@ -31,7 +31,8 @@ describe('PolygonSymbol', function () {
       it('should set solid polygon parameters', function () {
         var symbol = L.esri.Renderers.polygonSymbol(solidPolygon);
         var styles = symbol.style();
-
+        
+        expect(styles.fill).to.be.eq(true);
         expect(styles.fillColor).to.be.eq(symbolHelper.colorValue(solidPolygon.color));
         expect(styles.fillOpacity).to.be.eq(symbolHelper.alphaValue(solidPolygon.color));
         expect(styles.color).to.be.eq(symbolHelper.colorValue(solidPolygon.outline.color));
