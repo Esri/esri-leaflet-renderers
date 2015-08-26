@@ -64,11 +64,30 @@ Make sure you have the [Grunt CLI](http://gruntjs.com/getting-started) installed
 * [Text](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#ESRI_SECTION1_94E8CE0A9F614ABC8BEDDBCB0E9DC53A) symbols are not supported.
 * [Unique value](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r30000019t000000#GUID-35C6482C-9BB2-4839-A180-25DCF62CB504) renderers based on more than a single field are not supported.
 
-
 ### Dependencies
 
 * [Leaflet](http://leaflet.com) version 0.7 or higher is required but the latest version is recommended.
 * [Esri Leaflet](https://github.com/Esri/esri-leaflet) - for Esri feature services
+
+### Versioning
+
+For transparency into the release cycle and in striving to maintain backward compatibility, Esri Leaflet is maintained under the Semantic Versioning guidelines and will adhere to these rules whenever possible.
+
+Releases will be numbered with the following format:
+
+`<major>.<minor>.<patch>`
+
+And constructed with the following guidelines:
+
+* Breaking backward compatibility **bumps the major** while resetting minor and patch
+* New additions without breaking backward compatibility **bumps the minor** while resetting the patch
+* Bug fixes and misc changes **bumps only the patch**
+
+For more information on SemVer, please visit <http://semver.org/>.
+
+### Contributing
+
+Esri welcomes contributions from anyone and everyone. Please see our [guidelines for contributing](https://github.com/Esri/esri-leaflet-renderers/blob/master/CONTRIBUTING.md).
 
 ### Licensing
 Copyright 2015 Esri
