@@ -1,22 +1,21 @@
 EsriLeafletRenderers.Symbol = L.Class.extend({
-
-  initialize: function(symbolJson){
+  initialize: function (symbolJson) {
     this._symbolJson = symbolJson;
     this.val = null;
     this._styles = {};
   },
 
-  //the geojson values returned are in points
-  pixelValue: function(pointValue){
+  // the geojson values returned are in points
+  pixelValue: function (pointValue) {
     return pointValue * 1.3333333333333;
   },
 
-  //color is an array [r,g,b,a]
-  colorValue: function(color){
+  // color is an array [r,g,b,a]
+  colorValue: function (color) {
     return 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
   },
 
-  alphaValue: function(color){
+  alphaValue: function (color) {
     return color[3] / 255.0;
   }
 });

@@ -4,8 +4,11 @@
   "description": "\"esri-leaflet plugin for rendering\"",
   "main": "EsriLeafletRenderers.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node scripts/install.js"
+    "prebuild": "mkdirp dist",
+    "build": "./scripts/build.js",
+    "lint": "semistandard src/**/*.js",
+    "release": "./scripts/release.sh",
+    "test": "npm run lint && karma start"
   },
   "author": "Rachel Nehmer <rnehmer@esri.com>",
   "contributors": [
@@ -29,7 +32,13 @@
     "karma-mocha-reporter": "^0.2.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1",
+<<<<<<< Updated upstream
     "karma-sauce-launcher": "^0.2.10"
+=======
+    "karma-sauce-launcher": "^0.2.10",
+    "mkdirp": "^0.5.1",
+    "semistandard": "^6.1.2"
+>>>>>>> Stashed changes
   },
   "dependencies": {
      "esri-leaflet": "Esri/esri-leaflet.git#leaflet-1.0",
