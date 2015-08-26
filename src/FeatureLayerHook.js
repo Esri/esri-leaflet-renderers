@@ -5,6 +5,9 @@ Esri.FeatureLayer.addInitHook(function() {
   L.Util.bind(this.createNewLayer, this);
 
   this.metadata(function(error, response) {
+    if(error) {
+      return;
+    }
     if(response && response.drawingInfo && !this.options.style){
       this._setRenderers(response);
     }

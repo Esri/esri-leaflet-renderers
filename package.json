@@ -1,6 +1,6 @@
 {
   "name": "esri-leaflet-renderers",
-  "version": "0.0.1-beta.3",
+  "version": "1.0.0",
   "description": "Esri Rendering plugin for Leaflet.",
   "homepage": "https://github.com/Esri/esri-leaflet-renderers",
   "main": "dist/esri-leaflet-renderers.js",
@@ -41,6 +41,6 @@
   ],
   "dependencies": {
     "leaflet": "^0.7.0",
-    "esri-leaflet": "^1.0.0-rc.5"
+    "esri-leaflet": "^1.0.0"
   }
 }
