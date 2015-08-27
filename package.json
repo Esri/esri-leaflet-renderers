@@ -1,6 +1,6 @@
 {
   "name": "esri-leaflet-renderers",
-  "version": "0.0.0",
+  "version": "2.0.0-beta.1",
   "description": "\"esri-leaflet plugin for rendering\"",
   "main": "EsriLeafletRenderers.js",
   "scripts": {
@@ -31,7 +31,8 @@
     "semistandard": "^6.1.2"
   },
   "dependencies": {
-     "esri-leaflet": "Esri/esri-leaflet.git#leaflet-1.0",
+     "esri-leaflet": "^2.0.0-beta.5",
+     "leaflet": "^1.0.0",
      "leaflet-shape-markers": "Esri/Leaflet.ShapeMarkers"
   }
 }
