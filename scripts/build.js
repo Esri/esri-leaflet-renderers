@@ -13,16 +13,13 @@ var copyright = '/* ' + pkg.name + ' - v' + pkg.version + ' - ' + new Date().toS
 
 rollup({
   entry: path.resolve(entryFile),
-  external: ['leaflet', 'esri-leaflet']
+  external: ['leaflet']
 }).then(function (bundle) {
   var transpiled = bundle.generate({
     format: 'umd',
     sourceMap: true,
     sourceMapFile: pkg.name + '.js',
-    moduleName: 'L.esri',
-    globals: {
-      "esri-leaflet": "L.esri"
-    }
+    moduleName: 'L.esri.Renderers'
   });
 
   var sourceMap = UglifyJS.SourceMap({

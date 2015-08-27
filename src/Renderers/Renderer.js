@@ -1,4 +1,6 @@
-EsriLeafletRenderers.Renderer = L.Class.extend({
+import L from 'leaflet';
+
+export var Renderer = L.Class.extend({
   options: {
     proportionalPolygon: false,
     clickable: true
@@ -62,3 +64,9 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
     }
   }
 });
+
+export function renderer (rendererJson, options) {
+  return new Renderer(rendererJson, options);
+}
+
+export default renderer;

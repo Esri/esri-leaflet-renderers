@@ -1,4 +1,6 @@
-EsriLeafletRenderers.ClassBreaksRenderer = EsriLeafletRenderers.Renderer.extend({
+import Renderer from './Renderer.js'
+
+export var ClassBreaksRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
     EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
     this._field = this._rendererJson.field;
@@ -45,6 +47,8 @@ EsriLeafletRenderers.ClassBreaksRenderer = EsriLeafletRenderers.Renderer.extend(
   }
 });
 
-EsriLeafletRenderers.classBreaksRenderer = function (rendererJson, options) {
-  return new EsriLeafletRenderers.ClassBreaksRenderer(rendererJson, options);
-};
+export function classBreaksRenderer (rendererJson, options) {
+  return new ClassBreaksRenderer(rendererJson, options);
+}
+
+export default classBreaksRenderer;

@@ -1,4 +1,6 @@
-EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
+import Symbol from './Symbol.js'
+
+export var PointSymbol = Symbol.extend({
   statics: {
     MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
@@ -68,6 +70,9 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
     return L.circleMarker(latlng, this._styles);
   }
 });
-EsriLeafletRenderers.pointSymbol = function (symbolJson, options) {
-  return new EsriLeafletRenderers.PointSymbol(symbolJson, options);
-};
+
+export function pointSymbol (symbolJson, options) {
+  return new PointSymbol(symbolJson, options);
+}
+
+export default pointSymbol;

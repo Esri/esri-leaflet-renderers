@@ -1,4 +1,6 @@
-EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
+import Symbol from './Symbol.js'
+
+export var PolygonSymbol = Symbol.extend({
   statics: {
     // not implemented: 'esriSFSBackwardDiagonal','esriSFSCross','esriSFSDiagonalCross','esriSFSForwardDiagonal','esriSFSHorizontal','esriSFSNull','esriSFSVertical'
     POLYGONTYPES: ['esriSFSSolid']
@@ -36,6 +38,9 @@ EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
     return this._styles;
   }
 });
-EsriLeafletRenderers.polygonSymbol = function (symbolJson) {
-  return new EsriLeafletRenderers.PolygonSymbol(symbolJson);
-};
+
+export function polygonSymbol (symbolJson) {
+  return new PolygonSymbol(symbolJson);
+}
+
+export default polygonSymbol;

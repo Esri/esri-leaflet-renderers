@@ -1,4 +1,6 @@
-EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend({
+import Renderer from './Renderer.js'
+
+export var UniqueValueRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
     EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
 
@@ -36,6 +38,8 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
 /* jshint ignore:end */
 });
 
-EsriLeafletRenderers.uniqueValueRenderer = function (rendererJson, options) {
-  return new EsriLeafletRenderers.UniqueValueRenderer(rendererJson, options);
-};
+export function uniqueValueRenderer (rendererJson, options) {
+  return new UniqueValueRenderer(rendererJson, options);
+}
+
+export default uniqueValueRenderer;

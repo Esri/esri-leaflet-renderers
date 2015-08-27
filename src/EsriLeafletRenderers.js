@@ -1,14 +1,13 @@
-var EsriLeafletRenderers = {
-  VERSION: '0.0.1'//,
-  //Renderers: {}
-};
+export var VERSION = '2.0.0-beta.1';
 
-// attach to the L.esri global if we can
-if(typeof window !== 'undefined' && window.L && window.L.esri) {
-  window.L.esri.Renderers = EsriLeafletRenderers;
-}
+export { Renderer, renderer } from './Renderers/Renderer.js';
+export { SimpleRenderer, simpleRenderer } from './Renderers/SimpleRenderer.js';
+export { ClassBreaksRenderer, classBreaksRenderer } from './Renderers/ClassBreaksRenderer.js';
+export { UniqueValueRenderer, uniqueValueRenderer } from './Renderers/UniqueValueRenderer.js';
 
-// We do not have an 'Esri' variable e.g loading this file directly from source define 'Esri'
-if(!Esri){
-  var Esri = window.L.esri;
-}
+export { Symbol, symbol } from './Symbols/Symbol.js';
+export { PointSymbol, pointSymbol } from './Symbols/PointSymbol.js';
+export { LineSymbol, lineSymbol } from './Symbols/LineSymbol.js';
+export { PolygonSymbol, polygonSymbol } from './Symbols/PolygonSymbol.js';
+
+import './FeatureLayerHook.js';

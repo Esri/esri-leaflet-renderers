@@ -1,4 +1,7 @@
-Esri.FeatureLayer.addInitHook(function() {
+import { FeatureLayer } from 'esri-leaflet';
+import { L } from 'leaflet';
+
+FeatureLayer.addInitHook(function() {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
