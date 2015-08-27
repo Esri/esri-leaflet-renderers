@@ -1,14 +1,14 @@
 EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
   statics: {
-    MARKERTYPES:  ['esriSMSCircle','esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
+    MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
-  initialize: function(symbolJson, options){
+  initialize: function (symbolJson, options) {
     EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
-    if(options) {
+    if (options) {
       this.serviceUrl = options.url;
     }
-    if(symbolJson){
-      if(symbolJson.type === 'esriPMS'){
+    if (symbolJson) {
+      if (symbolJson.type === 'esriPMS') {
         this._createIcon();
       } else {
         this._fillStyles();
@@ -16,26 +16,26 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
     }
   },
 
-  _fillStyles: function(){
-    if(this._symbolJson.outline && this._symbolJson.size > 0){
+  _fillStyles: function () {
+    if (this._symbolJson.outline && this._symbolJson.size > 0) {
       this._styles.stroke = true;
       this._styles.weight = this.pixelValue(this._symbolJson.outline.width);
       this._styles.color = this.colorValue(this._symbolJson.outline.color);
       this._styles.opacity = this.alphaValue(this._symbolJson.outline.color);
-    }else{
+    } else {
       this._styles.stroke = false;
     }
-    if(this._symbolJson.color){
+    if (this._symbolJson.color) {
       this._styles.fillColor = this.colorValue(this._symbolJson.color);
       this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
     }
 
-    if(this._symbolJson.style === 'esriSMSCircle'){
+    if (this._symbolJson.style === 'esriSMSCircle') {
       this._styles.radius = this.pixelValue(this._symbolJson.size) / 2.0;
     }
   },
 
-  _createIcon: function(){
+  _createIcon: function () {
     var height = this.pixelValue(this._symbolJson.height);
     var width = this.pixelValue(this._symbolJson.width);
     var xOffset = width / 2.0 + this.pixelValue(this._symbolJson.xoffset);
@@ -48,14 +48,14 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
       iconAnchor: [xOffset, yOffset]
     });
   },
-  pointToLayer: function(geojson, latlng){
-    if (this._symbolJson.type === 'esriPMS'){
+  pointToLayer: function (geojson, latlng) {
+    if (this._symbolJson.type === 'esriPMS') {
       return L.marker(latlng, {icon: this.icon});
     }
 
     var size = this.pixelValue(this._symbolJson.size);
 
-    switch(this._symbolJson.style){
+    switch (this._symbolJson.style) {
       case 'esriSMSSquare':
         return L.squareMarker(latlng, size, this._styles);
       case 'esriSMSDiamond':
@@ -68,6 +68,6 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
     return L.circleMarker(latlng, this._styles);
   }
 });
-EsriLeafletRenderers.pointSymbol = function(symbolJson, options){
+EsriLeafletRenderers.pointSymbol = function (symbolJson, options) {
   return new EsriLeafletRenderers.PointSymbol(symbolJson, options);
 };
