@@ -1,4 +1,9 @@
+// import { L.Class } from 'leaflet';
 import L from 'leaflet';
+
+import pointSymbol from '../Symbols/PointSymbol.js'
+import lineSymbol from '../Symbols/LineSymbol.js'
+import polygonSymbol from '../Symbols/PolygonSymbol.js'
 
 export var Renderer = L.Class.extend({
   options: {
@@ -22,13 +27,13 @@ export var Renderer = L.Class.extend({
   _newSymbol: function (symbolJson) {
     if (symbolJson.type === 'esriSMS' || symbolJson.type === 'esriPMS') {
       this._pointSymbols = true;
-      return EsriLeafletRenderers.pointSymbol(symbolJson, this.options);
+      return pointSymbol(symbolJson, this.options);
     }
     if (symbolJson.type === 'esriSLS') {
-      return EsriLeafletRenderers.lineSymbol(symbolJson);
+      return lineSymbol(symbolJson);
     }
     if (symbolJson.type === 'esriSFS') {
-      return EsriLeafletRenderers.polygonSymbol(symbolJson);
+      return polygonSymbol(symbolJson);
     }
   },
 

@@ -2,7 +2,7 @@ import Renderer from './Renderer.js'
 
 export var ClassBreaksRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
-    EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
+    ERenderer.prototype.initialize.call(this, rendererJson, options);
     this._field = this._rendererJson.field;
     this._createSymbols();
   },

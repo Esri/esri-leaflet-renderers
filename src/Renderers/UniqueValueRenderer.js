@@ -2,7 +2,7 @@ import Renderer from './Renderer.js'
 
 export var UniqueValueRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
-    EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
+    Renderer.prototype.initialize.call(this, rendererJson, options);
 
     // what to do when there are other fields?
     this._field = this._rendererJson.field1;
