@@ -1,10 +1,14 @@
 EsriLeafletRenderers.Symbol = L.Class.extend({
 
-  initialize: function(symbolJson){
+  initialize: function(symbolJson, options){
     this._symbolJson = symbolJson;
     this.val = null;
     this._styles = {};
     this._isDefault = false;
+    this._layerTransparency = 1;
+    if (options && options.layerTransparency) {
+      this._layerTransparency = 1 - (options.layerTransparency / 100.0);
+    }
   },
 
   //the geojson values returned are in points
@@ -18,7 +22,8 @@ EsriLeafletRenderers.Symbol = L.Class.extend({
   },
 
   alphaValue: function(color){
-    return color[3] / 255.0;
+    var alpha = color[3] / 255.0;
+    return alpha * this._layerTransparency;
   },
 
   getSize: function(feature, sizeInfo) {

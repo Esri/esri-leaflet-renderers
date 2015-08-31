@@ -3,7 +3,7 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
     MARKERTYPES:  ['esriSMSCircle','esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
   initialize: function(symbolJson, options){
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
     if(options) {
       this.serviceUrl = options.url;
     }

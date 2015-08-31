@@ -3,8 +3,8 @@ EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
     //Not implemented 'esriSLSNull'
     LINETYPES:  ['esriSLSDash','esriSLSDot','esriSLSDashDotDot','esriSLSDashDot','esriSLSSolid']
   },
-  initialize: function(symbolJson){
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+  initialize: function(symbolJson, options){
+    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
     this._fillStyles();
   },
 
@@ -73,6 +73,6 @@ EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
     return this._styles;
   }
 });
-EsriLeafletRenderers.lineSymbol = function(symbolJson){
-  return new EsriLeafletRenderers.LineSymbol(symbolJson);
+EsriLeafletRenderers.lineSymbol = function(symbolJson, options){
+  return new EsriLeafletRenderers.LineSymbol(symbolJson, options);
 };
