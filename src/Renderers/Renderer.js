@@ -36,10 +36,10 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
       return EsriLeafletRenderers.pointSymbol(symbolJson, this.options);
     }
     if(symbolJson.type === 'esriSLS'){
-      return EsriLeafletRenderers.lineSymbol(symbolJson);
+      return EsriLeafletRenderers.lineSymbol(symbolJson, this.options);
     }
     if(symbolJson.type === 'esriSFS'){
-      return EsriLeafletRenderers.polygonSymbol(symbolJson);
+      return EsriLeafletRenderers.polygonSymbol(symbolJson, this.options);
     }
   },
 
