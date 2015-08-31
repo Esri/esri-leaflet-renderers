@@ -6,9 +6,9 @@ export var PointSymbol = Symbol.extend({
   statics: {
     MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
-  initialize: function (symbolJson, options) {
-    Symbol.prototype.initialize.call(this, symbolJson);
-    if (options) {
+  initialize: function(symbolJson, options){
+    Symbol.prototype.initialize.call(this, symbolJson, options);
+    if(options) {
       this.serviceUrl = options.url;
     }
     if(symbolJson){

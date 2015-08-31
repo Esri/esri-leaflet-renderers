@@ -6,10 +6,10 @@ export var PolygonSymbol = Symbol.extend({
     // not implemented: 'esriSFSBackwardDiagonal','esriSFSCross','esriSFSDiagonalCross','esriSFSForwardDiagonal','esriSFSHorizontal','esriSFSNull','esriSFSVertical'
     POLYGONTYPES: ['esriSFSSolid']
   },
-  initialize: function (symbolJson) {
-    Symbol.prototype.initialize.call(this, symbolJson);
-    if (symbolJson) {
-      this._lineStyles = lineSymbol(symbolJson.outline).style();
+  initialize: function(symbolJson, options){
+    Symbol.prototype.initialize.call(this, symbolJson, options);
+    if (symbolJson){
+      this._lineStyles = lineSymbol(symbolJson.outline, options).style();
       this._fillStyles();
     }
   },
@@ -56,8 +56,8 @@ export var PolygonSymbol = Symbol.extend({
   }
 });
 
-export function polygonSymbol (symbolJson) {
-  return new PolygonSymbol(symbolJson);
+export function polygonSymbol (symbolJson, options) {
+  return new PolygonSymbol(symbolJson, options);
 }
 
 export default polygonSymbol;

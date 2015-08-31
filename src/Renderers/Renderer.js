@@ -40,11 +40,11 @@ export var Renderer = L.Class.extend({
       this._pointSymbols = true;
       return pointSymbol(symbolJson, this.options);
     }
-    if (symbolJson.type === 'esriSLS') {
-      return lineSymbol(symbolJson);
+    if(symbolJson.type === 'esriSLS'){
+      return lineSymbol(symbolJson, this.options);
     }
-    if (symbolJson.type === 'esriSFS') {
-      return polygonSymbol(symbolJson);
+    if(symbolJson.type === 'esriSFS'){
+      return polygonSymbol(symbolJson, this.options);
     }
   },
 

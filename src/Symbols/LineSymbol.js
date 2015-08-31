@@ -5,8 +5,8 @@ export var LineSymbol = Symbol.extend({
     // Not implemented 'esriSLSNull'
     LINETYPES: ['esriSLSDash', 'esriSLSDot', 'esriSLSDashDotDot', 'esriSLSDashDot', 'esriSLSSolid']
   },
-  initialize: function (symbolJson) {
-    Symbol.prototype.initialize.call(this, symbolJson);
+  initialize: function(symbolJson, options){
+    Symbol.prototype.initialize.call(this, symbolJson, options);
     this._fillStyles();
   },
 
@@ -76,8 +76,8 @@ export var LineSymbol = Symbol.extend({
   }
 });
 
-export function lineSymbol (symbolJson) {
-  return new LineSymbol(symbolJson);
+export function lineSymbol (symbolJson, options) {
+  return new LineSymbol(symbolJson, options);
 }
 
 export default lineSymbol;

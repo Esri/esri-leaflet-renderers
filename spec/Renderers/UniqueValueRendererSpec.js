@@ -3,18 +3,18 @@ describe('UniqueValueRenderer', function () {
     var rendererJson;
 
     beforeEach(function () {
-      rendererJson = {
-        'type': 'uniqueValue',
-        'field1': 'ZONE',
-        'defaultSymbol': {
-          'type': 'esriSFS',
-          'style': 'esriSFSSolid',
-          'color': [0, 0, 0, 64],
-          'outline': {
-            'type': 'esriSLS',
-            'style': 'esriSLSSolid',
-            'color': [0, 0, 0, 255],
-            'width': 1
+      rendererJson = {  
+        "type":"uniqueValue",
+        "field1":"ZONE",
+        "defaultSymbol":{  
+          "type":"esriSFS",
+          "style":"esriSFSSolid",
+          "color":[0, 0, 0, 64],
+          "outline":{  
+            "type":"esriSLS",
+            "style":"esriSLSSolid",
+            "color":[0, 0, 0, 51],
+            "width":1
           }
         },
         'uniqueValueInfos': [
@@ -68,7 +68,25 @@ describe('UniqueValueRenderer', function () {
       expect(renderer._symbols.length).to.be.eq(3);
     });
 
-    it('should create a default symbol', function () {
+    describe("symbol transparency", function () {
+      it("should be equal to symbol value when no layer transparency defined", function() {
+        var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson);
+        expect(renderer._symbols[0]._styles.fillOpacity).to.be.eq(128/255.0);
+        expect(renderer._symbols[0]._lineStyles.opacity).to.be.eq(1);
+        expect(renderer._defaultSymbol._styles.fillOpacity).to.be.eq(64/255.0);
+        expect(renderer._defaultSymbol._lineStyles.opacity).to.be.eq(51/255.0);
+      });
+
+      it("should be equal to symbol value with transparency applied when defined", function() {
+        var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson, {layerTransparency: 75});
+        expect(renderer._symbols[0]._styles.fillOpacity).to.be.eq(128/255.0 * .25);
+        expect(renderer._symbols[0]._lineStyles.opacity).to.be.eq(.25);
+        expect(renderer._defaultSymbol._styles.fillOpacity).to.be.eq(64/255.0 * .25);
+        expect(renderer._defaultSymbol._lineStyles.opacity).to.be.eq(51/255.0 * .25);
+      });
+    });
+
+    it("should create a default symbol", function () {
       var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson);
       expect(renderer._defaultSymbol).to.not.equal(undefined);
     });

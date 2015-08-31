@@ -159,6 +159,9 @@ L.esri.FeatureLayer.addInitHook(function () {
         url: this.url ? this.url : this._service.options.url,
         token: this._service.options.token
     };
+    if(geojson.drawingInfo.transparency) {
+      options.layerTransparency = geojson.drawingInfo.transparency;
+    }
 
     switch (rendererInfo.type) {
       case 'classBreaks':
