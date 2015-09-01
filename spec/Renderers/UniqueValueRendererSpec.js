@@ -103,9 +103,60 @@
       var feature = {"properties": {"ZONE": -10}};
       var sym = renderer._getSymbol(feature);
       expect(sym.val).to.be.eq('-10');
-      var feature = {"properties": {"ZONE": '-10'}};
+    });
+  });
+
+  describe("should renderer based on multiple fields", function() {
+    var multipleFieldRendererJson;
+
+    beforeEach(function () {
+      multipleFieldRendererJson = {
+        "type":"uniqueValue",
+        "field1":"ZONE",
+        "field2":"MARKET",
+        "field3":"VALUE",
+        "fieldDelimiter":",",
+        "defaultSymbol":{
+          "type":"esriSFS",
+          "style":"esriSFSSolid",
+          "color":[0, 0, 0, 64],
+          "outline":{
+            "type":"esriSLS",
+            "style":"esriSLSSolid",
+            "color":[0, 0, 0, 51],
+            "width":1
+          }
+        },
+        "uniqueValueInfos":[
+          {
+          "value":"-12,2Z,$25.00",
+          "symbol":{
+            "type":"esriSFS",
+            "style":"esriSFSSolid",
+            "color":[255, 255, 255, 128],
+            "outline":{
+              "type":"esriSLS",
+              "style":"esriSLSSolid",
+              "color":[128, 128, 128, 255],
+              "width":1.5
+            }
+          }
+        }
+        ]
+      }
+    });
+    it("should get default symbol when not matching all fields", function () {
+      var renderer = L.esri.Renderers.uniqueValueRenderer(multipleFieldRendererJson);
+      var feature = {"properties": {"ZONE": -12, "MARKET": "2Z"}};
       var sym = renderer._getSymbol(feature);
-      expect(sym.val).to.be.eq('-10');
+      expect(sym.val).to.be.eq(null);
+    });
+
+    it("should get symbol for that matches the value", function () {
+      var renderer = L.esri.Renderers.uniqueValueRenderer(multipleFieldRendererJson);
+      var feature = {"properties": {"ZONE": -12,"VALUE": "$25.00", "MARKET": "2Z"}};
+      var sym = renderer._getSymbol(feature);
+      expect(sym.val).to.be.eq('-12,2Z,$25.00');
     });
   });
 });
