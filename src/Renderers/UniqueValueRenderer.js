@@ -3,7 +3,6 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
   initialize: function(rendererJson, options){
     EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
 
-    //what to do when there are other fields?
     this._field = this._rendererJson.field1;
     this._createSymbols();
   },
@@ -23,6 +22,18 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
   /* jshint ignore:start */
   _getSymbol: function(feature){
     var val = feature.properties[this._field];
+    //accumulate values if there is more than one field defined
+    if (this._rendererJson.fieldDelimiter && this._rendererJson.field2) {
+      var val2 = feature.properties[this._rendererJson.field2];
+      if (val2) {
+        val += this._rendererJson.fieldDelimiter + val2;
+        var val3 = feature.properties[this._rendererJson.field3];
+        if (val3) {
+          val += this._rendererJson.fieldDelimiter + val3;
+        }
+      }
+    }
+
     var symbol = this._defaultSymbol;
     for (var i = this._symbols.length  - 1; i >= 0; i--){
       //using the === operator does not work if the field
