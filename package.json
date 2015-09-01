@@ -31,6 +31,7 @@
      "leaflet-shape-markers": "Esri/Leaflet.ShapeMarkers"
   },
   "devDependencies": {
+    "eslint": "^0.24.1",
     "babelify": "^6.1.3",
     "chai": "2.3.0",
     "gh-release": "^2.0.0",
