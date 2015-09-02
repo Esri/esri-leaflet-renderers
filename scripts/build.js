@@ -13,7 +13,7 @@ var copyright = '/* ' + pkg.name + ' - v' + pkg.version + ' - ' + new Date().toS
 
 rollup({
   entry: path.resolve(entryFile),
-  external: ['leaflet']
+  external: ['leaflet', 'esri-leaflet']
 }).then(function (bundle) {
   var transpiled = bundle.generate({
     format: 'umd',

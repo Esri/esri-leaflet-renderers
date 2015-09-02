@@ -1,9 +1,8 @@
-// import { L.Class } from 'leaflet';
 import L from 'leaflet';
 
-import pointSymbol from '../Symbols/PointSymbol.js'
-import lineSymbol from '../Symbols/LineSymbol.js'
-import polygonSymbol from '../Symbols/PolygonSymbol.js'
+import pointSymbol from '../Symbols/PointSymbol'
+import lineSymbol from '../Symbols/LineSymbol'
+import polygonSymbol from '../Symbols/PolygonSymbol'
 
 export var Renderer = L.Class.extend({
   options: {

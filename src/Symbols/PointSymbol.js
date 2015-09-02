@@ -1,11 +1,11 @@
-import Symbol from './Symbol.js'
+import {Symbol} from './Symbol'
 
 export var PointSymbol = Symbol.extend({
   statics: {
     MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
   initialize: function (symbolJson, options) {
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+    Symbol.prototype.initialize.call(this, symbolJson);
     if (options) {
       this.serviceUrl = options.url;
     }

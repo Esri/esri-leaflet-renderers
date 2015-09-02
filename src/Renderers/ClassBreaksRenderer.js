@@ -1,8 +1,8 @@
-import Renderer from './Renderer.js'
+import Renderer from './Renderer'
 
 export var ClassBreaksRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
-    ERenderer.prototype.initialize.call(this, rendererJson, options);
+    Renderer.prototype.initialize.call(this, rendererJson, options);
     this._field = this._rendererJson.field;
     this._createSymbols();
   },

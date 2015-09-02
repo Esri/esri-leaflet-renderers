@@ -1,4 +1,4 @@
-import Symbol from './Symbol.js'
+import {Symbol} from './Symbol'
 
 export var LineSymbol = Symbol.extend({
   statics: {
@@ -6,7 +6,7 @@ export var LineSymbol = Symbol.extend({
     LINETYPES: ['esriSLSDash', 'esriSLSDot', 'esriSLSDashDotDot', 'esriSLSDashDot', 'esriSLSSolid']
   },
   initialize: function (symbolJson) {
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+    Symbol.prototype.initialize.call(this, symbolJson);
     this._fillStyles();
   },
 

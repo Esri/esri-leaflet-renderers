@@ -1,4 +1,4 @@
-import Renderer from './Renderer.js'
+import Renderer from './Renderer'
 
 export var SimpleRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {

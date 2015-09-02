@@ -1,4 +1,5 @@
-import Symbol from './Symbol.js'
+import {Symbol} from './Symbol'
+import lineSymbol from './LineSymbol'
 
 export var PolygonSymbol = Symbol.extend({
   statics: {
@@ -6,9 +7,9 @@ export var PolygonSymbol = Symbol.extend({
     POLYGONTYPES: ['esriSFSSolid']
   },
   initialize: function (symbolJson) {
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+    Symbol.prototype.initialize.call(this, symbolJson);
     if (symbolJson) {
-      this._lineStyles = EsriLeafletRenderers.lineSymbol(symbolJson.outline).style();
+      this._lineStyles = lineSymbol(symbolJson.outline).style();
       this._fillStyles();
     }
   },

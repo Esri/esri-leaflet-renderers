@@ -17,17 +17,8 @@ module.exports = function(config) {
       'node_modules/leaflet/dist/leaflet.js',
       'node_modules/esri-leaflet/dist/esri-leaflet.js',
       'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.min.js',
-      'spec/**/*Spec.js',
-      'src/EsriLeafletRenderers.js',
-      'src/Symbols/Symbol.js',
-      'src/Symbols/PointSymbol.js',
-      'src/Symbols/LineSymbol.js',
-      'src/Symbols/PolygonSymbol.js',
-      'src/Renderers/Renderer.js',
-      'src/Renderers/SimpleRenderer.js',
-      'src/Renderers/ClassBreaksRenderer.js',
-      'src/Renderers/UniqueValueRenderer.js',
-      'src/FeatureLayerHook.js'
+      'dist/esri-leaflet-renderers.js',
+      'spec/**/*.js',
     ],
 
     // list of files to exclude
@@ -35,7 +26,9 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'dist/**/*.js': ['sourcemap', 'coverage']
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

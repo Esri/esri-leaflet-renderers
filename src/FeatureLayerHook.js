@@ -1,7 +1,8 @@
-import { FeatureLayer } from 'esri-leaflet';
-import { L } from 'leaflet';
+import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
+import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
+import simpleRenderer from './Renderers/simpleRenderer';
 
-FeatureLayer.addInitHook(function() {
+L.esri.FeatureLayer.addInitHook(function() {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
@@ -143,24 +144,24 @@ FeatureLayer.addInitHook(function() {
   this._setRenderers = function(geojson){
     var rend,
     rendererInfo = geojson.drawingInfo.renderer,
-    options = {url: this.url};
+    options = {url: this.options.url};
 
     switch(rendererInfo.type){
       case 'classBreaks':
         this._checkForProportionalSymbols(geojson.geometryType, rendererInfo);
         if(this._hasProportionalSymbols){
           this._createPointLayer();
-          var pRend = EsriLeafletRenderers.classBreaksRenderer(rendererInfo, options);
+          var pRend = classBreaksRenderer(rendererInfo, options);
           pRend.attachStylesToLayer(this._pointLayer);
           options.proportionalPolygon = true;
         }
-        rend = EsriLeafletRenderers.classBreaksRenderer(rendererInfo, options);
+        rend = classBreaksRenderer(rendererInfo, options);
         break;
       case 'uniqueValue':
-        rend = EsriLeafletRenderers.uniqueValueRenderer(rendererInfo, options);
+        rend = uniqueValueRenderer(rendererInfo, options);
         break;
       default:
-        rend = EsriLeafletRenderers.simpleRenderer(rendererInfo, options);
+        rend = simpleRenderer(rendererInfo, options);
     }
     rend.attachStylesToLayer(this);
   };
