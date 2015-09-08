@@ -1,4 +1,4 @@
-import Renderer from './Renderer'
+import Renderer from './Renderer';
 
 export var UniqueValueRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
@@ -9,7 +9,6 @@ export var UniqueValueRenderer = Renderer.extend({
     this._createSymbols();
   },
 
-  /* jshint ignore:start */
   _createSymbols: function () {
     var symbol;
     var uniques = this._rendererJson.uniqueValueInfos;
@@ -29,13 +28,14 @@ export var UniqueValueRenderer = Renderer.extend({
     for (var i = this._symbols.length - 1; i >= 0; i--) {
       // using the === operator does not work if the field
       // of the unique renderer is not a string
+      /*eslint-disable */
       if (this._symbols[i].val == val) {
         symbol = this._symbols[i];
       }
+      /*eslint-enable */
     }
     return symbol;
   }
-/* jshint ignore:end */
 });
 
 export function uniqueValueRenderer (rendererJson, options) {

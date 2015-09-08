@@ -1,8 +1,8 @@
 import L from 'leaflet';
 
-import pointSymbol from '../Symbols/PointSymbol'
-import lineSymbol from '../Symbols/LineSymbol'
-import polygonSymbol from '../Symbols/PolygonSymbol'
+import pointSymbol from '../Symbols/PointSymbol';
+import lineSymbol from '../Symbols/LineSymbol';
+import polygonSymbol from '../Symbols/PolygonSymbol';
 
 export var Renderer = L.Class.extend({
   options: {
