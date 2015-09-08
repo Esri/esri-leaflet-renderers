@@ -22,8 +22,5 @@ export var Symbol = L.Class.extend({
   }
 });
 
-export function symbol (symbolJson) {
-  return new Symbol(symbolJson);
-}
 
-export default symbol;
+export default Symbol;
