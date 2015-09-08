@@ -15,7 +15,7 @@ module.exports = function (config) {
       'node_modules/leaflet/dist/leaflet.css',
       'node_modules/leaflet/dist/leaflet.js',
       'node_modules/esri-leaflet/dist/esri-leaflet.js',
-      'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.min.js',
+      'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.js',
       'dist/esri-leaflet-renderers.js',
       'spec/**/*.js',
     ],
@@ -42,7 +42,7 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
@@ -63,6 +63,12 @@ module.exports = function (config) {
 
     // Configure the coverage reporters
     coverageReporter: {
+      instrumenters: {
+        isparta: require('isparta')
+      },
+      instrumenter: {
+        'src/**/*.js': 'isparta'
+      },
       reporters: [
         {type: 'html', dir: 'coverage/'},
         {type: 'text'}
