@@ -67,6 +67,7 @@ export var Renderer = L.Class.extend({
       return {opacity: 0, fillOpacity: 0};
     }
   }
+
 });
 
 export function renderer (rendererJson, options) {

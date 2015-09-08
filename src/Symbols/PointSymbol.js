@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import Symbol from './Symbol';
-import {squareMarker, xMarker, crossMarker, diamondMarker} from 'leaflet-shape-markers'
+import {squareMarker, xMarker, crossMarker, diamondMarker} from 'leaflet-shape-markers';
 
 export var PointSymbol = Symbol.extend({
   statics: {

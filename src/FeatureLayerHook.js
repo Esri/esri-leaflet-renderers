@@ -1,3 +1,6 @@
+// import L from 'leaflet';
+// import { FeatureLayer } from 'esri-leaflet';
+
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/simpleRenderer';
