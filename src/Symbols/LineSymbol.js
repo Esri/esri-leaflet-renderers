@@ -1,4 +1,4 @@
-import {Symbol} from './Symbol'
+import Symbol from './Symbol';
 
 export var LineSymbol = Symbol.extend({
   statics: {

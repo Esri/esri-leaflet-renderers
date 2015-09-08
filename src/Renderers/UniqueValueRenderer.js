@@ -1,4 +1,4 @@
-import Renderer from './Renderer'
+import Renderer from './Renderer';
 
 export var UniqueValueRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
@@ -29,7 +29,7 @@ export var UniqueValueRenderer = Renderer.extend({
     for (var i = this._symbols.length - 1; i >= 0; i--) {
       // using the === operator does not work if the field
       // of the unique renderer is not a string
-      if (this._symbols[i].val == val) {
+      if (this._symbols[i].val === val) {
         symbol = this._symbols[i];
       }
     }

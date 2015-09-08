@@ -1,4 +1,4 @@
-import Renderer from './Renderer'
+import Renderer from './Renderer';
 
 export var ClassBreaksRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {

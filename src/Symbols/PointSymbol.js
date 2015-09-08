@@ -1,4 +1,5 @@
-import {Symbol} from './Symbol'
+import L from 'leaflet';
+import Symbol from './Symbol';
 
 export var PointSymbol = Symbol.extend({
   statics: {
