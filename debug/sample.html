@@ -6,26 +6,15 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <!-- Load Leaflet from CDN-->
-    <link rel="stylesheet" href="../node_modules/esri-leaflet/node_modules/leaflet/dist/leaflet.css" />
-    <script src="../node_modules/esri-leaflet/node_modules/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+    <script src="../node_modules/leaflet/dist/leaflet.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
     <!--<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.4/esri-leaflet.js"></script>-->
     <script src="../node_modules/esri-leaflet/dist/esri-leaflet.js"></script>
 
-    <!-- Load Esri Leaflet Renderers from source -->
-    <script src="../src/EsriLeafletRenderers.js"></script>
-    <script src="../src/FeatureLayerHook.js"></script>
-
-    <script src="../src/Renderers/Renderer.js"></script>
-    <script src="../src/Renderers/SimpleRenderer.js"></script>
-    <script src="../src/Renderers/ClassBreaksRenderer.js"></script>
-    <script src="../src/Renderers/UniqueValueRenderer.js"></script>
-
-    <script src="../src/Symbols/Symbol.js"></script>
-    <script src="../src/Symbols/PointSymbol.js"></script>
-    <script src="../src/Symbols/LineSymbol.js"></script>
-    <script src="../src/Symbols/PolygonSymbol.js"></script>
+    <!-- Load compiled Esri Leaflet Renderers -->
+    <script src="../dist/esri-leaflet-renderers.js"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -45,7 +34,9 @@
       L.esri.basemapLayer('Streets').addTo(map);
 
       //draw the predefined Portland Heritage Tree symbols
-      L.esri.featureLayer('http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0').addTo(map);
+      L.esri.featureLayer({
+        url: 'http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0'}
+      ).addTo(map);
     </script>
 
   </body>

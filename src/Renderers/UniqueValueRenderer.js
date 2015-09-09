@@ -1,6 +1,8 @@
-EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend({
+import Renderer from './Renderer';
+
+export var UniqueValueRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
-    EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
+    Renderer.prototype.initialize.call(this, rendererJson, options);
 
     // what to do when there are other fields?
     this._field = this._rendererJson.field1;
@@ -20,22 +22,24 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
     this._createDefaultSymbol();
   },
 
-  /* jshint ignore:start */
   _getSymbol: function (feature) {
     var val = feature.properties[this._field];
     var symbol = this._defaultSymbol;
     for (var i = this._symbols.length - 1; i >= 0; i--) {
       // using the === operator does not work if the field
       // of the unique renderer is not a string
-      if (this._symbols[i].val === val) {
+      /*eslint-disable */
+      if (this._symbols[i].val == val) {
         symbol = this._symbols[i];
       }
+      /*eslint-enable */
     }
     return symbol;
   }
-/* jshint ignore:end */
 });
 
-EsriLeafletRenderers.uniqueValueRenderer = function (rendererJson, options) {
-  return new EsriLeafletRenderers.UniqueValueRenderer(rendererJson, options);
-};
+export function uniqueValueRenderer (rendererJson, options) {
+  return new UniqueValueRenderer(rendererJson, options);
+}
+
+export default uniqueValueRenderer;

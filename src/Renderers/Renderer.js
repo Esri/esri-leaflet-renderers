@@ -1,4 +1,10 @@
-EsriLeafletRenderers.Renderer = L.Class.extend({
+import L from 'leaflet';
+
+import pointSymbol from '../Symbols/PointSymbol';
+import lineSymbol from '../Symbols/LineSymbol';
+import polygonSymbol from '../Symbols/PolygonSymbol';
+
+export var Renderer = L.Class.extend({
   options: {
     proportionalPolygon: false,
     clickable: true
@@ -20,13 +26,13 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
   _newSymbol: function (symbolJson) {
     if (symbolJson.type === 'esriSMS' || symbolJson.type === 'esriPMS') {
       this._pointSymbols = true;
-      return EsriLeafletRenderers.pointSymbol(symbolJson, this.options);
+      return pointSymbol(symbolJson, this.options);
     }
     if (symbolJson.type === 'esriSLS') {
-      return EsriLeafletRenderers.lineSymbol(symbolJson);
+      return lineSymbol(symbolJson);
     }
     if (symbolJson.type === 'esriSFS') {
-      return EsriLeafletRenderers.polygonSymbol(symbolJson);
+      return polygonSymbol(symbolJson);
     }
   },
 
@@ -61,4 +67,11 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
       return {opacity: 0, fillOpacity: 0};
     }
   }
+
 });
+
+export function renderer (rendererJson, options) {
+  return new Renderer(rendererJson, options);
+}
+
+export default renderer;

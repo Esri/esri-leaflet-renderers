@@ -1,12 +1,15 @@
-EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
+import Symbol from './Symbol';
+import lineSymbol from './LineSymbol';
+
+export var PolygonSymbol = Symbol.extend({
   statics: {
     // not implemented: 'esriSFSBackwardDiagonal','esriSFSCross','esriSFSDiagonalCross','esriSFSForwardDiagonal','esriSFSHorizontal','esriSFSNull','esriSFSVertical'
     POLYGONTYPES: ['esriSFSSolid']
   },
   initialize: function (symbolJson) {
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+    Symbol.prototype.initialize.call(this, symbolJson);
     if (symbolJson) {
-      this._lineStyles = EsriLeafletRenderers.lineSymbol(symbolJson.outline).style();
+      this._lineStyles = lineSymbol(symbolJson.outline).style();
       this._fillStyles();
     }
   },
@@ -36,6 +39,9 @@ EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
     return this._styles;
   }
 });
-EsriLeafletRenderers.polygonSymbol = function (symbolJson) {
-  return new EsriLeafletRenderers.PolygonSymbol(symbolJson);
-};
+
+export function polygonSymbol (symbolJson) {
+  return new PolygonSymbol(symbolJson);
+}
+
+export default polygonSymbol;
