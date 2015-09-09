@@ -11,25 +11,24 @@ L.esri.FeatureLayer.addInitHook(function () {
   var oldOnRemove = L.Util.bind(this.onRemove, this);
   L.Util.bind(this.createNewLayer, this);
 
-  this.metadata(function(error, response) {
-    if(error) {
+  this.metadata(function (error, response) {
+    if (error) {
       return;
     }
-    if(response && response.drawingInfo && !this.options.style){
+    if (response && response.drawingInfo && !this.options.style) {
       this._setRenderers(response);
     }
 
     this._metadataLoaded = true;
-    if(this._loadedMap){
+    if (this._loadedMap) {
       oldOnAdd(this._loadedMap);
       this._addPointLayer(this._loadedMap);
     }
   }, this);
 
-  this.onAdd = function(map){
-
+  this.onAdd = function (map) {
     this._loadedMap = map;
-    if(this._metadataLoaded){
+    if (this._metadataLoaded) {
       oldOnAdd(this._loadedMap);
       this._addPointLayer(this._loadedMap);
     }
@@ -65,7 +64,7 @@ L.esri.FeatureLayer.addInitHook(function () {
   this._createPointLayer = function () {
     if (!this._pointLayer) {
       this._pointLayer = L.geoJson();
-      //store the feature ids that have already been added to the map
+      // store the feature ids that have already been added to the map
       this._pointLayerIds = {};
 
       if (this._popup) {
@@ -87,8 +86,8 @@ L.esri.FeatureLayer.addInitHook(function () {
         this._createPointLayer();
 
         var featureId = geojson.id.toString();
-        //only add the feature if it does not already exist on the map
-        if(!this._pointLayerIds[featureId]){
+        // only add the feature if it does not already exist on the map
+        if (!this._pointLayerIds[featureId]) {
           var pointjson = this.getPointJson(geojson, centroid);
 
           this._pointLayer.addData(pointjson);
@@ -107,12 +106,15 @@ L.esri.FeatureLayer.addInitHook(function () {
       pts = coordinates[0];
     }
 
-    var twicearea = 0,
-      x = 0, y = 0,
-      nPts = pts.length,
-      p1, p2, f;
+    var twicearea = 0;
+    var x = 0;
+    var y = 0;
+    var nPts = pts.length;
+    var p1;
+    var p2;
+    var f;
 
-    for (var i = 0, j = nPts - 1;i < nPts;j = i++) {
+    for (var i = 0, j = nPts - 1; i < nPts; j = i++) {
       p1 = pts[i]; p2 = pts[j];
       twicearea += p1[0] * p2[1];
       twicearea -= p1[1] * p2[0];
@@ -153,13 +155,13 @@ L.esri.FeatureLayer.addInitHook(function () {
   };
 
   this._setRenderers = function (geojson) {
-    var rend,
-    rendererInfo = geojson.drawingInfo.renderer,
-    options = {
-        url: this.url ? this.url : this._service.options.url,
-        token: this._service.options.token
+    var rend;
+    var rendererInfo = geojson.drawingInfo.renderer;
+    var options = {
+      url: this.url ? this.url : this._service.options.url,
+      token: this._service.options.token
     };
-    if(geojson.drawingInfo.transparency) {
+    if (geojson.drawingInfo.transparency) {
       options.layerTransparency = geojson.drawingInfo.transparency;
     }
 
