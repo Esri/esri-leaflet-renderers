@@ -6,14 +6,16 @@
 
     <link rel="stylesheet" href="comparisons.css" />
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
 
-    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.4/esri-leaflet.js"></script>
-    <script src="https://dl.dropboxusercontent.com/u/59331579/0.7.3/esri-leaflet-renderers-0.0.1-beta.1.min.js"></script>
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="//cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.5/esri-leaflet.js"></script>
 
-    <link rel="stylesheet" href="http://js.arcgis.com/3.11/esri/css/esri.css">
-    <script src="http://js.arcgis.com/3.11/"></script>
+    <script src="../dist/esri-leaflet-renderers.js"></script>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <script src="http://js.arcgis.com/3.13/"></script>
   </head>
   <body>
 
@@ -41,28 +43,12 @@
         lon: -122.653,
         zoomLevel: 11
       }, {
-        url: 'http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Aggregation%20of%20Trimet%20Transit%20Stops%20to%20Portland%20Neighborhoods%20-%20Neighborhoods_pdx/FeatureServer/0',
-        title: 'Aggregation of Trimet Transit Stops to Portland Neighborhoods',
-        geoType: 'Polygon and Point',
-        rendererType: 'Classbreaks',
-        lat: 45.525,
-        lon: -122.603,
-        zoomLevel: 11
-      }, {
         url: 'http://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Freeway_System/FeatureServer/1',
         title: 'Freeways',
         geoType: 'Line',
         rendererType: 'Simple',
         lat: 38,
         lon: -95,
-        zoomLevel: 4
-      }, {
-        url: 'http://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Airports/FeatureServer/0',
-        title: 'USA Airports',
-        geoType: 'Point',
-        rendererType: 'Classbreaks',
-        lat: 34,
-        lon: -97,
         zoomLevel: 4
       }, {
         url: 'http://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0',
@@ -139,12 +125,12 @@
       var map = L.map('map').setView([layer.lat, layer.lon], layer.zoomLevel);
       L.esri.basemapLayer('Gray').addTo(map);
       L.esri.basemapLayer('GrayLabels').addTo(map);
-      var fl = L.esri.featureLayer(layer.url);
+      var fl = L.esri.featureLayer({url: layer.url});
       map.addLayer(fl);
 
       function updateLeafletMap(layer) {
         map.removeLayer(fl);
-        fl = L.esri.featureLayer(layer.url);
+        fl = L.esri.featureLayer({url: layer.url});
         map.setView([layer.lat, layer.lon], layer.zoomLevel);
         map.addLayer(fl);
       };

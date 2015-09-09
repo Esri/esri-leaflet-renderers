@@ -4,6 +4,9 @@ export var ClassBreaksRenderer = Renderer.extend({
   initialize: function (rendererJson, options) {
     Renderer.prototype.initialize.call(this, rendererJson, options);
     this._field = this._rendererJson.field;
+    if (this._rendererJson.normalizationType && this._rendererJson.normalizationType === 'esriNormalizeByField') {
+      this._normalizationField = this._rendererJson.normalizationField;
+    }
     this._createSymbols();
   },
 
@@ -33,6 +36,15 @@ export var ClassBreaksRenderer = Renderer.extend({
 
   _getSymbol: function (feature) {
     var val = feature.properties[this._field];
+    if (this._normalizationField) {
+      var normValue = feature.properties[this._normalizationField];
+      if (!isNaN(normValue) && normValue !== 0) {
+        val = val / normValue;
+      } else {
+        return this._defaultSymbol;
+      }
+    }
+
     if (val > this._maxValue) {
       return this._defaultSymbol;
     }

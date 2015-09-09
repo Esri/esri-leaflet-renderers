@@ -16,14 +16,14 @@ describe('LineSymbol', function () {
       expect(styles.dashArray).to.be.equal(undefined);
     });
 
-    describe("should set style from solid line symbol 'esriSLSSolid'", function () {
+    describe('should set style from solid line symbol esriSLSSolid', function () {
       var solidLine;
 
       beforeEach(function () {
         solidLine = {
           'type': 'esriSLS',
           'style': 'esriSLSSolid',
-          'color': [255, 85, 0, 255 ],
+          'color': [255, 85, 0, 255],
           'width': 1.4
         };
       });
@@ -46,7 +46,7 @@ describe('LineSymbol', function () {
       beforeEach(function () {
         dashedLine = {
           'type': 'esriSLS',
-          'color': [0, 0, 0, 255 ],
+          'color': [0, 0, 0, 255],
           'width': 2
         };
       });

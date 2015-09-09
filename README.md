@@ -22,11 +22,11 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
-    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.4/esri-leaflet.js"></script>
+    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.6/esri-leaflet.js"></script>
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet and draw the predefined Portland Heritage Tree symbols -->
-    <script src="https://dl.dropboxusercontent.com/u/59331579/0.7.3/esri-leaflet-renderers-0.0.1-beta.1.min.js"></script>
+    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-renderers/0.0.1-beta.3/esri-leaflet-renderers.js"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -58,13 +58,39 @@ Make sure you have the [Grunt CLI](http://gruntjs.com/getting-started) installed
 5. run `grunt` from the command line. This will create minified source, run linting, and start watching the source files for changes.
 6. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
 
+### Limitations
+* [Simple Marker](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-C8D40B32-5F4B-45EB-8048-6D5A8763E13B) symbols do not support rotation (ie: the 'angle' property is ignored).
+* Polygons only support [solid fill](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-517D9B3F-DF13-4E79-9B58-A0D24C5E4994).  This does not include advanced fill types like PictureFill, Backward Diagonal, DiagonalCross, etc.
+* [Text](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#ESRI_SECTION1_94E8CE0A9F614ABC8BEDDBCB0E9DC53A) symbols are not supported.
+* [Unique value](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r30000019t000000#GUID-35C6482C-9BB2-4839-A180-25DCF62CB504) renderers based on more than a single field are not supported.
+
 ### Dependencies
 
 * [Leaflet](http://leaflet.com) version 0.7 or higher is required but the latest version is recommended.
 * [Esri Leaflet](https://github.com/Esri/esri-leaflet) - for Esri feature services
 
+### Versioning
+
+For transparency into the release cycle and in striving to maintain backward compatibility, Esri Leaflet is maintained under the Semantic Versioning guidelines and will adhere to these rules whenever possible.
+
+Releases will be numbered with the following format:
+
+`<major>.<minor>.<patch>`
+
+And constructed with the following guidelines:
+
+* Breaking backward compatibility **bumps the major** while resetting minor and patch
+* New additions without breaking backward compatibility **bumps the minor** while resetting the patch
+* Bug fixes and misc changes **bumps only the patch**
+
+For more information on SemVer, please visit <http://semver.org/>.
+
+### Contributing
+
+Esri welcomes contributions from anyone and everyone. Please see our [guidelines for contributing](https://github.com/Esri/esri-leaflet-renderers/blob/master/CONTRIBUTING.md).
+
 ### Licensing
-Copyright 2014 Esri
+Copyright 2015 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
