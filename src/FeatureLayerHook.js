@@ -158,9 +158,12 @@ L.esri.FeatureLayer.addInitHook(function () {
     var rend;
     var rendererInfo = geojson.drawingInfo.renderer;
     var options = {
-      url: this.url ? this.url : this._service.options.url,
-      token: this._service.options.token
+      url: this.options.url
     };
+    if (this.options.token) {
+      options.token = this.options.token;
+    }
+
     if (geojson.drawingInfo.transparency) {
       options.layerTransparency = geojson.drawingInfo.transparency;
     }
