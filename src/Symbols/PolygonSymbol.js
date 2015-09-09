@@ -1,5 +1,5 @@
 import Symbol from './Symbol';
-import LineSymbol from './LineSymbol';
+import lineSymbol from './LineSymbol';
 
 export var PolygonSymbol = Symbol.extend({
   statics: {
@@ -9,7 +9,7 @@ export var PolygonSymbol = Symbol.extend({
   initialize: function (symbolJson) {
     Symbol.prototype.initialize.call(this, symbolJson);
     if (symbolJson) {
-      this._lineStyles = LineSymbol(symbolJson.outline).style();
+      this._lineStyles = lineSymbol(symbolJson.outline).style();
       this._fillStyles();
     }
   },
