@@ -50,13 +50,11 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 
 ### Development Instructions
 
-Make sure you have the [Grunt CLI](http://gruntjs.com/getting-started) installed.
-
 1. [Fork and clone Esri Leaflet Renderers](https://help.github.com/articles/fork-a-repo)
 2. `cd` into the `esri-leaflet-renderers` folder
-5. Install the dependencies with `npm install`
-5. run `grunt` from the command line. This will create minified source, run linting, and start watching the source files for changes.
-6. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
+3. Install the dependencies with `npm install`
+4. Run `npm run build` from the command line. This will compile minified source in a brand new `dist` directory.  Afterward, you can run `npm test` to make sure things are 'all good'.
+5. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
 
 ### Dependencies
 
