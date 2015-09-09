@@ -22,7 +22,7 @@ export var UniqueValueRenderer = Renderer.extend({
 
   _getSymbol: function (feature) {
     var val = feature.properties[this._field];
-    //accumulate values if there is more than one field defined
+    // accumulate values if there is more than one field defined
     if (this._rendererJson.fieldDelimiter && this._rendererJson.field2) {
       var val2 = feature.properties[this._rendererJson.field2];
       if (val2) {

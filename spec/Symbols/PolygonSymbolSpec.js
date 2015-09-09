@@ -9,9 +9,10 @@ describe('PolygonSymbol', function () {
     it('should set defaults', function () {
       var symbol = L.esri.Renderers.polygonSymbol({});
       var styles = symbol.style();
+      // TODO: make an actual test
     });
 
-    describe("should set style from solid polygon symbol 'esriFSSolid'", function () {
+    describe('should set style from solid polygon symbol esriFSSolid', function () {
       var solidPolygon;
 
       beforeEach(function () {
@@ -31,13 +32,12 @@ describe('PolygonSymbol', function () {
       it('should set solid polygon parameters', function () {
         var symbol = L.esri.Renderers.polygonSymbol(solidPolygon);
         var styles = symbol.style();
-        
+
         expect(styles.fill).to.be.eq(true);
         expect(styles.fillColor).to.be.eq(symbolHelper.colorValue(solidPolygon.color));
         expect(styles.fillOpacity).to.be.eq(symbolHelper.alphaValue(solidPolygon.color));
         expect(styles.color).to.be.eq(symbolHelper.colorValue(solidPolygon.outline.color));
         expect(styles.opacity).to.be.eq(symbolHelper.alphaValue(solidPolygon.outline.color));
-
       });
     });
   });

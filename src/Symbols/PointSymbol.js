@@ -6,19 +6,19 @@ export var PointSymbol = Symbol.extend({
   statics: {
     MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
-  initialize: function(symbolJson, options){
+  initialize: function (symbolJson, options) {
     Symbol.prototype.initialize.call(this, symbolJson, options);
-    if(options) {
+    if (options) {
       this.serviceUrl = options.url;
     }
-    if(symbolJson){
-      if(symbolJson.type === 'esriPMS'){
+    if (symbolJson) {
+      if (symbolJson.type === 'esriPMS') {
         var url = this.serviceUrl + 'images/' + this._symbolJson.url;
         this._iconUrl = options && options.token ? url + '?token=' + options.token : url;
-        //leaflet does not allow resizing icons so keep a hash of different
-        //icon sizes to try and keep down on the number of icons created
+        // leaflet does not allow resizing icons so keep a hash of different
+        // icon sizes to try and keep down on the number of icons created
         this._icons = {};
-        //create base icon
+        // create base icon
         this.icon = this._createIcon(this._symbolJson);
       } else {
         this._fillStyles();
@@ -47,20 +47,19 @@ export var PointSymbol = Symbol.extend({
     }
   },
 
-  _createIcon: function(options){
+  _createIcon: function (options) {
     var width = this.pixelValue(options.width);
     var height = width;
-    if(options.height){
+    if (options.height) {
       height = this.pixelValue(options.height);
     }
     var xOffset = width / 2.0;
     var yOffset = height / 2.0;
 
-
-    if(options.xoffset){
-       xOffset += this.pixelValue(options.xoffset);
+    if (options.xoffset) {
+      xOffset += this.pixelValue(options.xoffset);
     }
-    if(options.yoffset){
+    if (options.yoffset) {
       yOffset += this.pixelValue(options.yoffset);
     }
 
@@ -73,39 +72,39 @@ export var PointSymbol = Symbol.extend({
     return icon;
   },
 
-  _getIcon: function(size) {
-    //check to see if it is already created by size
+  _getIcon: function (size) {
+    // check to see if it is already created by size
     var icon = this._icons[size.toString()];
-    if(!icon){
+    if (!icon) {
       icon = this._createIcon({width: size});
     }
     return icon;
   },
 
-  pointToLayer: function(geojson, latlng, visualVariables){
+  pointToLayer: function (geojson, latlng, visualVariables) {
     var size = this._symbolJson.size || this._symbolJson.width;
-    if(!this._isDefault){
-      if( visualVariables.sizeInfo) {
+    if (!this._isDefault) {
+      if (visualVariables.sizeInfo) {
         var calculatedSize = this.getSize(geojson, visualVariables.sizeInfo);
         if (calculatedSize) {
           size = calculatedSize;
         }
       }
-      if(visualVariables.colorInfo){
+      if (visualVariables.colorInfo) {
         var color = this.getColor(geojson, visualVariables.colorInfo);
-        if(color){
+        if (color) {
           this._styles.fillColor = this.colorValue(color);
           this._styles.fillOpacity = this.alphaValue(color);
         }
       }
     }
 
-    if (this._symbolJson.type === 'esriPMS'){
+    if (this._symbolJson.type === 'esriPMS') {
       return L.marker(latlng, {icon: this._getIcon(size)});
     }
     size = this.pixelValue(size);
 
-    switch(this._symbolJson.style){
+    switch (this._symbolJson.style) {
       case 'esriSMSSquare':
         return squareMarker(latlng, size, this._styles);
       case 'esriSMSDiamond':

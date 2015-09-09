@@ -1,10 +1,5 @@
 describe('PointSymbol', function () {
   describe('#_symbolJson', function () {
-    var symbolHelper;
-
-    beforeEach(function () {
-      symbolHelper = new L.esri.Renderers.Symbol();
-    });
 
     it('should set defaults', function () {
       var symbol = L.esri.Renderers.pointSymbol({});
@@ -13,7 +8,7 @@ describe('PointSymbol', function () {
     });
 
     describe('should set style from point symbol json', function () {
-      var pointSymbolJson, iconSymbolJson;
+      var pointSymbolJson;
 
       beforeEach(function () {
         pointSymbolJson = {
@@ -40,7 +35,7 @@ describe('PointSymbol', function () {
     });
 
     describe('should set style from icon symbol json', function () {
-      var iconSymbolJson, serviceUrl;
+      var iconSymbolJson;
 
       beforeEach(function () {
         iconSymbolJson = {
