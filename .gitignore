@@ -40,6 +40,3 @@ dist/**/*.css
 dist/**/*.gif
 dist/**/*.png
 dist/**/*.jpg
-
-
-npm-debug.log
