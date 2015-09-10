@@ -77,7 +77,7 @@ L.esri.FeatureLayer.addInitHook(function () {
   };
 
   this.createNewLayer = function (geojson) {
-    var fLayer = L.GeoJSON.geometryToLayer(geojson, this.options.pointToLayer, L.GeoJSON.coordsToLatLng, this.options);
+    var fLayer = L.GeoJSON.geometryToLayer(geojson, this.options);
 
     // add a point layer when the polygon is represented as proportional marker symbols
     if (this._hasProportionalSymbols) {
