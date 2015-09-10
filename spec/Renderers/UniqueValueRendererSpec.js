@@ -59,7 +59,8 @@ describe('UniqueValueRenderer', function () {
                 'width': 1.5
               }
             }
-          }]
+          }
+        ]
       };
     });
 
@@ -88,14 +89,14 @@ describe('UniqueValueRenderer', function () {
 
     it('should create a default symbol', function () {
       var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson);
-      expect(renderer._defaultSymbol).not.to.be.eq(undefined);
+      expect(renderer._defaultSymbol).to.not.equal(undefined);
     });
 
     it('should get default symbol when no matching value', function () {
       var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson);
       var feature = {'properties': {'ZONE': 5}};
       var sym = renderer._getSymbol(feature);
-      expect(sym.val).to.be.eq(null);
+      expect(sym.val).to.be.equal(null);
     });
 
     it('should get symbol for that matches the value', function () {

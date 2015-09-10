@@ -28,8 +28,8 @@ describe('PointSymbol', function () {
         var symbol = L.esri.Renderers.pointSymbol(pointSymbolJson);
         var styles = symbol._styles;
 
-        expect(symbol.icon).to.be.eq(undefined);
-        expect(styles).not.to.be.eq(undefined);
+        expect(symbol.icon).to.be.equal(undefined);
+        expect(styles).not.to.be.equal(undefined);
       });
     });
 
@@ -55,9 +55,9 @@ describe('PointSymbol', function () {
         var symbol = L.esri.Renderers.pointSymbol(iconSymbolJson, {url: fLayer});
         var styles = symbol._styles;
 
-        expect(symbol.icon).not.to.be.eq(undefined);
+        expect(symbol.icon).not.to.be.equal(undefined);
         expect(symbol.serviceUrl).to.be.eq(fLayer);
-        expect(styles.stroke).to.be.eq(undefined);
+        expect(styles.stroke).to.be.equal(undefined);
       });
     });
   });

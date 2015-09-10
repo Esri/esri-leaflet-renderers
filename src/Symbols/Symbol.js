@@ -1,4 +1,6 @@
-EsriLeafletRenderers.Symbol = L.Class.extend({
+import L from 'leaflet';
+
+export var Symbol = L.Class.extend({
   initialize: function (symbolJson, options) {
     this._symbolJson = symbolJson;
     this.val = null;
@@ -136,3 +138,9 @@ EsriLeafletRenderers.Symbol = L.Class.extend({
     return null;
   }
 });
+
+// export function symbol (symbolJson) {
+//   return new Symbol(symbolJson);
+// }
+
+export default Symbol;

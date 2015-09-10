@@ -9,10 +9,10 @@ describe('PolygonSymbol', function () {
     it('should set defaults', function () {
       var symbol = L.esri.Renderers.polygonSymbol({});
       var styles = symbol.style();
-      // TODO write an actual test
+      // TODO: make an actual test
     });
 
-    describe("should set style from solid polygon symbol 'esriFSSolid'", function () {
+    describe('should set style from solid polygon symbol esriFSSolid', function () {
       var solidPolygon;
 
       beforeEach(function () {
