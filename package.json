@@ -75,10 +75,11 @@
     "url": "git@github.com:Esri/esri-leaflet-renderers.git"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "prebuild": "mkdirp dist",
     "build": "./scripts/build.js",
     "lint": "semistandard src/**/*.js",
     "release": "./scripts/release.sh",
-    "test": "npm run lint && karma start"
+    "test": "npm run lint && npm run build && karma start"
   }
 }
