@@ -1,7 +1,7 @@
 {
   "name": "esri-leaflet-renderers",
   "description": "esri-leaflet plugin for rendering",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "author": "Rachel Nehmer <rnehmer@esri.com>",
   "browserify": {
     "transform": [

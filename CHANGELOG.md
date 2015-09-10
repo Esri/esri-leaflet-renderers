@@ -3,7 +3,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 This change log adheres to standards from [Keep a CHANGELOG](http://keepachangelog.com).
 
-## [1.0.0]
+## [2.0.0] - 2015-09-10
+
+This release is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.com/2015/07/15/leaflet-1.0-beta1-released.html).
+
+### Changed
+
+* Rewritten build and test systems to rely on ES 2015 Modules specification
+* More build and release automation
+
+## [1.0.0] - 2015-09-08
 
 This is expected to be the last (and only) stable release of Esri Leaflet Renderers compatible with Leaflet 0.7.3. All future 1.0.X releases will be compatible with Leaflet 0.7.3 and contain only bug fixes. New features will only be added in Esri Leaflet Renderers 2.0.0 (which will require Leaflet 1.0.0).
 
