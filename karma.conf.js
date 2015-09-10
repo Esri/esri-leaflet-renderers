@@ -1,9 +1,8 @@
 // Karma configuration
 // Generated on Fri May 30 2014 15:44:45 GMT-0400 (EDT)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -16,21 +15,9 @@ module.exports = function(config) {
       'node_modules/leaflet/dist/leaflet.css',
       'node_modules/leaflet/dist/leaflet.js',
       'node_modules/esri-leaflet/dist/esri-leaflet.js',
-      'spec/**/*Spec.js',
-      'src/EsriLeafletRenderers.js',
-      'src/Symbols/Symbol.js',
-      'src/Symbols/PointSymbol.js',
-      'src/Symbols/LineSymbol.js',
-      'src/Symbols/PolygonSymbol.js',
-      'src/Renderers/Renderer.js',
-      'src/Renderers/SimpleRenderer.js',
-      'src/Renderers/ClassBreaksRenderer.js',
-      'src/Renderers/UniqueValueRenderer.js',
-      'src/Markers/SquareMarker.js',
-      'src/Markers/DiamondMarker.js',
-      'src/Markers/CrossMarker.js',
-      'src/Markers/XMarker.js',
-      'src/FeatureLayerHook.js'
+      'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.js',
+      'dist/esri-leaflet-renderers.js',
+      'spec/**/*.js',
     ],
 
     // list of files to exclude
@@ -38,7 +25,9 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'dist/**/*.js': ['sourcemap', 'coverage']
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -74,8 +63,14 @@ module.exports = function(config) {
 
     // Configure the coverage reporters
     coverageReporter: {
-      reporters:[
-        {type: 'html', dir:'coverage/'},
+      instrumenters: {
+        isparta: require('isparta')
+      },
+      instrumenter: {
+        'src/**/*.js': 'isparta'
+      },
+      reporters: [
+        {type: 'html', dir: 'coverage/'},
         {type: 'text'}
       ]
     }

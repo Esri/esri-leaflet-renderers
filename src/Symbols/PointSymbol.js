@@ -1,9 +1,13 @@
-EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
+import L from 'leaflet';
+import Symbol from './Symbol';
+import {squareMarker, xMarker, crossMarker, diamondMarker} from 'leaflet-shape-markers';
+
+export var PointSymbol = Symbol.extend({
   statics: {
     MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
   initialize: function (symbolJson, options) {
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
+    Symbol.prototype.initialize.call(this, symbolJson, options);
     if (options) {
       this.serviceUrl = options.url;
     }
@@ -102,18 +106,21 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
 
     switch (this._symbolJson.style) {
       case 'esriSMSSquare':
-        return EsriLeafletRenderers.squareMarker(latlng, size, this._styles);
+        return squareMarker(latlng, size, this._styles);
       case 'esriSMSDiamond':
-        return EsriLeafletRenderers.diamondMarker(latlng, size, this._styles);
+        return diamondMarker(latlng, size, this._styles);
       case 'esriSMSCross':
-        return EsriLeafletRenderers.crossMarker(latlng, size, this._styles);
+        return crossMarker(latlng, size, this._styles);
       case 'esriSMSX':
-        return EsriLeafletRenderers.xMarker(latlng, size, this._styles);
+        return xMarker(latlng, size, this._styles);
     }
     this._styles.radius = size / 2.0;
     return L.circleMarker(latlng, this._styles);
   }
 });
-EsriLeafletRenderers.pointSymbol = function (symbolJson, options) {
-  return new EsriLeafletRenderers.PointSymbol(symbolJson, options);
-};
+
+export function pointSymbol (symbolJson, options) {
+  return new PointSymbol(symbolJson, options);
+}
+
+export default pointSymbol;

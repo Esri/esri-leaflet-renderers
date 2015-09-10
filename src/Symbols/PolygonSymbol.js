@@ -1,12 +1,15 @@
-EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
+import Symbol from './Symbol';
+import lineSymbol from './LineSymbol';
+
+export var PolygonSymbol = Symbol.extend({
   statics: {
     // not implemented: 'esriSFSBackwardDiagonal','esriSFSCross','esriSFSDiagonalCross','esriSFSForwardDiagonal','esriSFSHorizontal','esriSFSNull','esriSFSVertical'
     POLYGONTYPES: ['esriSFSSolid']
   },
   initialize: function (symbolJson, options) {
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
+    Symbol.prototype.initialize.call(this, symbolJson, options);
     if (symbolJson) {
-      this._lineStyles = EsriLeafletRenderers.lineSymbol(symbolJson.outline, options).style();
+      this._lineStyles = lineSymbol(symbolJson.outline, options).style();
       this._fillStyles();
     }
   },
@@ -28,8 +31,8 @@ EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
     // set the fill for the polygon
     if (this._symbolJson) {
       if (this._symbolJson.color &&
-        // don't fill polygon if type is not supported
-        EsriLeafletRenderers.PolygonSymbol.POLYGONTYPES.indexOf(this._symbolJson.style >= 0)) {
+          // don't fill polygon if type is not supported
+          PolygonSymbol.POLYGONTYPES.indexOf(this._symbolJson.style >= 0)) {
         this._styles.fill = true;
         this._styles.fillColor = this.colorValue(this._symbolJson.color);
         this._styles.fillOpacity = this.alphaValue(this._symbolJson.color);
@@ -51,6 +54,9 @@ EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
     return this._styles;
   }
 });
-EsriLeafletRenderers.polygonSymbol = function (symbolJson, options) {
-  return new EsriLeafletRenderers.PolygonSymbol(symbolJson, options);
-};
+
+export function polygonSymbol (symbolJson, options) {
+  return new PolygonSymbol(symbolJson, options);
+}
+
+export default polygonSymbol;

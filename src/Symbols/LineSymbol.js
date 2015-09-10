@@ -1,10 +1,12 @@
-EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
+import Symbol from './Symbol';
+
+export var LineSymbol = Symbol.extend({
   statics: {
     // Not implemented 'esriSLSNull'
     LINETYPES: ['esriSLSDash', 'esriSLSDot', 'esriSLSDashDotDot', 'esriSLSDashDot', 'esriSLSSolid']
   },
   initialize: function (symbolJson, options) {
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
+    Symbol.prototype.initialize.call(this, symbolJson, options);
     this._fillStyles();
   },
 
@@ -73,6 +75,9 @@ EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
     return this._styles;
   }
 });
-EsriLeafletRenderers.lineSymbol = function (symbolJson, options) {
-  return new EsriLeafletRenderers.LineSymbol(symbolJson, options);
-};
+
+export function lineSymbol (symbolJson, options) {
+  return new LineSymbol(symbolJson, options);
+}
+
+export default lineSymbol;

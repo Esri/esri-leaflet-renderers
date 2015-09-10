@@ -1,46 +1,84 @@
 {
   "name": "esri-leaflet-renderers",
-  "version": "1.0.0",
-  "description": "Esri Rendering plugin for Leaflet.",
-  "homepage": "https://github.com/Esri/esri-leaflet-renderers",
-  "main": "dist/esri-leaflet-renderers.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Esri/esri-leaflet-renderers.git"
-  },
-  "scripts": {
-    "prepublish": "node -e \"require('grunt').tasks(['prepublish']);\"",
-    "test": "node -e \"require('grunt').tasks(['test']);\""
-  },
-  "license": "Apache 2.0",
-  "readmeFilename": "README.md",
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^0.3.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^0.5.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-karma": "^0.8.3",
-    "grunt-releaseable": "0.0.12",
-    "grunt-s3": "^0.2.0-alpha.3",
-    "karma": "^0.12.16",
-    "karma-chai-sinon": "^0.1.3",
-    "karma-chrome-launcher": "^0.1.3",
-    "karma-coverage": "^0.1",
-    "karma-firefox-launcher": "^0.1.3",
-    "karma-mocha": "^0.1.0",
-    "karma-mocha-reporter": "^0.2.5",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "karma-safari-launcher": "^0.1.1",
-    "karma-sauce-launcher": "^0.2.10"
-  },
+  "description": "esri-leaflet plugin for rendering",
+  "version": "2.0.0-beta.1",
   "author": "Rachel Nehmer <rnehmer@esri.com>",
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "whitelist": [
+            "es6.modules"
+          ],
+          "loose": [
+            "es6.modules"
+          ]
+        }
+      ]
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/esri/esri-leaflet-renderers/issues"
+  },
   "contributors": [
     "Rachel Nehmer <rnehmer@esri.com>",
     "John Gravois <jgravois@esri.com>"
   ],
   "dependencies": {
-    "leaflet": "^0.7.0",
-    "esri-leaflet": "^1.0.0"
+     "esri-leaflet": "^2.0.0-beta.5",
+     "leaflet": "^1.0.0-beta.1",
+     "leaflet-shape-markers": "Esri/Leaflet.shapeMarkers"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.3",
+    "chai": "2.3.0",
+    "gh-release": "^2.0.0",
+    "isparta": "^3.0.3",
+    "istanbul": "gotwarlost/istanbul.git#source-map",
+    "karma": "^0.12.24",
+    "karma-chai-sinon": "^0.1.3",
+    "karma-coverage": "douglasduteil/karma-coverage#next",
+    "karma-mocha": "^0.1.0",
+    "karma-mocha-reporter": "^0.2.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sourcemap-loader": "^0.3.5",
+    "mkdirp": "^0.5.1",
+    "phantomjs": "^1.9.17",
+    "rollup": "^0.10.0",
+    "semistandard": "^6.1.2",
+    "sinon": "^1.11.1",
+    "sinon-chai": "2.7.0",
+    "uglify-js": "^2.4.23"
+  },
+  "homepage": "http://esri.github.io/esri-leaflet",
+  "jsnext:main": "src/EsriLeafletRenderers.js",
+  "jspm": {
+    "registry": "npm",
+    "format": "es6"
+  },
+  "keywords": [
+    "arcgis",
+    "esri",
+    "esri leaflet",
+    "gis",
+    "leaflet plugin",
+    "mapping",
+    "renderers",
+    "symbology"
+  ],
+  "license": "Apache-2.0",
+  "main": "src/EsriLeafletRenderers.js",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Esri/esri-leaflet-renderers.git"
+  },
+  "scripts": {
+    "prebuild": "mkdirp dist",
+    "build": "./scripts/build.js",
+    "lint": "semistandard src/**/*.js",
+    "release": "./scripts/release.sh",
+    "test": "npm run lint && karma start"
   }
 }

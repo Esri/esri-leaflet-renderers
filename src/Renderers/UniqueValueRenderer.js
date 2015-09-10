@@ -1,7 +1,8 @@
-EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend({
-  initialize: function (rendererJson, options) {
-    EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
+import Renderer from './Renderer';
 
+export var UniqueValueRenderer = Renderer.extend({
+  initialize: function (rendererJson, options) {
+    Renderer.prototype.initialize.call(this, rendererJson, options);
     this._field = this._rendererJson.field1;
     this._createSymbols();
   },
@@ -19,7 +20,6 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
     this._createDefaultSymbol();
   },
 
-  /* jshint ignore:start */
   _getSymbol: function (feature) {
     var val = feature.properties[this._field];
     // accumulate values if there is more than one field defined
@@ -41,12 +41,14 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
       if (this._symbols[i].val == val) {
         symbol = this._symbols[i];
       }
+      /*eslint-enable */
     }
     return symbol;
   }
-/* jshint ignore:end */
 });
 
-EsriLeafletRenderers.uniqueValueRenderer = function (rendererJson, options) {
-  return new EsriLeafletRenderers.UniqueValueRenderer(rendererJson, options);
-};
+export function uniqueValueRenderer (rendererJson, options) {
+  return new UniqueValueRenderer(rendererJson, options);
+}
+
+export default uniqueValueRenderer;

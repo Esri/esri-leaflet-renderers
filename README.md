@@ -50,13 +50,17 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 
 ### Development Instructions
 
-Make sure you have the [Grunt CLI](http://gruntjs.com/getting-started) installed.
-
 1. [Fork and clone Esri Leaflet Renderers](https://help.github.com/articles/fork-a-repo)
 2. `cd` into the `esri-leaflet-renderers` folder
-5. Install the dependencies with `npm install`
-5. run `grunt` from the command line. This will create minified source, run linting, and start watching the source files for changes.
-6. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
+3. Install the dependencies with `npm install`
+4. Run `npm run build` from the command line. This will compile minified source in a brand new `dist` directory.  Afterward, you can run `npm test` to make sure things are 'all good'.
+5. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
+
+### Limitations
+* [Simple Marker](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-C8D40B32-5F4B-45EB-8048-6D5A8763E13B) symbols do not support rotation (ie: the 'angle' property is ignored).
+* Polygons only support [solid fill](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-517D9B3F-DF13-4E79-9B58-A0D24C5E4994).  This does not include advanced fill types like PictureFill, Backward Diagonal, DiagonalCross, etc.
+* [Text](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#ESRI_SECTION1_94E8CE0A9F614ABC8BEDDBCB0E9DC53A) symbols are not supported.
+* [Unique value](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r30000019t000000#GUID-35C6482C-9BB2-4839-A180-25DCF62CB504) renderers based on more than a single field are not supported.
 
 ### Limitations
 * [Simple Marker](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-C8D40B32-5F4B-45EB-8048-6D5A8763E13B) symbols do not support rotation (ie: the 'angle' property is ignored).

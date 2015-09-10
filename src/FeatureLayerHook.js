@@ -1,4 +1,11 @@
-Esri.FeatureLayer.addInitHook(function () {
+// import L from 'leaflet';
+// import { FeatureLayer } from 'esri-leaflet';
+
+import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
+import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
+import simpleRenderer from './Renderers/simpleRenderer';
+
+L.esri.FeatureLayer.addInitHook(function () {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
@@ -151,9 +158,12 @@ Esri.FeatureLayer.addInitHook(function () {
     var rend;
     var rendererInfo = geojson.drawingInfo.renderer;
     var options = {
-      url: this.url ? this.url : this._service.options.url,
-      token: this._service.options.token
+      url: this.options.url
     };
+    if (this.options.token) {
+      options.token = this.options.token;
+    }
+
     if (geojson.drawingInfo.transparency) {
       options.layerTransparency = geojson.drawingInfo.transparency;
     }
@@ -163,17 +173,17 @@ Esri.FeatureLayer.addInitHook(function () {
         this._checkForProportionalSymbols(geojson.geometryType, rendererInfo);
         if (this._hasProportionalSymbols) {
           this._createPointLayer();
-          var pRend = EsriLeafletRenderers.classBreaksRenderer(rendererInfo, options);
+          var pRend = classBreaksRenderer(rendererInfo, options);
           pRend.attachStylesToLayer(this._pointLayer);
           options.proportionalPolygon = true;
         }
-        rend = EsriLeafletRenderers.classBreaksRenderer(rendererInfo, options);
+        rend = classBreaksRenderer(rendererInfo, options);
         break;
       case 'uniqueValue':
-        rend = EsriLeafletRenderers.uniqueValueRenderer(rendererInfo, options);
+        rend = uniqueValueRenderer(rendererInfo, options);
         break;
       default:
-        rend = EsriLeafletRenderers.simpleRenderer(rendererInfo, options);
+        rend = simpleRenderer(rendererInfo, options);
     }
     rend.attachStylesToLayer(this);
   };
