@@ -1,15 +1,10 @@
+/* global L beforeEach describe expect it */
 describe('PolygonSymbol', function () {
   describe('#_symbolJson', function () {
     var symbolHelper;
 
     beforeEach(function () {
       symbolHelper = new L.esri.Renderers.Symbol();
-    });
-
-    it('should set defaults', function () {
-      var symbol = L.esri.Renderers.polygonSymbol({});
-      var styles = symbol.style();
-      // TODO: make an actual test
     });
 
     describe('should set style from solid polygon symbol esriFSSolid', function () {

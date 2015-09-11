@@ -1,3 +1,4 @@
+/* global L beforeEach describe expect it */
 describe('PointSymbol', function () {
   describe('#_symbolJson', function () {
     it('should set defaults', function () {

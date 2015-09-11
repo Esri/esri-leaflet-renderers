@@ -1,3 +1,4 @@
+/* global L beforeEach describe expect it */
 describe('SmartClassbreaksRenderer', function () {
   describe('should create renderer with size variables from JSON', function () {
     var renderer, pointFeatureOne, pointFeatureTwo, sizeInfoJson;

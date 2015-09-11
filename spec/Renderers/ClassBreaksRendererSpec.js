@@ -1,3 +1,4 @@
+/* global L beforeEach describe expect it */
 describe('ClassBreaksRenderer', function () {
   describe('should create renderer from JSON', function () {
     var rendererJson;
