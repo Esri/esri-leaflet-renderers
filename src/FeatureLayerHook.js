@@ -3,7 +3,7 @@
 
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
-import simpleRenderer from './Renderers/simpleRenderer';
+import simpleRenderer from './Renderers/SimpleRenderer';
 
 L.esri.FeatureLayer.addInitHook(function () {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
