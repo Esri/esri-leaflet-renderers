@@ -1,3 +1,4 @@
+/* global L beforeEach describe expect it */
 describe('DiamondMarker', function () {
   describe('#_size', function () {
     var map;

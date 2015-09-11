@@ -1,3 +1,4 @@
+/* global L beforeEach describe expect it */
 describe('LineSymbol', function () {
   describe('#_symbolJson', function () {
     var symbolHelper;
