@@ -5,7 +5,7 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [2.0.0] - 2015-09-10
 
-This release is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.com/2015/07/15/leaflet-1.0-beta1-released.html).
+This is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.com/2015/07/15/leaflet-1.0-beta1-released.html).  As with [1.0.0](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v1.0.0), FeatureLayer constructors now expect `url`s to be provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
 
 ### Changed
 
@@ -13,6 +13,11 @@ This release is the first release that supports [Leaflet 1.0.0-beta.1](http://le
 * More build and release automation
 
 ## [1.0.0] - 2015-09-08
+
+### Breaking Changes
+
+* In Esri Leaflet itself, FeatureLayer constructors `url` is now provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
+
 
 This is expected to be the last (and only) stable release of Esri Leaflet Renderers compatible with Leaflet 0.7.3. All future 1.0.X releases will be compatible with Leaflet 0.7.3 and contain only bug fixes. New features will only be added in Esri Leaflet Renderers 2.0.0 (which will require Leaflet 1.0.0).
 
@@ -33,6 +38,7 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[1.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.3...HEAD
+[2.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v2.0.0
+[1.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.3...v1.0.0
 [0.0.1-beta.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.2...v0.0.1-beta.3
 [0.0.1-beta.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.1...v0.0.1-beta.2
