@@ -1,11 +1,12 @@
 # esri-leaflet-renderers change log
+
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 This change log adheres to standards from [Keep a CHANGELOG](http://keepachangelog.com).
 
 ## [2.0.0] - 2015-09-10
 
-This is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.com/2015/07/15/leaflet-1.0-beta1-released.html).  As with [1.0.0](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v1.0.0), FeatureLayer constructors now expect `url`s to be provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
+This is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.com/2015/07/15/leaflet-1.0-beta1-released.html).  As with version [1.0.0](https://github.com/Esri/esri-leaflet/releases/tag/v1.0.0) of Esri Leaflet, FeatureLayer constructors now expect `url`s to be provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
 
 ### Changed
 
@@ -14,22 +15,25 @@ This is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.
 
 ## [1.0.0] - 2015-09-08
 
-### Breaking Changes
-
-* In Esri Leaflet itself, FeatureLayer constructors `url` is now provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
-
-
 This is expected to be the last (and only) stable release of Esri Leaflet Renderers compatible with Leaflet 0.7.3. All future 1.0.X releases will be compatible with Leaflet 0.7.3 and contain only bug fixes. New features will only be added in Esri Leaflet Renderers 2.0.0 (which will require Leaflet 1.0.0).
 
-* added support for unique value renderers based on more than one field
-* added support for transparency applied to the entire renderer
+### Breaking Changes
+
+* In Esri Leaflet itself, in L.esri.FeatureLayer constructors, the `url` is now provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
+
+### Added
+
+* support for unique value renderers based on more than one field
+* support for transparency applied to the entire renderer
+
+### Fixed
 * ensured that tokens are passed through in requests for picture marker symbols
 
-## 0.0.1-beta.3 - 2015-03-24
+## [0.0.1-beta.3] - 2015-03-24
 * Render from the new visualVariables objects in the renderer JSON
 * Still backwards compatible with classic renderers
 
-## 0.0.1-beta.2 - 2015-03-02
+## [0.0.1-beta.2] - 2015-03-02
 * Fix to work with Browserify
 * Update to work with esri-leaflet 1.0.0-rc.5
 * Still backwards compatible with esri-leaflet 1.0.0-rc.4
