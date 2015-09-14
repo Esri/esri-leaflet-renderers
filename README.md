@@ -2,7 +2,7 @@
 
 Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri Leaflet Renderers works in conjunction with the Esri Leaflet Plugin to draw [feature services](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) using renderers defined by the service.
 
-**Esri Leaflet Renderers is currently in development and should be thought of as a beta or preview.**
+[![travis](https://img.shields.io/travis/Esri/Leaflet.shapeMarkers/master.svg?style=flat-square)](https://travis-ci.org/Esri/Leaflet.shapeMarkers)
 
 ### Example
 Take a look at the [live demo](http://esri.github.io/esri-leaflet-renderers/index.html).
@@ -18,15 +18,16 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <!-- Load Leaflet from CDN-->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
-    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.6/esri-leaflet.js"></script>
+    <script src="//cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.5/esri-leaflet.js"></script>
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet and draw the predefined Portland Heritage Tree symbols -->
-    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-renderers/0.0.1-beta.3/esri-leaflet-renderers.js"></script>
+    <!-- Load shapeMarkers from CDN -->
+    <script src="//cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/leaflet-shape-markers.js"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -57,6 +58,7 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 5. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
 
 ### Limitations
+
 * [Simple Marker](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-C8D40B32-5F4B-45EB-8048-6D5A8763E13B) symbols do not support rotation (ie: the 'angle' property is ignored).
 * Polygons only support [solid fill](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-517D9B3F-DF13-4E79-9B58-A0D24C5E4994).  This does not include advanced fill types like PictureFill, Backward Diagonal, DiagonalCross, etc.
 * [Text](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#ESRI_SECTION1_94E8CE0A9F614ABC8BEDDBCB0E9DC53A) symbols are not supported.
@@ -64,7 +66,8 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 
 ### Dependencies
 
-* [Leaflet](http://leaflet.com) version 0.7 or higher is required but the latest version is recommended.
+* Esri Leaflet Renderers [1.0.0](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v1.0.0) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/1.0.0/esri-leaflet-renderers.js)) is compatible with [Leaflet](http://leaflet.com) version 0.7.3.
+* Esri Leaflet Renderers [2.0.0](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v2.0.0) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/esri-leaflet-renderers.js)) is compatible with [Leaflet](http://leaflet.com) version 1.0.0-beta1.
 * [Esri Leaflet](https://github.com/Esri/esri-leaflet) - for Esri feature services
 
 ### Versioning
