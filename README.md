@@ -25,9 +25,8 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <script src="//cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.5/esri-leaflet.js"></script>
 
     <!-- Load Esri Leaflet Renderers -->
-    <!-- This will hook into Esri Leaflet and draw the predefined Portland Heritage Tree symbols -->
-    <!-- Load shapeMarkers from CDN -->
-    <script src="//cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/leaflet-shape-markers.js"></script>
+    <!-- This will hook into Esri Leaflet and draw the predefined World Regions -->
+    <script src="//cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/esri-leaflet-renderers.js"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -42,7 +41,7 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
       var map = L.map('map').setView([45.526, -122.667], 13);
 
       L.esri.basemapLayer('Streets').addTo(map);
-      L.esri.featureLayer('http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0').addTo(map);
+      L.esri.featureLayer({url: '//services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0', simplifyFactor: 1}).addTo(map);
     </script>
 
   </body>
