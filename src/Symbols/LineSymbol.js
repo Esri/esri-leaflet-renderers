@@ -25,7 +25,7 @@ export var LineSymbol = Symbol.extend({
       this._styles.opacity = this.alphaValue(this._symbolJson.color);
     }
 
-    if (this._symbolJson.width) {
+    if (!isNaN(this._symbolJson.width)) {
       this._styles.weight = this.pixelValue(this._symbolJson.width);
 
       var dashValues = [];
