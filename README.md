@@ -4,6 +4,8 @@ Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri
 
 [![travis](https://img.shields.io/travis/Esri/Leaflet.shapeMarkers/master.svg?style=flat-square)](https://travis-ci.org/Esri/Leaflet.shapeMarkers)
 
+The sole purpose of this plugin is to allow [`L.esri.FeatureLayer`](http://esri.github.io/esri-leaflet/api-reference/layers/feature-layer.html) to automatically take on renderers defined in [ArcGIS Feature Services](https://developers.arcgis.com/en/features/cloud-storage/). Esri Leaflet Renderers works in conjunction with Esri Leaflet, but it does not add any additional methods or properties to the class that it extends.
+
 ### Example
 Take a look at the [live demo](http://esri.github.io/esri-leaflet-renderers/index.html).
 
@@ -61,13 +63,16 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 * [Simple Marker](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-C8D40B32-5F4B-45EB-8048-6D5A8763E13B) symbols do not support rotation (ie: the 'angle' property is ignored).
 * Polygons only support [solid fill](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#GUID-517D9B3F-DF13-4E79-9B58-A0D24C5E4994).  This does not include advanced fill types like PictureFill, Backward Diagonal, DiagonalCross, etc.
 * [Text](http://resources.arcgis.com/en/help/arcgis-rest-api/02r3/02r3000000n5000000.htm#ESRI_SECTION1_94E8CE0A9F614ABC8BEDDBCB0E9DC53A) symbols are not supported.
-* [Unique value](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#//02r30000019t000000#GUID-35C6482C-9BB2-4839-A180-25DCF62CB504) renderers based on more than a single field are not supported.
 
 ### Dependencies
 
-* Esri Leaflet Renderers [1.0.0](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v1.0.0) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/1.0.0/esri-leaflet-renderers.js)) is compatible with [Leaflet](http://leaflet.com) version 0.7.3.
-* Esri Leaflet Renderers [2.0.0](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v2.0.0) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/esri-leaflet-renderers.js)) is compatible with [Leaflet](http://leaflet.com) version 1.0.0-beta1.
-* [Esri Leaflet](https://github.com/Esri/esri-leaflet) - for Esri feature services
+* Esri Leaflet Renderers [1.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v1.0.0) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/1.0.0/esri-leaflet-renderers.js)) can be used in apps alongside:
+  *  [Leaflet](http://leafletjs.com) version 0.7.x.
+  *  [Esri Leaflet](http://esri.github.io/esri-leaflet) version 1.0.x.
+
+* Esri Leaflet Renderers [2.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v2.0.0) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.0/esri-leaflet-renderers.js)) can be used in apps alongside:
+  *  [Leaflet](http://leafletjs.com) version 1.0.0-beta1.
+  *  [Esri Leaflet](http://esri.github.io/esri-leaflet) version 2.0.x.
 
 ### Versioning
 
