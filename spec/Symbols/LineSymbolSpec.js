@@ -39,6 +39,14 @@ describe('LineSymbol', function () {
         expect(styles.dashArray).to.be.equal(undefined);
         expect(styles.weight).to.be.eq(symbolHelper.pixelValue(solidLine.width));
       });
+
+      it('should set weight to 0 if width is 0', function () {
+        solidLine.width = 0;
+        var symbol = L.esri.Renderers.lineSymbol(solidLine);
+        var styles = symbol.style();
+
+        expect(styles.weight).to.be.equal(0);
+      });
     });
 
     describe('should set style from pattern line symbol', function () {
