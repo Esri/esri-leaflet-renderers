@@ -34,6 +34,14 @@ describe('PolygonSymbol', function () {
         expect(styles.color).to.be.eq(symbolHelper.colorValue(solidPolygon.outline.color));
         expect(styles.opacity).to.be.eq(symbolHelper.alphaValue(solidPolygon.outline.color));
       });
+
+      it('should set line stroke to false if line width is 0', function () {
+        solidPolygon.outline.width = 0;
+        var symbol = L.esri.Renderers.polygonSymbol(solidPolygon);
+        var styles = symbol.style();
+
+        expect(styles.stroke).to.be.eq(false);
+      });
     });
   });
 });
