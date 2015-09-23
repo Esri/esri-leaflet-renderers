@@ -26,7 +26,7 @@
     "John Gravois <jgravois@esri.com>"
   ],
   "dependencies": {
-     "esri-leaflet": "^2.0.0-beta.5",
+     "esri-leaflet": "^2.0.0-beta.6",
      "leaflet": "^1.0.0-beta.1",
      "leaflet-shape-markers": "^1.0.4"
   },
