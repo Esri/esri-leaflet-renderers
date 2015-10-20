@@ -57,6 +57,7 @@ export var Renderer = L.Class.extend({
       layer.options.pointToLayer = L.Util.bind(this.pointToLayer, this);
     } else {
       layer.options.style = L.Util.bind(this.style, this);
+      layer._originalStyle = layer.options.style;
     }
   },
 
