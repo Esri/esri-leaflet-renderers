@@ -8,7 +8,7 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ### Added
 
-* Now developers can now override individual style properties of interest directly in the FeatureLayer constructor. (via #100)
+* Now developers can now override individual style properties of interest directly in the FeatureLayer constructor. (via Esri/esri-leaflet-renderers#100)
 
 ```js
 L.esri.featureLayer({
