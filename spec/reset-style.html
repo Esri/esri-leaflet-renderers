@@ -30,7 +30,12 @@
 
       L.esri.basemapLayer('Gray').addTo(map);
       var neighborhoods = L.esri.featureLayer({
-        url: 'http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Neighborhoods_pdx/FeatureServer/0'
+        url: 'http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Neighborhoods_pdx/FeatureServer/0',
+        style: function(feature) {
+          if (feature.properties.NAME === 'DOWNTOWN') {
+            return {fillColor: '#C00'};
+          }
+        }
       }).addTo(map);
 
       neighborhoods.on('mouseover', function(e){

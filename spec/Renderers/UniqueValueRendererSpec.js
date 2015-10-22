@@ -70,6 +70,21 @@ describe('UniqueValueRenderer', function () {
       expect(renderer._symbols.length).to.be.eq(3);
     });
 
+    it('should merge symbol styles', function () {
+      var options = {
+        userDefinedStyle: function (feature) {
+          return {opacity: 0.5};
+        }
+      }
+      var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson, options);
+      var feature = {'properties': {'ZONE': -12, 'VALUE': '$25.00', 'MARKET': '2Z'}};
+      var style = renderer.style(feature);
+      // user style
+      expect(style.opacity).to.be.eq(0.5);
+      // renderer style
+      expect(style.weight).to.be.greaterThan(1);
+    });
+
     describe('symbol transparency', function () {
       it('should be equal to symbol value when no layer transparency defined', function () {
         var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson);

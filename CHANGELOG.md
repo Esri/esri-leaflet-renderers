@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 This change log adheres to standards from [Keep a CHANGELOG](http://keepachangelog.com).
 
+## [Unreleased]
+
+### Added
+
+* Now developers can now override individual style properties of interest directly in the FeatureLayer constructor. (via #100)
+
+```js
+L.esri.featureLayer({
+  url: 'http://[server]/arcgis/rest/services/[yourservice]/MapServer/0',
+  style: function (feature) {
+    return {
+      // override service symbology to make polygon fill 50% transparent
+      fillOpacity: 0.5
+    };
+  }
+}).addTo(map);
+```
+
 ## [2.0.0] - 2015-09-10
 
 This is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.com/2015/07/15/leaflet-1.0-beta1-released.html).  As with version [1.0.0](https://github.com/Esri/esri-leaflet/releases/tag/v1.0.0) of Esri Leaflet, FeatureLayer constructors now expect `url`s to be provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
@@ -42,6 +60,7 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...HEAD
 [2.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.3...v1.0.0
 [0.0.1-beta.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.2...v0.0.1-beta.3

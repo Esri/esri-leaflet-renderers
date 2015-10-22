@@ -24,5 +24,20 @@ describe('SimpleRenderer', function () {
       var renderer = L.esri.Renderers.simpleRenderer(rendererJson);
       expect(renderer._symbols.length).to.be.eq(1);
     });
+
+
+    it('should merge symbol styles', function () {
+      var options = {
+        userDefinedStyle: function (feature) {
+          return {opacity: 0.5};
+        }
+      }
+      var renderer = L.esri.Renderers.simpleRenderer(rendererJson, options);
+      var style = renderer.style();
+      // user style
+      expect(style.opacity).to.be.eq(0.5);
+      // renderer style
+      expect(style.weight).to.be.lessThan(1);
+    });
   });
 });
