@@ -57,7 +57,7 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 3. Install the dependencies with `npm install`
 4. Run `npm run serve` from the command line. This will compile minified source in a brand new `dist` directory, launch a tiny webserver and begin watching the raw source for changes.
 5. Run `npm test` to make sure you haven't introduced a new 'feature' accidently.
-5. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
+6. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
 
 ### Limitations
 
