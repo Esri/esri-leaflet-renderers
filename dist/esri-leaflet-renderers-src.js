@@ -1,9 +1,9 @@
-/*! esri-leaflet-renderers - v1.0.0 - 2015-09-08
+/*! esri-leaflet-renderers - v1.0.1 - 2015-11-30
 *   Copyright (c) 2015 Environmental Systems Research Institute, Inc.
 *   Apache 2.0 License */
 
 var EsriLeafletRenderers = {
-  VERSION: '0.0.1-beta.3'
+  VERSION: '1.0.1'
 };
 
 // attach to the L.esri global if we can
@@ -19,11 +19,15 @@ if(!Esri){
 
 EsriLeafletRenderers.Symbol = L.Class.extend({
 
-  initialize: function(symbolJson){
+  initialize: function(symbolJson, options){
     this._symbolJson = symbolJson;
     this.val = null;
     this._styles = {};
     this._isDefault = false;
+    this._layerTransparency = 1;
+    if (options && options.layerTransparency) {
+      this._layerTransparency = 1 - (options.layerTransparency / 100.0);
+    }
   },
 
   //the geojson values returned are in points
@@ -37,7 +41,8 @@ EsriLeafletRenderers.Symbol = L.Class.extend({
   },
 
   alphaValue: function(color){
-    return color[3] / 255.0;
+    var alpha = color[3] / 255.0;
+    return alpha * this._layerTransparency;
   },
 
   getSize: function(feature, sizeInfo) {
@@ -163,7 +168,7 @@ EsriLeafletRenderers.PointSymbol = EsriLeafletRenderers.Symbol.extend({
     MARKERTYPES:  ['esriSMSCircle','esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
   initialize: function(symbolJson, options){
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
     if(options) {
       this.serviceUrl = options.url;
     }
@@ -285,8 +290,8 @@ EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
     //Not implemented 'esriSLSNull'
     LINETYPES:  ['esriSLSDash','esriSLSDot','esriSLSDashDotDot','esriSLSDashDot','esriSLSSolid']
   },
-  initialize: function(symbolJson){
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+  initialize: function(symbolJson, options){
+    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
     this._fillStyles();
   },
 
@@ -355,8 +360,8 @@ EsriLeafletRenderers.LineSymbol = EsriLeafletRenderers.Symbol.extend({
     return this._styles;
   }
 });
-EsriLeafletRenderers.lineSymbol = function(symbolJson){
-  return new EsriLeafletRenderers.LineSymbol(symbolJson);
+EsriLeafletRenderers.lineSymbol = function(symbolJson, options){
+  return new EsriLeafletRenderers.LineSymbol(symbolJson, options);
 };
 
 
@@ -365,10 +370,10 @@ EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
     //not implemented: 'esriSFSBackwardDiagonal','esriSFSCross','esriSFSDiagonalCross','esriSFSForwardDiagonal','esriSFSHorizontal','esriSFSNull','esriSFSVertical'
     POLYGONTYPES:  ['esriSFSSolid']
   },
-  initialize: function(symbolJson){
-    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson);
+  initialize: function(symbolJson, options){
+    EsriLeafletRenderers.Symbol.prototype.initialize.call(this, symbolJson, options);
     if (symbolJson){
-      this._lineStyles = EsriLeafletRenderers.lineSymbol(symbolJson.outline).style();
+      this._lineStyles = EsriLeafletRenderers.lineSymbol(symbolJson.outline, options).style();
       this._fillStyles();
     }
   },
@@ -415,8 +420,8 @@ EsriLeafletRenderers.PolygonSymbol = EsriLeafletRenderers.Symbol.extend({
     return this._styles;
   }
 });
-EsriLeafletRenderers.polygonSymbol = function(symbolJson){
-  return new EsriLeafletRenderers.PolygonSymbol(symbolJson);
+EsriLeafletRenderers.polygonSymbol = function(symbolJson, options){
+  return new EsriLeafletRenderers.PolygonSymbol(symbolJson, options);
 };
 
 
@@ -458,10 +463,10 @@ EsriLeafletRenderers.Renderer = L.Class.extend({
       return EsriLeafletRenderers.pointSymbol(symbolJson, this.options);
     }
     if(symbolJson.type === 'esriSLS'){
-      return EsriLeafletRenderers.lineSymbol(symbolJson);
+      return EsriLeafletRenderers.lineSymbol(symbolJson, this.options);
     }
     if(symbolJson.type === 'esriSFS'){
-      return EsriLeafletRenderers.polygonSymbol(symbolJson);
+      return EsriLeafletRenderers.polygonSymbol(symbolJson, this.options);
     }
   },
 
@@ -592,7 +597,6 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
   initialize: function(rendererJson, options){
     EsriLeafletRenderers.Renderer.prototype.initialize.call(this, rendererJson, options);
 
-    //what to do when there are other fields?
     this._field = this._rendererJson.field1;
     this._createSymbols();
   },
@@ -612,6 +616,18 @@ EsriLeafletRenderers.UniqueValueRenderer = EsriLeafletRenderers.Renderer.extend(
   /* jshint ignore:start */
   _getSymbol: function(feature){
     var val = feature.properties[this._field];
+    //accumulate values if there is more than one field defined
+    if (this._rendererJson.fieldDelimiter && this._rendererJson.field2) {
+      var val2 = feature.properties[this._rendererJson.field2];
+      if (val2) {
+        val += this._rendererJson.fieldDelimiter + val2;
+        var val3 = feature.properties[this._rendererJson.field3];
+        if (val3) {
+          val += this._rendererJson.fieldDelimiter + val3;
+        }
+      }
+    }
+
     var symbol = this._defaultSymbol;
     for (var i = this._symbols.length  - 1; i >= 0; i--){
       //using the === operator does not work if the field
@@ -858,7 +874,7 @@ EsriLeafletRenderers.xMarker = function(center, size, options){
 };
 
 
-Esri.FeatureLayer.addInitHook(function() {
+var initializeRenderers = function() {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
@@ -1015,6 +1031,9 @@ Esri.FeatureLayer.addInitHook(function() {
         url: this.url ? this.url : this._service.options.url,
         token: this._service.options.token
     };
+    if(geojson.drawingInfo.transparency) {
+      options.layerTransparency = geojson.drawingInfo.transparency;
+    }
 
     switch(rendererInfo.type){
       case 'classBreaks':
@@ -1035,4 +1054,9 @@ Esri.FeatureLayer.addInitHook(function() {
     }
     rend.attachStylesToLayer(this);
   };
-});
+};
+
+Esri.FeatureLayer.addInitHook(initializeRenderers);
+if (Esri.ClusteredFeatureLayer) {
+  Esri.ClusteredFeatureLayer.addInitHook(initializeRenderers);
+}

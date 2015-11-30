@@ -1,4 +1,4 @@
-Esri.FeatureLayer.addInitHook(function() {
+var initializeRenderers = function() {
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
@@ -178,4 +178,9 @@ Esri.FeatureLayer.addInitHook(function() {
     }
     rend.attachStylesToLayer(this);
   };
-});
+};
+
+Esri.FeatureLayer.addInitHook(initializeRenderers);
+if (Esri.ClusteredFeatureLayer) {
+  Esri.ClusteredFeatureLayer.addInitHook(initializeRenderers);
+}
