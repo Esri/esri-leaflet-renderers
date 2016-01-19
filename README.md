@@ -7,7 +7,7 @@ Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri
 The sole purpose of this plugin is to allow [`L.esri.FeatureLayer`](http://esri.github.io/esri-leaflet/api-reference/layers/feature-layer.html) to automatically take on renderers defined in [ArcGIS Feature Services](https://developers.arcgis.com/en/features/cloud-storage/). Esri Leaflet Renderers works in conjunction with Esri Leaflet, but it does not add any additional methods or properties to the class that it extends.
 
 ### Example
-Take a look at the [live demo](http://esri.github.io/esri-leaflet-renderers/index.html).
+Take a look at the [live demo](http://esri.github.io/esri-leaflet/examples/renderers-plugin.html).
 
 You can also find a side by side comparison of the ArcGIS API for JavaScript [here](http://esri.github.io/esri-leaflet-renderers/spec/comparisons.html).
 
