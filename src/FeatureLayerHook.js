@@ -8,7 +8,7 @@ var initializeRenderers = function() {
     if(error) {
       return;
     }
-    if(response && response.drawingInfo && !this.options.style){
+    if(response && response.drawingInfo){
       this._setRenderers(response);
     }
 
@@ -157,6 +157,9 @@ var initializeRenderers = function() {
     };
     if(geojson.drawingInfo.transparency) {
       options.layerTransparency = geojson.drawingInfo.transparency;
+    }
+    if (this.options.style) {
+      options.userDefinedStyle = this.options.style;
     }
 
     switch(rendererInfo.type){
