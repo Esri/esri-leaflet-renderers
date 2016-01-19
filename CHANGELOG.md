@@ -6,6 +6,8 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [2.0.1] - 2016-01-19
+
 ### Added
 
 * Now developers can now override individual style properties of interest directly in the FeatureLayer constructor. (via [pull #100](https://github.com/Esri/esri-leaflet-renderers/pull/100))
@@ -61,6 +63,7 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * Works with esri-leaflet 1.0.0-rc.4
 
 [Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...HEAD
+[2.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.3...v1.0.0
 [0.0.1-beta.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.2...v0.0.1-beta.3
