@@ -1,7 +1,7 @@
 {
   "name": "esri-leaflet-renderers",
   "description": "esri-leaflet plugin for rendering",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Rachel Nehmer <rnehmer@esri.com>",
   "browserify": {
     "transform": [
@@ -48,7 +48,7 @@
     "nodemon": "^1.7.2",
     "phantomjs": "^1.9.17",
     "rollup": "^0.10.0",
-    "semistandard": "^6.1.2",
+    "semistandard": "^7.0.5",
     "sinon": "^1.11.1",
     "sinon-chai": "2.7.0",
     "uglify-js": "^2.4.23"
@@ -82,7 +82,7 @@
     "build": "node ./scripts/build.js",
     "lint": "semistandard src/**/*.js",
     "release": "node ./scripts/release.sh",
-    "serve": "nodemon --watch src --exec 'npm run build' & http-server -p 5678 -c-1 -o",
+    "start": "nodemon --watch src --exec 'npm run build' & http-server -p 5678 -c-1 -o",
     "test": "npm run lint && npm run build && karma start"
   }
 }

@@ -1,4 +1,4 @@
-export var VERSION = '2.0.0-beta.1';
+export var VERSION = '2.0.1';
 
 export { Renderer, renderer } from './Renderers/Renderer';
 export { SimpleRenderer, simpleRenderer } from './Renderers/SimpleRenderer';
