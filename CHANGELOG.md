@@ -10,7 +10,7 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ### Added
 
-* Now developers can now override individual style properties of interest directly in the FeatureLayer constructor. (via [pull #100](https://github.com/Esri/esri-leaflet-renderers/pull/100))
+* Now developers can now override individual style properties of interest for polyline and polygon services directly in the FeatureLayer constructor. (via [pull #100](https://github.com/Esri/esri-leaflet-renderers/pull/100))
 
 ```js
 L.esri.featureLayer({
@@ -27,6 +27,14 @@ L.esri.featureLayer({
 ## [2.0.0] - 2015-09-10
 
 This is the first release that supports [Leaflet 1.0.0-beta.1](http://leafletjs.com/2015/07/15/leaflet-1.0-beta1-released.html).  As with version [1.0.0](https://github.com/Esri/esri-leaflet/releases/tag/v1.0.0) of Esri Leaflet, FeatureLayer constructors now expect `url`s to be provided within an options object (ie: `L.esri.featureLayer(url)` should be replaced with `L.esri.featureLayer( {url: url} )`).
+
+## [1.0.1] - 2015-11-30
+
+### Added
+
+* support for clusteredFeatureLayers
+* support for unique value renderers based on more than one field
+* support for transparency applied to the entire renderer (via the service symbology)
 
 ### Changed
 
@@ -65,6 +73,7 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 [Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...HEAD
 [2.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v2.0.0
+[1.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.3...v1.0.0
 [0.0.1-beta.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.2...v0.0.1-beta.3
 [0.0.1-beta.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v0.0.1-beta.1...v0.0.1-beta.2
