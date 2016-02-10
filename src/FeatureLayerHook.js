@@ -18,20 +18,11 @@ L.esri.FeatureLayer.addInitHook(function () {
     if (response && response.drawingInfo) {
       this._setRenderers(response);
     }
-
-    this._metadataLoaded = true;
-    if (this._loadedMap) {
-      oldOnAdd(this._loadedMap);
-      this._addPointLayer(this._loadedMap);
-    }
   }, this);
 
   this.onAdd = function (map) {
-    this._loadedMap = map;
-    if (this._metadataLoaded) {
-      oldOnAdd(this._loadedMap);
-      this._addPointLayer(this._loadedMap);
-    }
+    oldOnAdd(map);
+    this._addPointLayer(map);
   };
 
   this.onRemove = function (map) {
