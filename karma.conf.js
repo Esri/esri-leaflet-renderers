@@ -13,10 +13,10 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/leaflet/dist/leaflet.css',
-      'node_modules/leaflet/dist/leaflet.js',
-      'node_modules/esri-leaflet/dist/esri-leaflet.js',
+      'node_modules/leaflet/dist/leaflet-src.js',
+      'node_modules/esri-leaflet/dist/esri-leaflet-debug.js',
       'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.js',
-      'dist/esri-leaflet-renderers.js',
+      'dist/esri-leaflet-renderers-debug.js',
       'spec/**/*.js',
     ],
 

@@ -1,4 +1,4 @@
-export var VERSION = '2.0.1';
+export { version as VERSION } from '../package.json';
 
 export { Renderer, renderer } from './Renderers/Renderer';
 export { SimpleRenderer, simpleRenderer } from './Renderers/SimpleRenderer';

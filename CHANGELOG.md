@@ -6,6 +6,13 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+### Changed
+
+* Build system refactored to use latest Rollup and Rollup plugins.
+* Reworked bundling directives for various modules systems to resolve and simplify various issues
+  * WebPack users no longer have to use the Babel loader.
+  * Babelify with Babel 6 now works
+
 ## [2.0.1] - 2016-01-19
 
 ### Added
