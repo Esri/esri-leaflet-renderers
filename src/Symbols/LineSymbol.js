@@ -15,9 +15,10 @@ export var LineSymbol = Symbol.extend({
     this._styles.lineCap = 'butt';
     this._styles.lineJoin = 'miter';
     this._styles.fill = false;
+    this._styles.weight = 0;
 
     if (!this._symbolJson) {
-      return;
+      return this._styles;
     }
 
     if (this._symbolJson.color) {
