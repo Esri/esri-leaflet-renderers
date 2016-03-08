@@ -12,7 +12,7 @@ describe('LineSymbol', function () {
       var styles = symbol.style();
       expect(styles.lineCap).to.be.eq('butt');
       expect(styles.lineJoin).to.be.eq('miter');
-      expect(styles.width).to.be.equal(undefined);
+      expect(styles.weight).to.be.equal(0);
       expect(styles.color).to.be.equal(undefined);
       expect(styles.dashArray).to.be.equal(undefined);
     });
