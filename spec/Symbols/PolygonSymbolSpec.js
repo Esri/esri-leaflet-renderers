@@ -42,6 +42,14 @@ describe('PolygonSymbol', function () {
 
         expect(styles.stroke).to.be.eq(false);
       });
+
+      it('should set line stroke to false if outline is null', function () {
+        solidPolygon.outline = null
+        var symbol = L.esri.Renderers.polygonSymbol(solidPolygon);
+        var styles = symbol.style();
+
+        expect(styles.stroke).to.be.eq(false);
+      });
     });
   });
 });
