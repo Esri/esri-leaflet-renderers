@@ -6,6 +6,9 @@ import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
 
 L.esri.FeatureLayer.addInitHook(function () {
+  if (this.options.ignoreRenderer) {
+    return;
+  }
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
