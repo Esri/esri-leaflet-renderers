@@ -106,8 +106,4 @@ export var Renderer = L.Class.extend({
   }
 });
 
-export function renderer (rendererJson, options) {
-  return new Renderer(rendererJson, options);
-}
-
-export default renderer;
+export default Renderer;

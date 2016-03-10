@@ -1,6 +1,6 @@
 export { version as VERSION } from '../package.json';
 
-export { Renderer, renderer } from './Renderers/Renderer';
+export { Renderer } from './Renderers/Renderer';
 export { SimpleRenderer, simpleRenderer } from './Renderers/SimpleRenderer';
 export { ClassBreaksRenderer, classBreaksRenderer } from './Renderers/ClassBreaksRenderer';
 export { UniqueValueRenderer, uniqueValueRenderer } from './Renderers/UniqueValueRenderer';
