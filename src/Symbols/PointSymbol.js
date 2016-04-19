@@ -3,11 +3,12 @@ import Symbol from './Symbol';
 import {squareMarker, xMarker, crossMarker, diamondMarker} from 'leaflet-shape-markers';
 
 export var PointSymbol = Symbol.extend({
+
   statics: {
     MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
-  initialize: function (symbolJson, options) {
 
+  initialize: function (symbolJson, options) {
     Symbol.prototype.initialize.call(this, symbolJson, options);
     if (options) {
       this.serviceUrl = options.url;
@@ -83,7 +84,6 @@ export var PointSymbol = Symbol.extend({
   },
 
   pointToLayer: function (geojson, latlng, visualVariables, options) {
-
     var size = this._symbolJson.size || this._symbolJson.width;
     if (!this._isDefault) {
       if (visualVariables.sizeInfo) {
