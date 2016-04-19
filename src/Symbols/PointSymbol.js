@@ -102,7 +102,7 @@ export var PointSymbol = Symbol.extend({
     }
 
     if (this._symbolJson.type === 'esriPMS') {
-      layerOptions = L.extend({}, {icon: this._getIcon(size)}, options);
+      var layerOptions = L.extend({}, {icon: this._getIcon(size)}, options);
       return L.marker(latlng, layerOptions);
     }
     size = this.pixelValue(size);
