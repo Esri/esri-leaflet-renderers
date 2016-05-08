@@ -6,6 +6,10 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+### Fixed
+
+* Ensured that marker symbol options are passed through in our own constructors. (thanks @pbastia!)
+
 ### Changed
 
 * Build system refactored to use latest Rollup and Rollup plugins.

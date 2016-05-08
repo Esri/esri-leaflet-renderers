@@ -5,6 +5,7 @@ describe('SquareMarker', function () {
     beforeEach(function () {
       map = L.map(document.createElement('div'));
       map.setView([0, 0], 1);
+      map.createPane('custom');
     });
     describe('when a SquareMarker is added to the map ', function () {
       it('should have center and size set', function () {
@@ -13,6 +14,7 @@ describe('SquareMarker', function () {
         expect(marker.getLatLng().lat).to.eq(45.50);
         expect(marker.getLatLng().lng).to.eq(-122.70);
       });
+
       describe('and size is set before adding it', function () {
         it('takes that size', function () {
           var marker = L.shapeMarkers.squareMarker([0, 0], 20);
@@ -40,6 +42,7 @@ describe('SquareMarker', function () {
           expect(marker.getLatLng().lng).to.eq(-128);
         });
       });
+
       describe('and center is set after adding it', function () {
         it('takes that center', function () {
           var marker = L.shapeMarkers.squareMarker([0, 0], 20);
@@ -47,6 +50,16 @@ describe('SquareMarker', function () {
           marker.setLatLng(L.latLng(44, -128));
           expect(marker.getLatLng().lat).to.eq(44);
           expect(marker.getLatLng().lng).to.eq(-128);
+        });
+      });
+
+      describe('and pass through custom panes', function () {
+        it('if they are specified in the constructor', function () {
+          var marker = L.shapeMarkers.squareMarker([0, 0], 20, {
+            pane: 'custom'
+          });
+          marker.addTo(map);
+          expect(map.getPane('custom').childElementCount).to.eq(1);
         });
       });
     });
