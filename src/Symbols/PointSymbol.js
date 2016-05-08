@@ -3,9 +3,11 @@ import Symbol from './Symbol';
 import {squareMarker, xMarker, crossMarker, diamondMarker} from 'leaflet-shape-markers';
 
 export var PointSymbol = Symbol.extend({
+
   statics: {
     MARKERTYPES: ['esriSMSCircle', 'esriSMSCross', 'esriSMSDiamond', 'esriSMSSquare', 'esriSMSX', 'esriPMS']
   },
+
   initialize: function (symbolJson, options) {
     Symbol.prototype.initialize.call(this, symbolJson, options);
     if (options) {
@@ -81,7 +83,7 @@ export var PointSymbol = Symbol.extend({
     return icon;
   },
 
-  pointToLayer: function (geojson, latlng, visualVariables) {
+  pointToLayer: function (geojson, latlng, visualVariables, options) {
     var size = this._symbolJson.size || this._symbolJson.width;
     if (!this._isDefault) {
       if (visualVariables.sizeInfo) {
@@ -100,22 +102,23 @@ export var PointSymbol = Symbol.extend({
     }
 
     if (this._symbolJson.type === 'esriPMS') {
-      return L.marker(latlng, {icon: this._getIcon(size)});
+      var layerOptions = L.extend({}, {icon: this._getIcon(size)}, options);
+      return L.marker(latlng, layerOptions);
     }
     size = this.pixelValue(size);
 
     switch (this._symbolJson.style) {
       case 'esriSMSSquare':
-        return squareMarker(latlng, size, this._styles);
+        return squareMarker(latlng, size, L.extend({}, this._styles, options));
       case 'esriSMSDiamond':
-        return diamondMarker(latlng, size, this._styles);
+        return diamondMarker(latlng, size, L.extend({}, this._styles, options));
       case 'esriSMSCross':
-        return crossMarker(latlng, size, this._styles);
+        return crossMarker(latlng, size, L.extend({}, this._styles, options));
       case 'esriSMSX':
-        return xMarker(latlng, size, this._styles);
+        return xMarker(latlng, size, L.extend({}, this._styles, options));
     }
     this._styles.radius = size / 2.0;
-    return L.circleMarker(latlng, this._styles);
+    return L.circleMarker(latlng, L.extend({}, this._styles, options));
   }
 });
 
