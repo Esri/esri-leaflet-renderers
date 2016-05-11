@@ -52,16 +52,6 @@ describe('XMarker', function () {
           expect(marker.getLatLng().lng).to.eq(-128);
         });
       });
-
-      describe('and pass through custom panes', function () {
-        it('if they are specified in the constructor', function () {
-          var marker = L.shapeMarkers.xMarker([0, 0], 20, {
-            pane: 'custom'
-          });
-          marker.addTo(map);
-          expect(map.getPane('custom').childElementCount).to.eq(1);
-        });
-      });
     });
   });
 });

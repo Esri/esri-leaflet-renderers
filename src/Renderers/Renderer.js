@@ -64,7 +64,7 @@ export var Renderer = L.Class.extend({
   pointToLayer: function (geojson, latlng, options) {
     var sym = this._getSymbol(geojson);
     if (sym && sym.pointToLayer) {
-      return sym.pointToLayer(geojson, latlng, this._visualVariables, options);
+      return sym.pointToLayer(geojson, latlng, this._visualVariables, this.options);
     }
     // invisible symbology
     return L.circleMarker(latlng, {radius: 0, opacity: 0});

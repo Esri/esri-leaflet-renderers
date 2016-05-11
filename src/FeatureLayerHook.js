@@ -160,13 +160,17 @@ L.esri.FeatureLayer.addInitHook(function () {
   this._setRenderers = function (geojson) {
     var rend;
     var rendererInfo = geojson.drawingInfo.renderer;
+
     var options = {
       url: this.options.url
     };
+
     if (this.options.token) {
       options.token = this.options.token;
     }
-
+    if (this.options.pane) {
+      options.pane = this.options.pane;
+    }
     if (geojson.drawingInfo.transparency) {
       options.layerTransparency = geojson.drawingInfo.transparency;
     }
