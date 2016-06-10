@@ -1,5 +1,4 @@
  import L from 'leaflet';
-// import { FeatureLayer } from 'esri-leaflet';
 
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
@@ -17,24 +16,17 @@ L.esri.FeatureLayer.addInitHook(function () {
   this.metadata(function (error, response) {
     if (error) {
       return;
-    }
-    if (response && response.drawingInfo) {
+    } if (response && response.drawingInfo) {
       this._setRenderers(response);
-    }
-
-    this._metadataLoaded = true;
-    if (this._loadedMap) {
-      oldOnAdd(this._loadedMap);
-      this._addPointLayer(this._loadedMap);
+    } if (this._alreadyAdded) {
+      this.setStyle(this._originalStyle);
     }
   }, this);
 
   this.onAdd = function (map) {
-    this._loadedMap = map;
-    if (this._metadataLoaded) {
-      oldOnAdd(this._loadedMap);
-      this._addPointLayer(this._loadedMap);
-    }
+    oldOnAdd(map);
+    this._addPointLayer(map);
+    this._alreadyAdded = true;
   };
 
   this.onRemove = function (map) {
