@@ -25,28 +25,22 @@
     <div id="mapD"></div>
 
     <script>
-      var map = L.map('mapD').setView([41.79831962736954, -88.216266], 16);
+      var map = L.map('mapD').setView([38.25482978059097, -85.76378345489502], 15);
       L.esri.basemapLayer('Streets').addTo(map);
       map.createPane('custom');
 
-      // // picture marker symbol
-      // L.esri.featureLayer({
-      //   url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Louisville/LOJIC_PublicSafety_Louisville/MapServer/1',
-      //   pane: 'custom',
-      //   useCors: false
-      // }).addTo(map);
-      //
-      // // circle marker symbol
-      // L.esri.featureLayer({
-      //   url: 'http://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/0',
-      //   pane: 'custom',
-      //   useCors: false
-      // }).addTo(map);
-
-      // misc marker symbols
+      // picture marker symbol
       L.esri.featureLayer({
-        url: 'http://sampleserver6.arcgisonline.com/arcgis/rest/services/CommunityAddressing/MapServer/0'// ,
-        // pane: 'custom'
+        url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Louisville/LOJIC_PublicSafety_Louisville/MapServer/1',
+        pane: 'custom',
+        useCors: false
+      }).addTo(map);
+
+      // circle marker symbol
+      L.esri.featureLayer({
+        url: 'http://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/0',
+        pane: 'custom',
+        useCors: false
       }).addTo(map);
 
       // once layers have loaded, inspect DOM and make sure nothing is present in the default marker or overlay panes

@@ -61,9 +61,10 @@ export var Renderer = L.Class.extend({
     }
   },
 
-  pointToLayer: function (geojson, latlng, options) {
+  pointToLayer: function (geojson, latlng) {
     var sym = this._getSymbol(geojson);
     if (sym && sym.pointToLayer) {
+      // right now custom panes are the only option pushed through
       return sym.pointToLayer(geojson, latlng, this._visualVariables, this.options);
     }
     // invisible symbology
