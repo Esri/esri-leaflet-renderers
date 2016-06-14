@@ -25,7 +25,6 @@ describe('SimpleRenderer', function () {
       expect(renderer._symbols.length).to.be.eq(1);
     });
 
-
     it('should merge symbol styles', function () {
       var options = {
         userDefinedStyle: function (feature) {

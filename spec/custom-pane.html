@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>Simple FeatureLayer</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+    <script src="../node_modules/leaflet/dist/leaflet-src.js"></script>
+
+    <!-- Load Esri Leaflet -->
+    <script src="../node_modules/esri-leaflet/dist/esri-leaflet-debug.js"></script>
+
+    <!-- Load compiled Esri Leaflet Renderers -->
+    <script src="../dist/esri-leaflet-renderers-debug.js"></script>
+
+    <style>
+      body {margin:0;padding:0;}
+      #mapD {position: absolute;top:0;bottom:0;right:0;left:0;}
+    </style>
+  </head>
+  <body>
+
+    <div id="mapD"></div>
+
+    <script>
+      var map = L.map('mapD').setView([38.25482978059097, -85.76378345489502], 15);
+      L.esri.basemapLayer('Streets').addTo(map);
+      map.createPane('custom');
+
+      // picture marker symbol
+      L.esri.featureLayer({
+        url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Louisville/LOJIC_PublicSafety_Louisville/MapServer/1',
+        pane: 'custom',
+        useCors: false
+      }).addTo(map);
+
+      // circle marker symbol
+      L.esri.featureLayer({
+        url: 'http://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/0',
+        pane: 'custom',
+        useCors: false
+      }).addTo(map);
+
+      // once layers have loaded, inspect DOM and make sure nothing is present in the default marker or overlay panes
+    </script>
+
+  </body>
+</html>

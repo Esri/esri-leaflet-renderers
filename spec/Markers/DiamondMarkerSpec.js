@@ -5,7 +5,6 @@ describe('DiamondMarker', function () {
     beforeEach(function () {
       map = L.map(document.createElement('div'));
       map.setView([0, 0], 1);
-      map.createPane('custom');
     });
     describe('when a DiamondMarker is added to the map ', function () {
       it('should have center and size set', function () {
@@ -50,16 +49,6 @@ describe('DiamondMarker', function () {
           marker.setLatLng(L.latLng(44, -128));
           expect(marker.getLatLng().lat).to.eq(44);
           expect(marker.getLatLng().lng).to.eq(-128);
-        });
-      });
-
-      describe('and pass through custom panes', function () {
-        it('if they are specified in the constructor', function () {
-          var marker = L.shapeMarkers.diamondMarker([0, 0], 20, {
-            pane: 'custom'
-          });
-          marker.addTo(map);
-          expect(map.getPane('custom').childElementCount).to.eq(1);
         });
       });
     });
