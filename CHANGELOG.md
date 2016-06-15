@@ -6,9 +6,16 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [2.0.2] - 2016-06-15
+
+### Added
+
+* now its possible for individual featureLayers to *not* utilize the renderer defined by the service (when `ignoreRenderer: true` is included as a contructor option)
+
 ### Fixed
 
-* Ensured that marker symbol options are passed through in our own constructors. (thanks @pbastia!)
+* Ensured that its possible to specify custom panes for marker symbols (thanks @pbastia!)
+* Race condition encountered when metadata is slow to load
 
 ### Changed
 
@@ -81,7 +88,7 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.2...HEAD
 [2.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v2.0.0
 [1.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v1.0.1
