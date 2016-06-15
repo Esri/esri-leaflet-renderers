@@ -20,15 +20,15 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <!-- Load Leaflet from CDN-->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
-    <script src="//cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.6/esri-leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.0/esri-leaflet.js"></script>
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet and draw the predefined World Regions -->
-    <script src="//cdn.jsdelivr.net/leaflet.esri.renderers/2.0.1/esri-leaflet-renderers.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.2/esri-leaflet-renderers.js"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -41,9 +41,12 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 
     <script>
       var map = L.map('map').setView([45.526, -122.667], 13);
-
       L.esri.basemapLayer('Streets').addTo(map);
-      L.esri.featureLayer({url: '//services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0', simplifyFactor: 1}).addTo(map);
+
+      L.esri.featureLayer({
+        url: '//services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
+        simplifyFactor: 1
+      }).addTo(map);
     </script>
 
   </body>
@@ -72,8 +75,8 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
   *  [Leaflet](http://leafletjs.com) version 0.7.x.
   *  [Esri Leaflet](http://esri.github.io/esri-leaflet) version 1.0.x.
 
-* Esri Leaflet Renderers [2.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v2.0.1) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.1/esri-leaflet-renderers.js)) can be used in apps alongside:
-  *  [Leaflet](http://leafletjs.com) version 1.0.0-beta2.
+* Esri Leaflet Renderers [2.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v2.0.2) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.2/esri-leaflet-renderers.js)) can be used in apps alongside:
+  *  [Leaflet](http://leafletjs.com) version 1.0.0-rc.1.
   *  [Esri Leaflet](http://esri.github.io/esri-leaflet) version 2.0.x.
 
 ### Versioning
