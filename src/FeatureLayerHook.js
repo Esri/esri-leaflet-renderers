@@ -180,20 +180,19 @@ L.esri.FeatureLayer.addInitHook(function () {
     rend.attachStylesToLayer(this);
   };
 
-    this.metadata(function (error, response) {
-        if (error) {
-            return;
-        } if (response && response.drawingInfo) {
-            if(this.options.drawingInfo) {
-                var originalMetadata = response;
-                originalMetadata.drawingInfo = this.options.drawingInfo;
-                this._setRenderers(originalMetadata);
-            }
-            else {
-                this._setRenderers(response);
-            }
-        } if (this._alreadyAdded) {
-            this.setStyle(this._originalStyle);
-        }
-    }, this);
+  this.metadata(function (error, response) {
+    if (error) {
+      return;
+    } if (response && response.drawingInfo) {
+      if (this.options.drawingInfo) {
+        var originalMetadata = response;
+        originalMetadata.drawingInfo = this.options.drawingInfo;
+        this._setRenderers(originalMetadata);
+      } else {
+        this._setRenderers(response);
+      }
+    } if (this._alreadyAdded) {
+      this.setStyle(this._originalStyle);
+    }
+  }, this);
 });
