@@ -13,16 +13,6 @@ L.esri.FeatureLayer.addInitHook(function () {
   var oldOnRemove = L.Util.bind(this.onRemove, this);
   L.Util.bind(this.createNewLayer, this);
 
-  this.metadata(function (error, response) {
-    if (error) {
-      return;
-    } if (response && response.drawingInfo) {
-      this._setRenderers(response);
-    } if (this._alreadyAdded) {
-      this.setStyle(this._originalStyle);
-    }
-  }, this);
-
   this.onAdd = function (map) {
     oldOnAdd(map);
     this._addPointLayer(map);
@@ -189,4 +179,21 @@ L.esri.FeatureLayer.addInitHook(function () {
     }
     rend.attachStylesToLayer(this);
   };
+
+    this.metadata(function (error, response) {
+        if (error) {
+            return;
+        } if (response && response.drawingInfo) {
+            if(this.options.drawingInfo) {
+                var originalMetadata = response;
+                originalMetadata.drawingInfo = this.options.drawingInfo;
+                this._setRenderers(originalMetadata);
+            }
+            else {
+                this._setRenderers(response);
+            }
+        } if (this._alreadyAdded) {
+            this.setStyle(this._originalStyle);
+        }
+    }, this);
 });
