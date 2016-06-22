@@ -184,13 +184,11 @@ L.esri.FeatureLayer.addInitHook(function () {
     if (error) {
       return;
     } if (response && response.drawingInfo) {
+      // if drawingInfo from a webmap is supplied in the layer constructor, use that instead
       if (this.options.drawingInfo) {
-        var originalMetadata = response;
-        originalMetadata.drawingInfo = this.options.drawingInfo;
-        this._setRenderers(originalMetadata);
-      } else {
-        this._setRenderers(response);
+        response.drawingInfo = this.options.drawingInfo;
       }
+      this._setRenderers(response);
     } if (this._alreadyAdded) {
       this.setStyle(this._originalStyle);
     }
