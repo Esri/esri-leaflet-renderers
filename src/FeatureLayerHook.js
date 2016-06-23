@@ -1,4 +1,4 @@
- import L from 'leaflet';
+import L from 'leaflet';
 
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
@@ -13,20 +13,17 @@ L.esri.FeatureLayer.addInitHook(function () {
   var oldOnRemove = L.Util.bind(this.onRemove, this);
   L.Util.bind(this.createNewLayer, this);
 
-  this.metadata(function (error, response) {
-    if (error) {
-      return;
-    } if (response && response.drawingInfo) {
-      this._setRenderers(response);
-    } if (this._alreadyAdded) {
-      this.setStyle(this._originalStyle);
-    }
-  }, this);
-
   this.onAdd = function (map) {
-    oldOnAdd(map);
-    this._addPointLayer(map);
-    this._alreadyAdded = true;
+    this.metadata(function (error, response) {
+      if (error) {
+        console.warn('failed to load metadata from the service.');
+        return
+      } if (response && response.drawingInfo) {
+        this._setRenderers(response);
+        oldOnAdd(map);
+        this._addPointLayer(map);
+      }
+    }, this);
   };
 
   this.onRemove = function (map) {
