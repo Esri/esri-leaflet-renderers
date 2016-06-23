@@ -17,6 +17,9 @@ export var PointSymbol = Symbol.extend({
       if (symbolJson.type === 'esriPMS') {
         var url = this.serviceUrl + 'images/' + this._symbolJson.url;
         this._iconUrl = options && options.token ? url + '?token=' + options.token : url;
+        if (symbolJson.imageData) {
+          this._iconUrl = 'data:' + symbolJson.contentType + ';base64,' + symbolJson.imageData;
+        }
         // leaflet does not allow resizing icons so keep a hash of different
         // icon sizes to try and keep down on the number of icons created
         this._icons = {};
