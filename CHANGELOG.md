@@ -6,6 +6,47 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [2.0.3] - 2016-07-01
+
+### Added
+
+* support for base64 encoded PictureMarkerSymbols. thx @ynunokawa!
+* support for overriding service symbology with 'drawingInfo' provided in `L.esri.featureLayer`s constructor. thx @ynunokawa!
+
+```js
+var fl = L.esri.featureLayer({
+  url: 'http://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/0',
+  drawingInfo: {
+    "renderer": {
+      "type": "simple",
+      "symbol": {
+        "type": "esriSMS",
+        "style": "esriSMSCircle",
+        "color": [115, 178, 255, 255],
+        "size": 10,
+        "angle": 0,
+        "xoffset": 0,
+        "yoffset": 0,
+        "outline": {
+         "color": [0, 0, 0, 255],
+         "width": 1
+        }
+      },
+      "label": "",
+      "description": ""
+    },
+    "transparency": 0,
+    "labelingInfo": null
+  }
+}).addTo(map);
+```
+
+### Fixed
+
+* odd cases where a subset of features were drawn with leaflet symbology.
+
+### Added
+
 ## [2.0.2] - 2016-06-15
 
 ### Added
@@ -88,7 +129,9 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.3...HEAD
+[2.0.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.2...v2.0.3
+[2.0.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v2.0.0
 [1.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v1.0.0...v1.0.1
