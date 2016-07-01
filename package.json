@@ -1,7 +1,7 @@
 {
   "name": "esri-leaflet-renderers",
   "description": "esri-leaflet plugin for rendering",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "Rachel Nehmer <rnehmer@esri.com>",
   "bugs": {
     "url": "https://github.com/esri/esri-leaflet-renderers/issues"
