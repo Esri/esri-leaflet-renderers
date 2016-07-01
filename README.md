@@ -28,7 +28,7 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet and draw the predefined World Regions -->
-    <script src="https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.2/esri-leaflet-renderers.js"></script>
+    <script src="https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.3/esri-leaflet-renderers.js"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -44,7 +44,7 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
       L.esri.basemapLayer('Streets').addTo(map);
 
       L.esri.featureLayer({
-        url: '//services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
+        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
         simplifyFactor: 1
       }).addTo(map);
     </script>
