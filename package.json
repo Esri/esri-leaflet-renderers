@@ -68,7 +68,6 @@
     "url": "git@github.com:Esri/esri-leaflet-renderers.git"
   },
   "scripts": {
-
     "prebuild": "mkdirp dist",
     "build": "rollup -c profiles/debug.js & rollup -c profiles/production.js",
     "lint": "semistandard src/**/*.js",
