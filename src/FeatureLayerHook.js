@@ -17,15 +17,11 @@ L.esri.FeatureLayer.addInitHook(function () {
     this.metadata(function (error, response) {
       if (error) {
         console.warn('failed to load metadata from the service.');
-        return
+        return;
       } if (response && response.drawingInfo) {
-        if(this.options.drawingInfo) {
+        if (this.options.drawingInfo) {
           // allow L.esri.webmap (and others) to override service symbology with info provided in layer constructor
-          var serviceMetadata = response;
-          serviceMetadata.drawingInfo = this.options.drawingInfo;
-          this._setRenderers(serviceMetadata);
-        } else {
-          this._setRenderers(response);
+          response.drawingInfo = this.options.drawingInfo;
         }
         this._setRenderers(response);
         oldOnAdd(map);
