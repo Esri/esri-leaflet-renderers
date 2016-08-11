@@ -9,14 +9,23 @@ export var PointSymbol = Symbol.extend({
   },
 
   initialize: function (symbolJson, options) {
+    var url;
     Symbol.prototype.initialize.call(this, symbolJson, options);
     if (options) {
       this.serviceUrl = options.url;
     }
     if (symbolJson) {
       if (symbolJson.type === 'esriPMS') {
-        var url = this.serviceUrl + 'images/' + this._symbolJson.url;
-        this._iconUrl = options && options.token ? url + '?token=' + options.token : url;
+        var imageUrl = this._symbolJson.url;
+        if (imageUrl && imageUrl.substr(0,7) === 'http://' || imageUrl.substr(0,8) === 'https://'){
+          // web image
+          url = this.sanitize(imageUrl);
+          this._iconUrl = url;
+        }
+        else {
+          url = this.serviceUrl + 'images/' + imageUrl;
+          this._iconUrl = options && options.token ? url + '?token=' + options.token : url;
+        }
         if (symbolJson.imageData) {
           this._iconUrl = 'data:' + symbolJson.contentType + ';base64,' + symbolJson.imageData;
         }
@@ -29,6 +38,25 @@ export var PointSymbol = Symbol.extend({
         this._fillStyles();
       }
     }
+  },
+
+  // prevent html injection in strings
+  sanitize: function(str) {
+    if (!str) {
+      return '';
+    }
+    var text;
+    try {
+      // removes html but leaves url link text
+      text = str.replace(/<br>/gi, "\n");
+      text = text.replace(/<p.*>/gi, "\n");
+      text = text.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 ($1) ");
+      text = text.replace(/<(?:.|\s)*?>/g, "");
+    }
+    catch (ex) {
+      text = null;
+    }
+    return text;
   },
 
   _fillStyles: function () {
