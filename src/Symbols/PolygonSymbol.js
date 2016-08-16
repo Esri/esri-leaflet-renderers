@@ -9,7 +9,8 @@ export var PolygonSymbol = Symbol.extend({
   initialize: function (symbolJson, options) {
     Symbol.prototype.initialize.call(this, symbolJson, options);
     if (symbolJson) {
-      if (symbolJson.outline.style !== 'esriSLSNull') {
+        this._lineStyles = { weight: 0 };
+      } else {
         this._lineStyles = lineSymbol(symbolJson.outline, options).style();
       }
       this._fillStyles();
@@ -28,8 +29,6 @@ export var PolygonSymbol = Symbol.extend({
           this._styles[styleAttr] = this._lineStyles[styleAttr];
         }
       }
-    } else {
-      this._styles.stroke = false;
     }
 
     // set the fill for the polygon
