@@ -9,6 +9,7 @@ export var PolygonSymbol = Symbol.extend({
   initialize: function (symbolJson, options) {
     Symbol.prototype.initialize.call(this, symbolJson, options);
     if (symbolJson) {
+      if (symbolJson.outline && symbolJson.outline.style === 'esriSLSNull') {
         this._lineStyles = { weight: 0 };
       } else {
         this._lineStyles = lineSymbol(symbolJson.outline, options).style();
