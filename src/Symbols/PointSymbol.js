@@ -58,7 +58,7 @@ export var PointSymbol = Symbol.extend({
   },
 
   _fillStyles: function () {
-    if (this._symbolJson.outline && this._symbolJson.size > 0) {
+    if (this._symbolJson.outline && this._symbolJson.size > 0 && this._symbolJson.outline.style !== 'esriSLSNull') {
       this._styles.stroke = true;
       this._styles.weight = this.pixelValue(this._symbolJson.outline.width);
       this._styles.color = this.colorValue(this._symbolJson.outline.color);
