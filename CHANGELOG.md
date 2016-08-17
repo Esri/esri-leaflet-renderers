@@ -6,6 +6,17 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [2.0.4] - 2016-08-17
+
+### Added
+
+* support for picture marker symbols stored outside the ArcGIS ecosystem
+
+### Fixed
+
+* ensure the plugin only fires *one* metadata requests
+* ensure that [`esriSLSNull`] symbol types display correctly
+
 ## [2.0.3] - 2016-07-01
 
 ### Added
@@ -129,7 +140,8 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.4...HEAD
+[2.0.4]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.0...v2.0.1
