@@ -11,8 +11,8 @@
     "John Gravois <jgravois@esri.com>"
   ],
   "dependencies": {
-     "esri-leaflet": "^2.0.0-beta.8",
-     "leaflet": "^1.0.0-beta.2",
+     "esri-leaflet": "^2.0.0",
+     "leaflet": "^1.0.0-rc.3",
      "leaflet-shape-markers": "^1.0.4"
   },
   "devDependencies": {
