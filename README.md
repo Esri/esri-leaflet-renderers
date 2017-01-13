@@ -27,7 +27,7 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.2/esri-leaflet.js"></script>
 
     <!-- Load Esri Leaflet Renderers -->
-    <!-- This will hook into Esri Leaflet and draw the predefined World Regions -->
+    <!-- This will hook into Esri Leaflet to get renderer info when adding a feature layer -->
     <script src="https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.4/esri-leaflet-renderers.js"></script>
 
     <style>
@@ -43,6 +43,9 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
       var map = L.map('map').setView([45.526, -122.667], 13);
       L.esri.basemapLayer('Streets').addTo(map);
 
+      // this plugin will get the predefined renderer from the layer's drawing info at:
+      // https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0
+      // use that renderer to style the polygons drawn on the map
       L.esri.featureLayer({
         url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
         simplifyFactor: 1
