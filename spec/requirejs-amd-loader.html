@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>esri-leaflet-renderers loaded via script tag.</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <link rel="stylesheet" href="comparisons.css" />
+
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+
+
+    <!-- that will work when running off the filesystem as requirejs's' AMD implementation supports loading from the filesystem-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script> 
+    <script>
+              
+      require.config({
+            baseUrl: '../',
+            paths: {
+                'leaflet': 'node_modules/leaflet/dist/leaflet',
+                'esri-leaflet': 'node_modules/esri-leaflet/dist/esri-leaflet',
+                'esri-leaflet-renderers' : 'dist/esri-leaflet-renderers'
+            }
+      });
+    </script>-->
+   
+
+
+
+  </head>
+  <body>
+    <div id='details'>
+    <h3 id='url'></h3>
+    <div><label>Geometry Type:</label> <span id='geoType'></span></div>
+    <div><label>Renderer Type:</label> <span id='rendererType'></span></div>
+
+    <div>
+      <div><select id='selector'></select></div><div><input id='serviceUrl' type='text'></input><button id='loadServiceBtn'>Load</button></div>
+    </div>
+    <div id="map" style="height: 400px; width: 400px"></div>
+
+    <h3 id="leafletLabel">Leaflet</h3>
+
+
+    <script>
+      var layers = [{
+        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Neighborhoods_pdx/FeatureServer/0',
+        title: 'Portland Neighborhoods',
+        geoType: 'Polygon',
+        rendererType: 'Classbreaks',
+        lat: 45.525,
+        lon: -122.653,
+        zoomLevel: 11
+      }, {
+        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Freeway_System/FeatureServer/1',
+        title: 'Freeways',
+        geoType: 'Line',
+        rendererType: 'Simple',
+        lat: 37.4,
+        lon: -81.7,
+        zoomLevel: 6
+      }, {
+        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0',
+        title: 'USA States (Generalized)',
+        geoType: 'Polygon',
+        rendererType: 'Simple',
+        lat: 51,
+        lon: -119,
+        zoomLevel: 3
+      }, {
+        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Time_Zones/FeatureServer/0',
+        title: 'Timezones',
+        geoType: 'Polygon',
+        rendererType: 'Unique Value',
+        lat: 16.6,
+        lon: 74.9,
+        zoomLevel: 3
+      }, {
+        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/minop3x020_nt00020/FeatureServer/0',
+        title: 'Esri Marker Symbols Test',
+        geoType: 'Point',
+        rendererType: 'Unique Value',
+        lat: 34,
+        lon: -97,
+        zoomLevel: 4
+      }, {
+        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
+        title: 'World Regions',
+        geoType: 'Polygon',
+        rendererType: 'Unique Value',
+        lat: 0,
+        lon: 0,
+        zoomLevel: 4
+      }];
+
+      var options = "";
+      for(var i=0; i<layers.length; i++){
+        options += "<option value='" + i + "'>" + layers[i].title + "</option>";
+      }
+
+      document.getElementById("selector").innerHTML = options;
+
+      var layerIndex = 0,
+        layer = layers[layerIndex];
+
+      var updateEsriMap;
+
+
+      require(["leaflet", "esri-leaflet", "esri-leaflet-renderers"], function(L, Esri) {
+
+
+      var map = L.map('map').setView([layer.lat, layer.lon], layer.zoomLevel);
+      Esri.basemapLayer('Gray').addTo(map);
+      Esri.basemapLayer('GrayLabels').addTo(map);
+      var fl = Esri.featureLayer({
+        url: layer.url,
+        simplifyFactor: .005
+
+      });
+      map.addLayer(fl);
+
+      function updateLeafletMap(layer) {
+        map.removeLayer(fl);
+        fl = Esri.featureLayer({url: layer.url});
+        map.setView([layer.lat, layer.lon], layer.zoomLevel);
+        map.addLayer(fl);
+      };
+
+      function setLayer(layer) {
+        updateLeafletMap(layer);
+        updateEsriMap(layer);
+        updateText(layer);
+      };
+
+      function updateText(layer) {
+        document.getElementById("geoType").innerHTML = layer.geoType;
+        document.getElementById("rendererType").innerHTML = layer.rendererType;
+        if (layer.url && layer.title) {
+          document.getElementById("url").innerHTML = "<a target='details' href='" + layer.url + "'>" + layer.title + "</a>"
+        }
+      };
+
+      document.getElementById("selector").onchange = function(e) {
+        layer = layers[document.getElementById("selector").selectedIndex];
+        setLayer(layer);
+      };
+
+      document.getElementById("loadServiceBtn").onclick = function(e) {
+        //get the url
+        serviceUrl = document.getElementById("serviceUrl").value;
+        if (serviceUrl.length) {
+
+          layer = {
+            url: serviceUrl,
+            title: 'User Defined',
+            geoType: 'N/A',
+            rendererType: 'N/A',
+            lat: 0,
+            lon: 0,
+            zoomLevel: 1
+          }
+          setLayer(layer);
+        }
+      }
+
+    updateText(layer);
+});
+    </script>
+  </body>
+</html>

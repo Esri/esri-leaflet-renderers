@@ -1,10 +1,10 @@
 import L from 'leaflet';
-
+import Esri from 'esri-leaflet';
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
 
-L.esri.FeatureLayer.addInitHook(function () {
+Esri.FeatureLayer.addInitHook(function () {
   if (this.options.ignoreRenderer) {
     return;
   }
