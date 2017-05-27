@@ -23,6 +23,12 @@ Esri.FeatureLayer.addInitHook(function () {
           // allow L.esri.webmap (and others) to override service symbology with info provided in layer constructor
           response.drawingInfo = this.options.drawingInfo;
         }
+
+        // the default pane for lines and polygons is 'overlayPane', for points it is 'markerPane'
+        if (this.options.pane === 'overlayPane' && response.geometryType === 'esriGeometryPoint') {
+          this.options.pane = 'markerPane';
+        }
+
         this._setRenderers(response);
         oldOnAdd(map);
         this._addPointLayer(map);
@@ -150,9 +156,9 @@ Esri.FeatureLayer.addInitHook(function () {
     }
   };
 
-  this._setRenderers = function (geojson) {
+  this._setRenderers = function (serviceInfo) {
     var rend;
-    var rendererInfo = geojson.drawingInfo.renderer;
+    var rendererInfo = serviceInfo.drawingInfo.renderer;
 
     var options = {
       url: this.options.url
@@ -161,19 +167,22 @@ Esri.FeatureLayer.addInitHook(function () {
     if (this.options.token) {
       options.token = this.options.token;
     }
+
     if (this.options.pane) {
       options.pane = this.options.pane;
     }
-    if (geojson.drawingInfo.transparency) {
-      options.layerTransparency = geojson.drawingInfo.transparency;
+
+    if (serviceInfo.drawingInfo.transparency) {
+      options.layerTransparency = serviceInfo.drawingInfo.transparency;
     }
+
     if (this.options.style) {
       options.userDefinedStyle = this.options.style;
     }
 
     switch (rendererInfo.type) {
       case 'classBreaks':
-        this._checkForProportionalSymbols(geojson.geometryType, rendererInfo);
+        this._checkForProportionalSymbols(serviceInfo.geometryType, rendererInfo);
         if (this._hasProportionalSymbols) {
           this._createPointLayer();
           var pRend = classBreaksRenderer(rendererInfo, options);
