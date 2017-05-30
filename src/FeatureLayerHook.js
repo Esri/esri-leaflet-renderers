@@ -14,6 +14,7 @@ Esri.FeatureLayer.addInitHook(function () {
   L.Util.bind(this.createNewLayer, this);
 
   this.onAdd = function (map) {
+    oldOnAdd(map);
     this.metadata(function (error, response) {
       if (error) {
         console.warn('failed to load metadata from the service.');
@@ -30,7 +31,6 @@ Esri.FeatureLayer.addInitHook(function () {
         }
 
         this._setRenderers(response);
-        oldOnAdd(map);
         this._addPointLayer(map);
       }
     }, this);
