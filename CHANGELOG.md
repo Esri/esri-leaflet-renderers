@@ -6,6 +6,15 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [2.0.5] - 2017-06-01
+
+### Added
+* support for loading via AMD
+* support for Node 7
+
+### Fixed
+* ensure that point geometry layers are assigned to Leaflet's `markerPane` by default
+
 ## [2.0.4] - 2016-08-17
 
 ### Added
@@ -140,7 +149,8 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.5...HEAD
+[2.0.5]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.1...v2.0.2

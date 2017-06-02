@@ -17,7 +17,7 @@ export var PointSymbol = Symbol.extend({
     if (symbolJson) {
       if (symbolJson.type === 'esriPMS') {
         var imageUrl = this._symbolJson.url;
-        if (imageUrl && imageUrl.substr(0, 7) === 'http://' || imageUrl.substr(0, 8) === 'https://') {
+        if ((imageUrl && imageUrl.substr(0, 7) === 'http://') || (imageUrl.substr(0, 8) === 'https://')) {
           // web image
           url = this.sanitize(imageUrl);
           this._iconUrl = url;
