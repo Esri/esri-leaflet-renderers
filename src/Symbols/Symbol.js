@@ -121,7 +121,7 @@ export var Symbol = L.Class.extend({
             // weights to each of the rgba colors and adding them together
             var interpolatedColor = [];
             for (var j = 0; j < 4; j++) {
-              interpolatedColor[j] = (Math.round(lowerBoundColor[j] * lowerBoundColorWeight) + (upperBoundColor[j] * upperBoundColorWeight));
+              interpolatedColor[j] = Math.round((lowerBoundColor[j] * lowerBoundColorWeight) + (upperBoundColor[j] * upperBoundColorWeight));
             }
             return interpolatedColor;
           } else {
