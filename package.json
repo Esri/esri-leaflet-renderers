@@ -11,35 +11,36 @@
     "John Gravois <jgravois@esri.com>"
   ],
   "dependencies": {
-     "esri-leaflet": "^2.0.0",
-     "leaflet": "^1.0.0-rc.3",
-     "leaflet-shape-markers": "^1.0.4"
+    "esri-leaflet": "^2.0.0",
+    "leaflet": "^1.0.0-rc.3",
+    "leaflet-shape-markers": "^1.0.4"
   },
   "devDependencies": {
     "babelify": "^6.1.3",
-    "chai": "2.3.0",
+    "chai": "3.5.0",
     "gh-release": "^2.0.0",
     "http-server": "^0.8.5",
-    "isparta": "^3.0.3",
+    "isparta": "^4.0.0",
     "istanbul": "^0.4.2",
-    "karma": "^0.12.24",
+    "karma": "^1.3.0",
     "karma-chai-sinon": "^0.1.3",
-    "karma-coverage": "^0.5.3",
-    "karma-mocha": "^0.1.0",
-    "karma-mocha-reporter": "^0.2.5",
-    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.1",
+    "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.5",
     "mkdirp": "^0.5.1",
-    "mocha": "^2.3.4",
-    "phantomjs": "^1.9.17",
+    "mocha": "^3.1.0",
+    "phantomjs-prebuilt": "^2.0.0",
     "rollup": "^0.25.4",
     "rollup-plugin-json": "^2.0.0",
     "rollup-plugin-node-resolve": "^1.4.0",
-    "rollup-plugin-uglify": "^0.2.0",
-    "semistandard": "^7.0.5",
+    "rollup-plugin-uglify": "^0.3.1",
+    "semistandard": "^10.0.0",
     "sinon": "^1.11.1",
-    "sinon-chai": "2.7.0",
-    "uglify-js": "^2.4.23",
+    "sinon-chai": "2.8.0",
+    "snazzy": "^5.0.0",
+    "uglify-js": "^2.6.1",
     "watch": "^0.17.1"
   },
   "homepage": "http://esri.github.io/esri-leaflet",
@@ -61,6 +62,7 @@
   ],
   "license": "Apache-2.0",
   "main": "dist/esri-leaflet-renderers-debug.js",
+  "module": "src/EsriLeafletRenderers.js",
   "browser": "dist/esri-leaflet-renderers-debug.js",
   "readmeFilename": "README.md",
   "repository": {
@@ -70,11 +72,11 @@
   "scripts": {
     "prebuild": "mkdirp dist",
     "build": "rollup -c profiles/debug.js & rollup -c profiles/production.js",
-    "lint": "semistandard src/**/*.js",
+    "lint": "semistandard src/**/*.js | snazzy",
     "prepublish": "npm run build",
     "pretest": "npm run build",
     "release": "./scripts/release.sh",
     "start": "watch 'npm run build' src & http-server -p 5000 -c-1 -o",
-    "test": "npm run lint && npm run build && karma start"
+    "test": "npm run lint && karma start"
   }
 }
