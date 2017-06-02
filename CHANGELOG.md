@@ -6,7 +6,12 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
-## [2.0.5] - 2017-06-01
+## [2.0.6] - 2017-06-02
+
+### Fixed
+* bug that mangled server side color interpretation
+
+## [2.0.5] - 2017-06-02
 
 ### Added
 * support for loading via AMD
@@ -149,7 +154,8 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.5...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.6...HEAD
+[2.0.6]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.5...v2.0.6
 [2.0.5]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.2...v2.0.3
