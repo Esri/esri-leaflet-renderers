@@ -11,4 +11,3 @@ export { LineSymbol, lineSymbol } from './Symbols/LineSymbol';
 export { PolygonSymbol, polygonSymbol } from './Symbols/PolygonSymbol';
 
 import './FeatureLayerHook';
-import './ClusterFeatureLayerHook';
