@@ -1,6 +1,5 @@
 import config from './base.js';
 
-config.dest = 'dist/esri-leaflet-renderers-debug.js';
-config.sourceMap = 'inline';
+config.output.file = 'dist/esri-leaflet-renderers-debug.js';
 
 export default config;
