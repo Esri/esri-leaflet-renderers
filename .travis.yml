@@ -1,7 +1,12 @@
 language: node_js
 sudo: false
+# let travis bump the version of node on its own
 node_js:
-  - "7"
+  - "node"
 cache:
   directories:
     - node_modules
+script:
+  - npm run test:ci
+addons:
+  chrome: stable
