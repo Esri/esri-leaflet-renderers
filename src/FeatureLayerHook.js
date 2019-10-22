@@ -3,11 +3,82 @@ import Esri from 'esri-leaflet';
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
+import simpleLabelRenderer from './Labels/SimpleLabelRenderer';
+import scalingToZoom from './Scaling/ScalingToZoom';
 
 function wireUpRenderers () {
   if (this.options.ignoreRenderer) {
     return;
   }
+
+  this.on('createfeature', function (e) {
+    if (this._hasLabelRenderer) {
+      var feature = e.feature;
+
+      var labelLayer = L.GeoJSON.geometryToLayer(feature, this._labelLayer.options);
+
+      if (!labelLayer) {
+        console.warn('invalid GeoJSON encountered');
+      } else {
+        labelLayer.feature = feature;
+
+        var featureId = feature.id.toString();
+        // only add the feature if it does not already exist on the map
+        if (!this._labelLayerIds[featureId]) {
+          this._labelLayerIds[featureId] = labelLayer;
+        }
+        labelLayer.addEventParent(this);
+        this._labelLayer.bringToFront();
+
+        if (this._labelsShouldBeVisible()) {
+          this._map.addLayer(labelLayer);
+        }
+      }
+    }
+  });
+
+  this.on('removefeature', function (e) {
+    if (this._hasLabelRenderer) {
+      var layer = this._labelLayerIds[e.feature.id];
+      if (layer) {
+        this._map.removeLayer(layer);
+      }
+      if (layer && e.permanent) {
+        delete this._labelLayerIds[e.feature.id];
+      }
+    }
+  });
+
+  this.on('addfeature ', function (e) {
+    if (this._hasLabelRenderer) {
+      var layer = this._labelLayerIds[e.feature.id];
+      if (layer) {
+        if (this._labelsShouldBeVisible()) {
+          this._map.addLayer(layer);
+        }
+      }
+    }
+  });
+
+  this._labelsShouldBeVisible = function () {
+    var currentZoom = this._map.getZoom();
+    if (this._labelLayerMaxZoom) {
+      if (this._labelLayerMinZoom) {
+        if (currentZoom >= this._labelLayerMinZoom && currentZoom <= this._labelLayerMaxZoom) {
+          return true;
+        }
+        return false;
+      }
+
+      return currentZoom <= this._labelLayerMaxZoom;
+    }
+
+    if (this._labelLayerMinZoom) {
+      return currentZoom >= this._labelLayerMinZoom;
+    }
+    return true;
+  };
+
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
@@ -29,8 +100,15 @@ function wireUpRenderers () {
         }
 
         this._setRenderers(response);
+        if (response.hasLabels) {
+          this._setLabelRenderers(response);
+        }
+
         oldOnAdd(map);
         this._addPointLayer(map);
+        this._addLabelLayer(map);
+
+        map.on('zoomend', this._handleZoomChangeForLabels, this);
       }
     }, this);
   };
@@ -43,6 +121,8 @@ function wireUpRenderers () {
         map.removeLayer(pointLayers[i]);
       }
     }
+
+    map.off('zoomend', this._handleZoomChangeForLabels, this);
   };
 
   this.unbindPopup = function () {
@@ -55,10 +135,29 @@ function wireUpRenderers () {
     }
   };
 
+  this._handleZoomChangeForLabels = function () {
+    if (this._labelsShouldBeVisible()) {
+      for (var i in this._labelLayerIds) {
+        this._map.addLayer(this._labelLayerIds[i]);
+      }
+    } else {
+      for (var j in this._labelLayerIds) {
+        this._map.removeLayer(this._labelLayerIds[j]);
+      }
+    }
+  };
+
   this._addPointLayer = function (map) {
     if (this._pointLayer) {
       this._pointLayer.addTo(map);
       this._pointLayer.bringToFront();
+    }
+  };
+
+  this._addLabelLayer = function (map) {
+    if (this._labelLayer) {
+      this._labelLayer.addTo(map);
+      this._labelLayer.bringToFront();
     }
   };
 
@@ -74,6 +173,14 @@ function wireUpRenderers () {
         };
         this._pointLayer.options.onEachFeature = L.Util.bind(popupFunction, this);
       }
+    }
+  };
+
+  this._createLabelLayer = function () {
+    if (!this._labelLayer) {
+      this._labelLayer = L.geoJson();
+      // store the feature ids that have already been added to the map
+      this._labelLayerIds = {};
     }
   };
 
@@ -119,7 +226,7 @@ function wireUpRenderers () {
       p1 = pts[i]; p2 = pts[j];
       twicearea += p1[0] * p2[1];
       twicearea -= p1[1] * p2[0];
-      f = p1[0] * p2[1] - p2[0] * p1[1];
+      f = (p1[0] * p2[1]) - (p2[0] * p1[1]);
       x += (p1[0] + p2[0]) * f;
       y += (p1[1] + p2[1]) * f;
     }
@@ -198,14 +305,48 @@ function wireUpRenderers () {
     }
     rend.attachStylesToLayer(this);
   };
+
+  this._setLabelRenderers = function (serviceInfo) {
+    this._firstLabelingInfo = serviceInfo.drawingInfo.labelingInfo[0];
+
+    if (this._firstLabelingInfo) {
+      this._hasLabelRenderer = true;
+      var options = {
+        url: this.options.url
+      };
+
+      if (this.options.token) {
+        options.token = this.options.token;
+      }
+
+      if (this.options.pane) {
+        options.pane = this.options.pane;
+      }
+
+      if (serviceInfo.drawingInfo.transparency) {
+        options.layerTransparency = serviceInfo.drawingInfo.transparency;
+      }
+
+      if (this._firstLabelingInfo.minScale) {
+        this._labelLayerMinZoom = scalingToZoom().scaleToZoom(this._firstLabelingInfo.minScale);
+      }
+      if (this._firstLabelingInfo.maxScale) {
+        this._labelLayerMaxZoom = scalingToZoom().scaleToZoom(this._firstLabelingInfo.maxScale);
+      }
+
+      var labelRenderer = simpleLabelRenderer(this._firstLabelingInfo, options);
+      this._createLabelLayer();
+      labelRenderer.attachStylesToLayer(this._labelLayer);
+    }
+  };
 }
 
 Esri.FeatureLayer.addInitHook(function () {
   // the only method not shared with the clustered implementation
   L.Util.bind(this.createNewLayer, this);
-  wireUpRenderers();
+  wireUpRenderers.bind(this)();
 });
 
 if (L.esri.Cluster) {
-  L.esri.Cluster.FeatureLayer.addInitHook(wireUpRenderers)
+  L.esri.Cluster.FeatureLayer.addInitHook(wireUpRenderers);
 }
