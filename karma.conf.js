@@ -17,7 +17,7 @@ module.exports = function (config) {
       'node_modules/esri-leaflet/dist/esri-leaflet-debug.js',
       'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.js',
       'dist/esri-leaflet-renderers-debug.js',
-      'spec/**/*.js',
+      'spec/**/*.js'
     ],
 
     // list of files to exclude

@@ -75,7 +75,7 @@ describe('UniqueValueRenderer', function () {
         userDefinedStyle: function (feature) {
           return {opacity: 0.5};
         }
-      }
+      };
       var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson, options);
       var feature = {'properties': {'ZONE': -12, 'VALUE': '$25.00', 'MARKET': '2Z'}};
       var style = renderer.style(feature);
