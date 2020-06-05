@@ -119,7 +119,7 @@ function wireUpRenderers () {
       p1 = pts[i]; p2 = pts[j];
       twicearea += p1[0] * p2[1];
       twicearea -= p1[1] * p2[0];
-      f = p1[0] * p2[1] - p2[0] * p1[1];
+      f = (p1[0] * p2[1]) - (p2[0] * p1[1]);
       x += (p1[0] + p2[0]) * f;
       y += (p1[1] + p2[1]) * f;
     }
@@ -207,5 +207,5 @@ Esri.FeatureLayer.addInitHook(function () {
 });
 
 if (L.esri.Cluster) {
-  L.esri.Cluster.FeatureLayer.addInitHook(wireUpRenderers)
+  L.esri.Cluster.FeatureLayer.addInitHook(wireUpRenderers);
 }

@@ -85,7 +85,7 @@ describe('ClassBreaksRenderer', function () {
         userDefinedStyle: function (feature) {
           return {opacity: 0.5};
         }
-      }
+      };
       var renderer = L.esri.Renderers.classBreaksRenderer(rendererJson, options);
       var feature = {'properties': {'SHAPE_AREA': 50000000}};
       var style = renderer.style(feature);

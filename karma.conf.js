@@ -17,7 +17,7 @@ module.exports = function (config) {
       'node_modules/esri-leaflet/dist/esri-leaflet-debug.js',
       'node_modules/leaflet-shape-markers/dist/leaflet-shape-markers.js',
       'dist/esri-leaflet-renderers-debug.js',
-      'spec/**/*.js',
+      'spec/**/*.js'
     ],
 
     // list of files to exclude
@@ -70,12 +70,6 @@ module.exports = function (config) {
 
     // Configure the coverage reporters
     coverageReporter: {
-      instrumenters: {
-        isparta: require('isparta')
-      },
-      instrumenter: {
-        'src/**/*.js': 'isparta'
-      },
       reporters: [
         {type: 'html', dir: 'coverage/'},
         {type: 'text'}

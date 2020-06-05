@@ -30,7 +30,7 @@ describe('SimpleRenderer', function () {
         userDefinedStyle: function (feature) {
           return {opacity: 0.5};
         }
-      }
+      };
       var renderer = L.esri.Renderers.simpleRenderer(rendererJson, options);
       var style = renderer.style();
       // user style

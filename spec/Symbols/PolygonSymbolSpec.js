@@ -44,7 +44,7 @@ describe('PolygonSymbol', function () {
       });
 
       it('should set line stroke to false if outline is null', function () {
-        solidPolygon.outline = null
+        solidPolygon.outline = null;
         var symbol = L.esri.Renderers.polygonSymbol(solidPolygon);
         var styles = symbol.style();
 
