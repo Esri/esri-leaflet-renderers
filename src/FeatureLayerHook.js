@@ -1,10 +1,11 @@
 import L from 'leaflet';
 import Esri from 'esri-leaflet';
+import * as EsriCluster from 'esri-leaflet-cluster';
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
 
-function wireUpRenderers () {
+var wireUpRenderers = function () {
   if (this.options.ignoreRenderer) {
     return;
   }
@@ -200,12 +201,8 @@ function wireUpRenderers () {
   };
 }
 
-Esri.FeatureLayer.addInitHook(function () {
-  // the only method not shared with the clustered implementation
-  L.Util.bind(this.createNewLayer, this);
-  wireUpRenderers();
-});
+Esri.FeatureLayer.addInitHook(wireUpRenderers);
 
-if (L.esri.Cluster) {
-  L.esri.Cluster.FeatureLayer.addInitHook(wireUpRenderers);
+if (typeof EsriCluster !== 'undefined') {
+  EsriCluster.FeatureLayer.addInitHook(wireUpRenderers);
 }

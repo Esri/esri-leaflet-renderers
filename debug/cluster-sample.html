@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>Simple FeatureLayer</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+    <script src="../node_modules/leaflet/dist/leaflet-src.js"></script>
+
+    <!-- Load Esri Leaflet -->
+    <script src="../node_modules/esri-leaflet/dist/esri-leaflet-debug.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+    href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
+    integrity="sha512-BBToHPBStgMiw0lD4AtkRIZmdndhB6aQbXpX7omcrXeG2PauGBl2lzq2xUZTxaLxYz5IDHlmneCZ1IJ+P3kYtQ=="
+    crossorigin="">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+      integrity="sha512-RLEjtaFGdC4iQMJDbMzim/dOvAu+8Qp9sw7QE4wIMYcg2goVoivzwgSZq9CsIxp4xKAZPKh5J2f2lOko2Ze6FQ=="
+      crossorigin="">
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
+      integrity="sha512-MQlyPV+ol2lp4KodaU/Xmrn+txc1TP15pOBF/2Sfre7MRsA/pB4Vy58bEqe9u7a7DczMLtU5wT8n7OblJepKbg=="
+      crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet-cluster@2.0.1/dist/esri-leaflet-cluster.js"
+      integrity="sha512-2/Nwrks+A2omjKeWrF4TKFLIrUbAhSl8EDEm6xunuwXXYqMoJI71PZtlW0/vqt9d3DOyP1md/bzAnNH2KuAhaQ=="
+      crossorigin=""></script>
+
+    <!-- Load compiled Esri Leaflet Renderers -->
+    <script src="../dist/esri-leaflet-renderers-debug.js"></script>
+
+    <style>
+      body {margin:0;padding:0;}
+      #map {position: absolute;top:0;bottom:0;right:0;left:0;}
+    </style>
+  </head>
+  <body>
+
+    <div id="map"></div>
+
+    <script>
+      /*
+      make a copy of this file in the same folder if you'd like git to ignore your local changes
+      */
+      var map = L.map('map').setView([45.526, -122.667], 13);
+      L.esri.basemapLayer('Streets').addTo(map);
+
+      // draw the predefined Portland Heritage Tree symbols
+      L.esri.Cluster.featureLayer({url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0'}).addTo(map);
+    </script>
+
+  </body>
+</html>
