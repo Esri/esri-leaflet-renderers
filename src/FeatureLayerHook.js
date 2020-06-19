@@ -4,13 +4,14 @@ import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
 
-function wireUpRenderers () {
+Esri.FeatureLayer.addInitHook(function () {
   if (this.options.ignoreRenderer) {
     return;
   }
   var oldOnAdd = L.Util.bind(this.onAdd, this);
   var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
   var oldOnRemove = L.Util.bind(this.onRemove, this);
+  L.Util.bind(this.createNewLayer, this);
 
   this.onAdd = function (map) {
     this.metadata(function (error, response) {
@@ -198,14 +199,4 @@ function wireUpRenderers () {
     }
     rend.attachStylesToLayer(this);
   };
-}
-
-Esri.FeatureLayer.addInitHook(function () {
-  // the only method not shared with the clustered implementation
-  L.Util.bind(this.createNewLayer, this);
-  wireUpRenderers();
 });
-
-if (L.esri.Cluster) {
-  L.esri.Cluster.FeatureLayer.addInitHook(wireUpRenderers);
-}
