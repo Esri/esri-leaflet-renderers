@@ -13,6 +13,8 @@ function wireUpRenderers () {
   var oldUnbindPopup = Util.bind(this.unbindPopup, this);
   var oldOnRemove = Util.bind(this.onRemove, this);
 
+  L.Util.bind(this.createNewLayer, this);
+
   this.onAdd = function (map) {
     this.metadata(function (error, response) {
       if (error) {
