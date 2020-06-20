@@ -5,7 +5,7 @@ import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
 
-var wireUpRenderers = function () {
+function wireUpRenderers () {
   if (this.options.ignoreRenderer) {
     return;
   }
@@ -202,8 +202,6 @@ var wireUpRenderers = function () {
 }
 
 EsriLeaflet.FeatureLayer.addInitHook(wireUpRenderers);
-
-debugger
 
 if (typeof EsriLeafletCluster !== 'undefined') {
   EsriLeafletCluster.FeatureLayer.addInitHook(wireUpRenderers);

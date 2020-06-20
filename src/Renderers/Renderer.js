@@ -1,4 +1,4 @@
-import { Class, Util } from 'leaflet';
+import { Class, Util, circleMarker } from 'leaflet';
 
 import pointSymbol from '../Symbols/PointSymbol';
 import lineSymbol from '../Symbols/LineSymbol';
