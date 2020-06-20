@@ -204,6 +204,7 @@ var wireUpRenderers = function () {
 EsriLeaflet.FeatureLayer.addInitHook(wireUpRenderers);
 
 debugger
+
 if (typeof EsriLeafletCluster !== 'undefined') {
   EsriLeafletCluster.FeatureLayer.addInitHook(wireUpRenderers);
 }

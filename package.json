@@ -12,7 +12,6 @@
   ],
   "peerDependencies": {
     "esri-leaflet": "2.x",
-    "esri-leaflet-cluster": "2.x",
     "leaflet": "1.x",
     "leaflet-shape-markers": "1.x"
   },
