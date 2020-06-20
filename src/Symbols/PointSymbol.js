@@ -1,6 +1,11 @@
-import L from 'leaflet';
+import {
+  marker,
+  icon as leafletIcon,
+  extend,
+  circleMarker
+} from 'leaflet';
 import Symbol from './Symbol';
-import {squareMarker, xMarker, crossMarker, diamondMarker} from 'leaflet-shape-markers';
+import { squareMarker, xMarker, crossMarker, diamondMarker } from 'leaflet-shape-markers';
 
 export var PointSymbol = Symbol.extend({
 
@@ -94,7 +99,7 @@ export var PointSymbol = Symbol.extend({
       yOffset += this.pixelValue(options.yoffset);
     }
 
-    var icon = L.icon({
+    var icon = leafletIcon({
       iconUrl: this._iconUrl,
       iconSize: [width, height],
       iconAnchor: [xOffset, yOffset]
@@ -131,23 +136,23 @@ export var PointSymbol = Symbol.extend({
     }
 
     if (this._symbolJson.type === 'esriPMS') {
-      var layerOptions = L.extend({}, {icon: this._getIcon(size)}, options);
-      return L.marker(latlng, layerOptions);
+      var layerOptions = extend({}, {icon: this._getIcon(size)}, options);
+      return marker(latlng, layerOptions);
     }
     size = this.pixelValue(size);
 
     switch (this._symbolJson.style) {
       case 'esriSMSSquare':
-        return squareMarker(latlng, size, L.extend({}, this._styles, options));
+        return squareMarker(latlng, size, extend({}, this._styles, options));
       case 'esriSMSDiamond':
-        return diamondMarker(latlng, size, L.extend({}, this._styles, options));
+        return diamondMarker(latlng, size, extend({}, this._styles, options));
       case 'esriSMSCross':
-        return crossMarker(latlng, size, L.extend({}, this._styles, options));
+        return crossMarker(latlng, size, extend({}, this._styles, options));
       case 'esriSMSX':
-        return xMarker(latlng, size, L.extend({}, this._styles, options));
+        return xMarker(latlng, size, extend({}, this._styles, options));
     }
     this._styles.radius = size / 2.0;
-    return L.circleMarker(latlng, L.extend({}, this._styles, options));
+    return circleMarker(latlng, extend({}, this._styles, options));
   }
 });
 

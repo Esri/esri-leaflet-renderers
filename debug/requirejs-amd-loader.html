@@ -10,19 +10,21 @@
 
 
     <!-- that will work when running off the filesystem as requirejs's' AMD implementation supports loading from the filesystem-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
     <script>
-              
+
       require.config({
             baseUrl: '../',
             paths: {
                 'leaflet': 'node_modules/leaflet/dist/leaflet',
                 'esri-leaflet': 'node_modules/esri-leaflet/dist/esri-leaflet',
+                // technically the cluster plugin should be optional
+                'esri-leaflet-cluster': 'node_modules/esri-leaflet-cluster/dist/esri-leaflet-cluster',
                 'esri-leaflet-renderers' : 'dist/esri-leaflet-renderers'
             }
       });
-    </script>-->
-   
+    </script>
+
 
 
 

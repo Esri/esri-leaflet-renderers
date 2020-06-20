@@ -1,6 +1,6 @@
-import L from 'leaflet';
+import { Class } from 'leaflet';
 
-export var Symbol = L.Class.extend({
+export var Symbol = Class.extend({
   initialize: function (symbolJson, options) {
     this._symbolJson = symbolJson;
     this.val = null;

@@ -1,10 +1,10 @@
-import L from 'leaflet';
+import { Class, Util } from 'leaflet';
 
 import pointSymbol from '../Symbols/PointSymbol';
 import lineSymbol from '../Symbols/LineSymbol';
 import polygonSymbol from '../Symbols/PolygonSymbol';
 
-export var Renderer = L.Class.extend({
+export var Renderer = Class.extend({
   options: {
     proportionalPolygon: false,
     clickable: true
@@ -15,7 +15,7 @@ export var Renderer = L.Class.extend({
     this._pointSymbols = false;
     this._symbols = [];
     this._visualVariables = this._parseVisualVariables(rendererJson.visualVariables);
-    L.Util.setOptions(this, options);
+    Util.setOptions(this, options);
   },
 
   _parseVisualVariables: function (visualVariables) {
@@ -54,9 +54,9 @@ export var Renderer = L.Class.extend({
 
   attachStylesToLayer: function (layer) {
     if (this._pointSymbols) {
-      layer.options.pointToLayer = L.Util.bind(this.pointToLayer, this);
+      layer.options.pointToLayer = Util.bind(this.pointToLayer, this);
     } else {
-      layer.options.style = L.Util.bind(this.style, this);
+      layer.options.style = Util.bind(this.style, this);
       layer._originalStyle = layer.options.style;
     }
   },
@@ -68,7 +68,7 @@ export var Renderer = L.Class.extend({
       return sym.pointToLayer(geojson, latlng, this._visualVariables, this.options);
     }
     // invisible symbology
-    return L.circleMarker(latlng, {radius: 0, opacity: 0});
+    return circleMarker(latlng, {radius: 0, opacity: 0});
   },
 
   style: function (feature) {

@@ -1,6 +1,6 @@
-import L from 'leaflet';
-import Esri from 'esri-leaflet';
-import * as EsriCluster from 'esri-leaflet-cluster';
+import { Util, GeoJSON, geoJson } from 'leaflet';
+import * as EsriLeaflet from 'esri-leaflet';
+import * as EsriLeafletCluster from 'esri-leaflet-cluster';
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
@@ -9,9 +9,9 @@ var wireUpRenderers = function () {
   if (this.options.ignoreRenderer) {
     return;
   }
-  var oldOnAdd = L.Util.bind(this.onAdd, this);
-  var oldUnbindPopup = L.Util.bind(this.unbindPopup, this);
-  var oldOnRemove = L.Util.bind(this.onRemove, this);
+  var oldOnAdd = Util.bind(this.onAdd, this);
+  var oldUnbindPopup = Util.bind(this.unbindPopup, this);
+  var oldOnRemove = Util.bind(this.onRemove, this);
 
   this.onAdd = function (map) {
     this.metadata(function (error, response) {
@@ -65,7 +65,7 @@ var wireUpRenderers = function () {
 
   this._createPointLayer = function () {
     if (!this._pointLayer) {
-      this._pointLayer = L.geoJson();
+      this._pointLayer = geoJson();
       // store the feature ids that have already been added to the map
       this._pointLayerIds = {};
 
@@ -73,13 +73,13 @@ var wireUpRenderers = function () {
         var popupFunction = function (feature, layer) {
           layer.bindPopup(this._popup(feature, layer), this._popupOptions);
         };
-        this._pointLayer.options.onEachFeature = L.Util.bind(popupFunction, this);
+        this._pointLayer.options.onEachFeature = Util.bind(popupFunction, this);
       }
     }
   };
 
   this.createNewLayer = function (geojson) {
-    var fLayer = L.GeoJSON.geometryToLayer(geojson, this.options);
+    var fLayer = GeoJSON.geometryToLayer(geojson, this.options);
 
     // add a point layer when the polygon is represented as proportional marker symbols
     if (this._hasProportionalSymbols) {
@@ -201,8 +201,9 @@ var wireUpRenderers = function () {
   };
 }
 
-Esri.FeatureLayer.addInitHook(wireUpRenderers);
+EsriLeaflet.FeatureLayer.addInitHook(wireUpRenderers);
 
-if (typeof EsriCluster !== 'undefined') {
-  EsriCluster.FeatureLayer.addInitHook(wireUpRenderers);
+debugger
+if (typeof EsriLeafletCluster !== 'undefined') {
+  EsriLeafletCluster.FeatureLayer.addInitHook(wireUpRenderers);
 }

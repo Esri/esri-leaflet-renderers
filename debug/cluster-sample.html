@@ -46,7 +46,9 @@
       L.esri.basemapLayer('Streets').addTo(map);
 
       // draw the predefined Portland Heritage Tree symbols
-      L.esri.Cluster.featureLayer({url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0'}).addTo(map);
+      L.esri.Cluster.featureLayer({
+        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0'
+      }).addTo(map);
     </script>
 
   </body>
