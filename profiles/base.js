@@ -11,7 +11,11 @@ var copyright = '/* ' + pkg.name + ' - v' + pkg.version + ' - ' + new Date().toS
 
 var config = {
   input: 'src/EsriLeaflet.js',
-  external: ['leaflet', 'esri-leaflet'],
+  external: [
+    'leaflet',
+    'esri-leaflet',
+    'esri-leaflet-cluster'
+  ],
   plugins: [
     nodeResolve({
       jsnext: true,

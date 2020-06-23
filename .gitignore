@@ -31,7 +31,16 @@ site/build
 
 # Debugging Files
 debug/*
+!debug/cluster-sample.html
+!debug/comparisons.css
+!debug/comparisons.html
+!debug/custom-pane.html
+!debug/dojo-amd-loader.html
+!debug/ignore-flag.html
+!debug/requirejs-amd-loader.html
+!debug/reset-style.html
 !debug/sample.html
+!debug/script-tag.html
 
 # Built Files
 dist/**/*.js

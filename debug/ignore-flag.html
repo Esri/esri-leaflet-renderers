@@ -2,17 +2,18 @@
 <html>
   <head>
     <meta charset=utf-8 />
-    <title>Simple FeatureLayer</title>
+    <title>Ignore Renderer Test</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-    <!-- Load Leaflet from CDN-->
+    <!-- Load Leaflet -->
     <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
     <script src="../node_modules/leaflet/dist/leaflet-src.js"></script>
 
     <!-- Load Esri Leaflet -->
     <script src="../node_modules/esri-leaflet/dist/esri-leaflet-debug.js"></script>
 
-    <!-- Load compiled Esri Leaflet Renderers -->
+    <!-- Load Esri Leaflet Renderers -->
+    <!-- This will hook into Esri Leaflet and draw the predefined Portland Neighborhoods -->
     <script src="../dist/esri-leaflet-renderers-debug.js"></script>
 
     <style>
@@ -25,14 +26,14 @@
     <div id="map"></div>
 
     <script>
-      /*
-      make a copy of this file in the same folder if you'd like git to ignore your local changes
-      */
-      var map = L.map('map').setView([37.837, -122.479], 5);
-      L.esri.basemapLayer('Streets').addTo(map);
+      var map = L.map('map').setView([45.537, -122.653], 11);
+      L.esri.basemapLayer('Gray').addTo(map);
 
-      // draw the predefined Portland Heritage Tree symbols
-      L.esri.featureLayer({url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer/0'}).addTo(map);
+      L.esri.featureLayer({
+        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0',
+        ignoreRenderer: true
+      }).addTo(map);
+
     </script>
 
   </body>
