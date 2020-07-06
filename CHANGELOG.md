@@ -6,6 +6,12 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [2.1.2] - 2020-07-06
+
+### Changed
+
+* Update `esri-leaflet-cluster` version in `package.json` (🙏francharbo🙏 [#160](https://github.com/Esri/esri-leaflet-renderers/pull/160))
+
 ## [2.1.1] - 2020-06-23
 
 ### Fixed
@@ -170,7 +176,8 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.2...HEAD
+[2.1.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.6...v2.1.0
 [2.0.6]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.5...v2.0.6
