@@ -1,4 +1,5 @@
-export { version as VERSION } from '../package.json';
+import packageInfo from '../package.json';
+export var VERSION = packageInfo.version;
 
 export { Renderer } from './Renderers/Renderer';
 export { SimpleRenderer, simpleRenderer } from './Renderers/SimpleRenderer';
