@@ -16,7 +16,7 @@
     "leaflet-shape-markers": "1.x"
   },
   "optionalDependencies": {
-    "esri-leaflet-cluster": "^2.1.0"
+    "esri-leaflet-cluster": "^3.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.0.3",
