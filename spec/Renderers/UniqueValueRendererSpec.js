@@ -73,11 +73,11 @@ describe('UniqueValueRenderer', function () {
     it('should merge symbol styles', function () {
       var options = {
         userDefinedStyle: function (feature) {
-          return {opacity: 0.5};
+          return { opacity: 0.5 };
         }
       };
       var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson, options);
-      var feature = {'properties': {'ZONE': -12, 'VALUE': '$25.00', 'MARKET': '2Z'}};
+      var feature = { 'properties': { 'ZONE': -12, 'VALUE': '$25.00', 'MARKET': '2Z' } };
       var style = renderer.style(feature);
       // user style
       expect(style.opacity).to.be.eq(0.5);
@@ -95,7 +95,7 @@ describe('UniqueValueRenderer', function () {
       });
 
       it('should be equal to symbol value with transparency applied when defined', function () {
-        var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson, {layerTransparency: 75});
+        var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson, { layerTransparency: 75 });
         expect(renderer._symbols[0]._styles.fillOpacity).to.be.eq(128 / 255.0 * 0.25);
         expect(renderer._symbols[0]._lineStyles.opacity).to.be.eq(0.25);
         expect(renderer._defaultSymbol._styles.fillOpacity).to.be.eq(64 / 255.0 * 0.25);
@@ -110,14 +110,14 @@ describe('UniqueValueRenderer', function () {
 
     it('should get default symbol when no matching value', function () {
       var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson);
-      var feature = {'properties': {'ZONE': 5}};
+      var feature = { 'properties': { 'ZONE': 5 } };
       var sym = renderer._getSymbol(feature);
       expect(sym.val).to.be.equal(null);
     });
 
     it('should get symbol for that matches the value', function () {
       var renderer = L.esri.Renderers.uniqueValueRenderer(rendererJson);
-      var feature = {'properties': {'ZONE': -10}};
+      var feature = { 'properties': { 'ZONE': -10 } };
       var sym = renderer._getSymbol(feature);
       expect(sym.val).to.be.eq('-10');
     });
@@ -164,14 +164,14 @@ describe('UniqueValueRenderer', function () {
     });
     it('should get default symbol when not matching all fields', function () {
       var renderer = L.esri.Renderers.uniqueValueRenderer(multipleFieldRendererJson);
-      var feature = {'properties': {'ZONE': -12, 'MARKET': '2Z'}};
+      var feature = { 'properties': { 'ZONE': -12, 'MARKET': '2Z' } };
       var sym = renderer._getSymbol(feature);
       expect(sym.val).to.be.eq(null);
     });
 
     it('should get symbol for that matches the value', function () {
       var renderer = L.esri.Renderers.uniqueValueRenderer(multipleFieldRendererJson);
-      var feature = {'properties': {'ZONE': -12, 'VALUE': '$25.00', 'MARKET': '2Z'}};
+      var feature = { 'properties': { 'ZONE': -12, 'VALUE': '$25.00', 'MARKET': '2Z' } };
       var sym = renderer._getSymbol(feature);
       expect(sym.val).to.be.eq('-12,2Z,$25.00');
     });

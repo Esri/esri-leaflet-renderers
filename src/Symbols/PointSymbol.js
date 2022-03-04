@@ -112,7 +112,7 @@ export var PointSymbol = Symbol.extend({
     // check to see if it is already created by size
     var icon = this._icons[size.toString()];
     if (!icon) {
-      icon = this._createIcon({width: size});
+      icon = this._createIcon({ width: size });
     }
     return icon;
   },
@@ -136,7 +136,7 @@ export var PointSymbol = Symbol.extend({
     }
 
     if (this._symbolJson.type === 'esriPMS') {
-      var layerOptions = extend({}, {icon: this._getIcon(size)}, options);
+      var layerOptions = extend({}, { icon: this._getIcon(size) }, options);
       return marker(latlng, layerOptions);
     }
     size = this.pixelValue(size);

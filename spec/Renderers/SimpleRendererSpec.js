@@ -28,7 +28,7 @@ describe('SimpleRenderer', function () {
     it('should merge symbol styles', function () {
       var options = {
         userDefinedStyle: function (feature) {
-          return {opacity: 0.5};
+          return { opacity: 0.5 };
         }
       };
       var renderer = L.esri.Renderers.simpleRenderer(rendererJson, options);

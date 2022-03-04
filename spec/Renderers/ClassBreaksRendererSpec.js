@@ -69,13 +69,13 @@ describe('ClassBreaksRenderer', function () {
     });
     it('should get symbol for a value that falls on a classbreak', function () {
       var renderer = L.esri.Renderers.classBreaksRenderer(rendererJson);
-      var feature = {'properties': {'SHAPE_AREA': 38231763}};
+      var feature = { 'properties': { 'SHAPE_AREA': 38231763 } };
       var sym = renderer._getSymbol(feature);
       expect(sym.val).to.be.eq(38231763);
     });
     it('should get symbol for a value that falls within a classbreak range', function () {
       var renderer = L.esri.Renderers.classBreaksRenderer(rendererJson);
-      var feature = {'properties': {'SHAPE_AREA': 50000000}};
+      var feature = { 'properties': { 'SHAPE_AREA': 50000000 } };
       var sym = renderer._getSymbol(feature);
       expect(sym.val).to.be.eq(64615118);
     });
@@ -83,11 +83,11 @@ describe('ClassBreaksRenderer', function () {
     it('should merge symbol styles', function () {
       var options = {
         userDefinedStyle: function (feature) {
-          return {opacity: 0.5};
+          return { opacity: 0.5 };
         }
       };
       var renderer = L.esri.Renderers.classBreaksRenderer(rendererJson, options);
-      var feature = {'properties': {'SHAPE_AREA': 50000000}};
+      var feature = { 'properties': { 'SHAPE_AREA': 50000000 } };
       var style = renderer.style(feature);
       // user style
       expect(style.opacity).to.be.eq(0.5);

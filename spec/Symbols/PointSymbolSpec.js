@@ -53,7 +53,7 @@ describe('PointSymbol', function () {
       });
 
       it('should set icon parameters', function () {
-        var symbol = L.esri.Renderers.pointSymbol(iconSymbolJson, {url: fLayer});
+        var symbol = L.esri.Renderers.pointSymbol(iconSymbolJson, { url: fLayer });
         var styles = symbol._styles;
 
         expect(symbol.icon).not.to.be.equal(undefined);
