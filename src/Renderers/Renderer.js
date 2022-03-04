@@ -91,14 +91,14 @@ export var Renderer = Class.extend({
     var attr;
     // copy renderer style attributes
     for (attr in styles) {
-      if (styles.hasOwnProperty(attr)) {
+      if (Object.prototype.hasOwnProperty.call(styles, attr)) {
         mergedStyles[attr] = styles[attr];
       }
     }
     // override with user defined style attributes
     if (userStyles) {
       for (attr in userStyles) {
-        if (userStyles.hasOwnProperty(attr)) {
+        if (Object.prototype.hasOwnProperty.call(userStyles, attr)) {
           mergedStyles[attr] = userStyles[attr];
         }
       }
