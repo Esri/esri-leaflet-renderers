@@ -7,11 +7,15 @@ NAME=$(node --eval "console.log(require('./package.json').name);")
 # build and test
 npm test || exit 1
 
+# build files
+npm run build
+
+# Integrity string and save to siteData.json
+JS_INTEGRITY=$(cat dist/esri-leaflet-renderers.js | openssl dgst -sha512 -binary | openssl base64 -A)
+echo "{\"name\": \"esri-leaflet-renderers\",\"version\": \"$VERSION\",\"lib\": {\"path\": \"dist/esri-leaflet-renderers.js\",\"integrity\": \"sha512-$JS_INTEGRITY\"}}" > dist/siteData.json
+
 # checkout temp branch for release
 git checkout -b gh-release
-
-# run prepublish to build files
-npm run prepublish
 
 # force add files
 git add dist -f
