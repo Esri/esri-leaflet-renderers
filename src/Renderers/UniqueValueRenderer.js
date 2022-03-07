@@ -42,7 +42,7 @@ export var UniqueValueRenderer = Renderer.extend({
       if (this._symbols[i].val == val) {
         symbol = this._symbols[i];
       }
-      /*eslint-enable */
+      /* eslint-enable */
     }
     return symbol;
   }
