@@ -82,7 +82,6 @@
     "build": "rollup -c profiles/debug.js & rollup -c profiles/production.js",
     "lint": "semistandard src/**/*.js | snazzy",
     "fix": "semistandard --fix",
-    "prepublish": "npm run build",
     "pretest": "npm run build",
     "release": "./scripts/release.sh",
     "start-watch": "chokidar src -c \"npm run build\"",
