@@ -24,11 +24,11 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet-src.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
-    <script src="https://unpkg.com/esri-leaflet@2.1.4"></script>
+    <script src="https://unpkg.com/esri-leaflet@3"></script>
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet to get renderer info when adding a feature layer -->
-    <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script>
+    <script src="https://unpkg.com/esri-leaflet-renderers@2"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -40,15 +40,14 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
     <div id="map"></div>
 
     <script>
-      var map = L.map('map').setView([45.526, -122.667], 13);
+      var map = L.map('map').setView([37.837, -122.479], 6);
       L.esri.basemapLayer('Streets').addTo(map);
 
       // this plugin will get the predefined renderer from the layer's drawing info at:
-      // https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0
+      // https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer/0
       // use that renderer to style the polygons drawn on the map
       L.esri.featureLayer({
-        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
-        simplifyFactor: 1
+        url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer/0'
       }).addTo(map);
     </script>
 
