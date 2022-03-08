@@ -6,6 +6,12 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [2.1.3] - 2022-03-08
+
+### Updated
+
+* Updated dependencies and changed build-related settings to be consistent with Esri Leaflet ([#171](https://github.com/Esri/esri-leaflet-renderers/pull/171))
+
 ## [2.1.2] - 2020-07-06
 
 ### Changed
@@ -176,7 +182,8 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.2...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.3...HEAD
+[2.1.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.0.6...v2.1.0
