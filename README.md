@@ -1,15 +1,15 @@
 # Esri Leaflet Renderers
 
-Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri Leaflet Renderers works in conjunction with the Esri Leaflet Plugin to draw [feature services](http://esri.github.io/esri-leaflet/examples/simple-feature-layer.html) using renderers defined by the service.
+Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri Leaflet Renderers works in conjunction with the Esri Leaflet Plugin to draw [feature services](https://developers.arcgis.com/esri-leaflet/samples/simple-feature-layer/) using renderers defined by the service.
 
 [![travis](https://img.shields.io/travis/Esri/Leaflet.shapeMarkers/master.svg?style=flat-square)](https://travis-ci.org/Esri/Leaflet.shapeMarkers)
 
-The sole purpose of this plugin is to allow [`L.esri.FeatureLayer`](http://esri.github.io/esri-leaflet/api-reference/layers/feature-layer.html) to automatically take on renderers defined in [ArcGIS Feature Services](https://developers.arcgis.com/en/features/cloud-storage/). Esri Leaflet Renderers works in conjunction with Esri Leaflet, but it does not add any additional methods or properties to the class that it extends.
+The sole purpose of this plugin is to allow [`L.esri.FeatureLayer`](https://developers.arcgis.com/esri-leaflet/api-reference/layers/feature-layer/) to automatically take on renderers defined in [ArcGIS Feature Services](https://developers.arcgis.com/en/features/cloud-storage/). Esri Leaflet Renderers works in conjunction with Esri Leaflet, but it does not add any additional methods or properties to the class that it extends.
 
 ### Example
-Take a look at the [live demo](http://esri.github.io/esri-leaflet/examples/renderers-plugin.html).
+Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/samples/renderers-plugin/).
 
-You can also find a side by side comparison of the ArcGIS API for JavaScript [here](http://esri.github.io/esri-leaflet-renderers/spec/comparisons.html).
+You can also find a side by side comparison of the ArcGIS API for JavaScript [here](https://esri.github.io/esri-leaflet-renderers/spec/comparisons.html).
 
 ```html
 <!DOCTYPE html>
@@ -28,7 +28,7 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 
     <!-- Load Esri Leaflet Renderers -->
     <!-- This will hook into Esri Leaflet to get renderer info when adding a feature layer -->
-    <script src="https://unpkg.com/esri-leaflet-renderers@2"></script>
+    <script src="https://unpkg.com/esri-leaflet-renderers@3"></script>
 
     <style>
       body {margin:0;padding:0;}
@@ -60,8 +60,8 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 1. [Fork and clone Esri Leaflet Renderers](https://help.github.com/articles/fork-a-repo)
 2. `cd` into the `esri-leaflet-renderers` folder
 3. Install the dependencies with `npm install`
-4. Run `npm start` from the command line. This will compile minified source in a brand new `dist` directory, launch a tiny webserver and begin watching the raw source for changes.
-5. Run `npm test` to make sure you haven't introduced a new 'feature' accidently.
+4. Run `npm start` from the command line. This will compile minified source in a brand new `dist` directory, launch a tiny web server and begin watching the raw source for changes.
+5. Run `npm test` to make sure you haven't introduced a new 'feature' accidentally.
 6. Make your changes and create a [pull request](https://help.github.com/articles/creating-a-pull-request)
 
 ### Limitations
@@ -73,13 +73,17 @@ You can also find a side by side comparison of the ArcGIS API for JavaScript [he
 
 ### Dependencies
 
-* Esri Leaflet Renderers [1.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v1.0.0) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/1.0.0/esri-leaflet-renderers.js)) can be used in apps alongside:
+* Esri Leaflet Renderers [1.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v1.0.0) (available on [CDN](https://unpkg.com/esri-leaflet-renderers@1/dist/esri-leaflet-renderers.js)) can be used in apps alongside:
   *  [Leaflet](http://leafletjs.com) version 0.7.x.
-  *  [Esri Leaflet](http://esri.github.io/esri-leaflet) version 1.0.x.
+  *  [Esri Leaflet](https://developers.arcgis.com/esri-leaflet/) version 1.0.x.
 
-* Esri Leaflet Renderers [2.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v2.0.4) (available on [CDN](https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.4/esri-leaflet-renderers.js)) can be used in apps alongside:
+* Esri Leaflet Renderers [2.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v2.0.4) (available on [CDN](https://unpkg.com/esri-leaflet-renderers@2/dist/esri-leaflet-renderers.js)) can be used in apps alongside:
   *  [Leaflet](http://leafletjs.com) version 1.0.0-rc.3.
-  *  [Esri Leaflet](http://esri.github.io/esri-leaflet) version 2.0.x.
+  *  [Esri Leaflet](https://developers.arcgis.com/esri-leaflet/) version 2.0.x.
+
+* Esri Leaflet Renderers [3.x](https://github.com/Esri/esri-leaflet-renderers/releases/tag/v3.0.0) (available on [CDN](https://unpkg.com/esri-leaflet-renderers@3/dist/esri-leaflet-renderers.js)) can be used in apps alongside:
+  *  [Leaflet](http://leafletjs.com) version 1.x.
+  *  [Esri Leaflet](https://developers.arcgis.com/esri-leaflet/) version 3.x.
 
 ### Versioning
 

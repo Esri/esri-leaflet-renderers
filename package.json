@@ -1,14 +1,15 @@
 {
   "name": "esri-leaflet-renderers",
   "description": "esri-leaflet plugin for rendering",
-  "version": "2.1.3",
-  "author": "Rachel Nehmer <rnehmer@esri.com>",
+  "version": "3.0.0",
+  "author": "Rachel Nehmer",
   "bugs": {
     "url": "https://github.com/esri/esri-leaflet-renderers/issues"
   },
   "contributors": [
-    "Rachel Nehmer <rnehmer@esri.com>",
-    "John Gravois <jgravois@esri.com>"
+    "Rachel Nehmer",
+    "John Gravois (https://johngravois.com)",
+    "Gavin Rehkemper (https://gavinr.com)"
   ],
   "peerDependencies": {
     "esri-leaflet": "3.x",
@@ -51,7 +52,7 @@
     "dist/*.js.map",
     "dist/*.json"
   ],
-  "homepage": "http://esri.github.io/esri-leaflet",
+  "homepage": "http://developers.arcgis.com/esri-leaflet",
   "jsnext:main": "src/EsriLeafletRenderers.js",
   "jspm": {
     "registry": "npm",
