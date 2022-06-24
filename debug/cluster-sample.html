@@ -12,19 +12,11 @@
     <!-- Load Esri Leaflet -->
     <script src="../node_modules/esri-leaflet/dist/esri-leaflet-debug.js"></script>
 
-    <link rel="stylesheet" type="text/css"
-    href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
-    integrity="sha512-BBToHPBStgMiw0lD4AtkRIZmdndhB6aQbXpX7omcrXeG2PauGBl2lzq2xUZTxaLxYz5IDHlmneCZ1IJ+P3kYtQ=="
-    crossorigin="">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
-      integrity="sha512-RLEjtaFGdC4iQMJDbMzim/dOvAu+8Qp9sw7QE4wIMYcg2goVoivzwgSZq9CsIxp4xKAZPKh5J2f2lOko2Ze6FQ=="
-      crossorigin="">
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
-      integrity="sha512-MQlyPV+ol2lp4KodaU/Xmrn+txc1TP15pOBF/2Sfre7MRsA/pB4Vy58bEqe9u7a7DczMLtU5wT8n7OblJepKbg=="
-      crossorigin=""></script>
-    <script src="https://unpkg.com/esri-leaflet-cluster@2.1.0/dist/esri-leaflet-cluster.js"
-      integrity="6kP8f+Bh/wHsZ4mxFtTp7ePZRV90MlvKZQ+g6IJL6F31o6ntkU/P4UiIG01hHtSB"
-      crossorigin=""></script>
+    <!-- Load Esri Leaflet Cluster -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/esri-leaflet-cluster@3/dist/esri-leaflet-cluster.js"></script>
 
     <!-- Load compiled Esri Leaflet Renderers -->
     <script src="../dist/esri-leaflet-renderers-debug.js"></script>
@@ -45,7 +37,7 @@
       var map = L.map('map').setView([37.837, -122.479], 5);
       L.esri.basemapLayer('Streets').addTo(map);
 
-      // draw the predefined Portland Heritage Tree symbols
+      // draw the Feature Layer:
       L.esri.Cluster.featureLayer({
         url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Earthquakes_Since1970/MapServer/0'
       }).addTo(map);

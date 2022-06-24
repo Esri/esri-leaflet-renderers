@@ -1,6 +1,6 @@
 import { Util, GeoJSON, geoJson } from 'leaflet';
 import * as EsriLeaflet from 'esri-leaflet';
-import EsriLeafletCluster from 'esri-leaflet-cluster';
+import EsriLeafletCluster, { FeatureLayer as EsriLeafletClusterFeatureLayer } from 'esri-leaflet-cluster';
 import classBreaksRenderer from './Renderers/ClassBreaksRenderer';
 import uniqueValueRenderer from './Renderers/UniqueValueRenderer';
 import simpleRenderer from './Renderers/SimpleRenderer';
@@ -205,6 +205,6 @@ function wireUpRenderers () {
 
 EsriLeaflet.FeatureLayer.addInitHook(wireUpRenderers);
 
-if (typeof EsriLeafletCluster !== 'undefined') {
-  EsriLeafletCluster.FeatureLayer.addInitHook(wireUpRenderers);
+if (typeof EsriLeafletCluster !== 'undefined' && EsriLeafletClusterFeatureLayer) {
+  EsriLeafletClusterFeatureLayer.addInitHook(wireUpRenderers);
 }
