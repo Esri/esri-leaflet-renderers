@@ -56,15 +56,17 @@
 
 
     <script>
-      var layers = [{
-        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Neighborhoods_pdx/FeatureServer/0',
+      var layers = [
+        {
+        url: 'https://services.arcgis.com/quVN97tn06YNGj9s/arcgis/rest/services/Portland_Neighborhoods/FeatureServer/0',
         title: 'Portland Neighborhoods',
         geoType: 'Polygon',
         rendererType: 'Classbreaks',
         lat: 45.525,
         lon: -122.653,
         zoomLevel: 11
-      }, {
+      }, 
+      {
         url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Freeway_System/FeatureServer/1',
         title: 'Freeways',
         geoType: 'Line',
@@ -72,7 +74,8 @@
         lat: 37.4,
         lon: -81.7,
         zoomLevel: 6
-      }, {
+      },
+      {
         url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0',
         title: 'USA States (Generalized)',
         geoType: 'Polygon',
@@ -80,7 +83,8 @@
         lat: 51,
         lon: -119,
         zoomLevel: 3
-      }, {
+      },
+      {
         url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Time_Zones/FeatureServer/0',
         title: 'Timezones',
         geoType: 'Polygon',
@@ -88,15 +92,17 @@
         lat: 16.6,
         lon: 74.9,
         zoomLevel: 3
-      }, {
-        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/minop3x020_nt00020/FeatureServer/0',
-        title: 'Esri Marker Symbols Test',
-        geoType: 'Point',
-        rendererType: 'Unique Value',
-        lat: 34,
-        lon: -97,
-        zoomLevel: 4
-      }, {
+      },
+      // {
+      //   url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/minop3x020_nt00020/FeatureServer/0',
+      //   title: 'Esri Marker Symbols Test',
+      //   geoType: 'Point',
+      //   rendererType: 'Unique Value',
+      //   lat: 34,
+      //   lon: -97,
+      //   zoomLevel: 4
+      // },
+      {
         url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
         title: 'World Regions',
         geoType: 'Polygon',
@@ -104,7 +110,8 @@
         lat: 0,
         lon: 0,
         zoomLevel: 4
-      }];
+      }
+    ];
 
       var options = "";
       for(var i=0; i<layers.length; i++){

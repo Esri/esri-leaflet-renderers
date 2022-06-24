@@ -5,16 +5,16 @@
     <title>Reset Style Test</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-    <!-- Load Leaflet from CDN-->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
+    <!-- Load Leaflet -->
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+    <script src="../node_modules/leaflet/dist/leaflet-src.js"></script>
 
-    <!-- Load Esri Leaflet from CDN -->
-    <script src="//cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.6/esri-leaflet.js"></script>
+    <!-- Load Esri Leaflet -->
+    <script src="../node_modules/esri-leaflet/dist/esri-leaflet-debug.js"></script>
 
-    <!-- Load Esri Leaflet Renderers -->
-    <!-- This will hook into Esri Leaflet and draw the predefined Portland Neighborhoods -->
-    <script src="../dist/esri-leaflet-renderers.js"></script>
+    <!-- Load compiled Esri Leaflet Renderers -->
+    <script src="../dist/esri-leaflet-renderers-debug.js"></script>
+
 
     <style>
       body {margin:0;padding:0;}
@@ -30,7 +30,7 @@
 
       L.esri.basemapLayer('Gray').addTo(map);
       var neighborhoods = L.esri.featureLayer({
-        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Neighborhoods_pdx/FeatureServer/0',
+        url: 'https://services.arcgis.com/quVN97tn06YNGj9s/arcgis/rest/services/Portland_Neighborhoods/FeatureServer/0',
         style: function(feature) {
           if (feature.properties.NAME === 'DOWNTOWN') {
             return {fillColor: '#C00'};

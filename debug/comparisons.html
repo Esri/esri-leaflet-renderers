@@ -6,16 +6,19 @@
 
     <link rel="stylesheet" href="comparisons.css" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
+    <!-- Load Leaflet -->
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+    <script src="../node_modules/leaflet/dist/leaflet-src.js"></script>
 
-    <!-- Load Esri Leaflet from CDN -->
-    <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.0/esri-leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.3/esri-leaflet-renderers.js"></script>
-    <!--script src="../dist/esri-leaflet-renderers-debug.js"></script-->
+    <!-- Load Esri Leaflet -->
+    <script src="../node_modules/esri-leaflet/dist/esri-leaflet-debug.js"></script>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/css/esri.css">
-    <script src="https://js.arcgis.com/3.17/"></script>
+    <!-- Load compiled Esri Leaflet Renderers -->
+    <script src="../dist/esri-leaflet-renderers-debug.js"></script>
+
+    <!-- Load the ArcGIS API for JavaScript -->
+    <link rel="stylesheet" href="https://js.arcgis.com/3.41/esri/css/esri.css">
+    <script src="https://js.arcgis.com/3.41/"></script>
   </head>
   <body>
     <div id='details'>
@@ -32,55 +35,62 @@
     <h3 id="esriLabel">Esri JS API</h3>
 
     <script>
-      var layers = [{
-        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Neighborhoods_pdx/FeatureServer/0',
-        title: 'Portland Neighborhoods',
-        geoType: 'Polygon',
-        rendererType: 'Classbreaks',
-        lat: 45.525,
-        lon: -122.653,
-        zoomLevel: 11
-      }, {
-        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Freeway_System/FeatureServer/1',
-        title: 'Freeways',
-        geoType: 'Line',
-        rendererType: 'Simple',
-        lat: 37.4,
-        lon: -81.7,
-        zoomLevel: 6
-      }, {
-        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0',
-        title: 'USA States (Generalized)',
-        geoType: 'Polygon',
-        rendererType: 'Simple',
-        lat: 51,
-        lon: -119,
-        zoomLevel: 3
-      }, {
-        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Time_Zones/FeatureServer/0',
-        title: 'Timezones',
-        geoType: 'Polygon',
-        rendererType: 'Unique Value',
-        lat: 16.6,
-        lon: 74.9,
-        zoomLevel: 3
-      }, {
-        url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/minop3x020_nt00020/FeatureServer/0',
-        title: 'Esri Marker Symbols Test',
-        geoType: 'Point',
-        rendererType: 'Unique Value',
-        lat: 34,
-        lon: -97,
-        zoomLevel: 4
-      }, {
-        url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
-        title: 'World Regions',
-        geoType: 'Polygon',
-        rendererType: 'Unique Value',
-        lat: 0,
-        lon: 0,
-        zoomLevel: 4
-      }];
+      var layers = [
+        // {
+        //   url: 'https://services.arcgis.com/quVN97tn06YNGj9s/arcgis/rest/services/Portland_Neighborhoods/FeatureServer/0',
+        //   title: 'Portland Neighborhoods',
+        //   geoType: 'Polygon',
+        //   rendererType: 'Classbreaks',
+        //   lat: 45.525,
+        //   lon: -122.653,
+        //   zoomLevel: 11
+        // }, 
+        {
+          url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Freeway_System/FeatureServer/1',
+          title: 'Freeways',
+          geoType: 'Line',
+          rendererType: 'Simple',
+          lat: 37.4,
+          lon: -81.7,
+          zoomLevel: 6
+        }, 
+        {
+          url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0',
+          title: 'USA States (Generalized)',
+          geoType: 'Polygon',
+          rendererType: 'Simple',
+          lat: 51,
+          lon: -119,
+          zoomLevel: 3
+        }, 
+        {
+          url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Time_Zones/FeatureServer/0',
+          title: 'Timezones',
+          geoType: 'Polygon',
+          rendererType: 'Unique Value',
+          lat: 16.6,
+          lon: 74.9,
+          zoomLevel: 3
+        }, 
+        // {
+        //   url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/minop3x020_nt00020/FeatureServer/0',
+        //   title: 'Esri Marker Symbols Test',
+        //   geoType: 'Point',
+        //   rendererType: 'Unique Value',
+        //   lat: 34,
+        //   lon: -97,
+        //   zoomLevel: 4
+        // }, 
+        {
+          url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Regions/FeatureServer/0',
+          title: 'World Regions',
+          geoType: 'Polygon',
+          rendererType: 'Unique Value',
+          lat: 0,
+          lon: 0,
+          zoomLevel: 4
+        }
+      ];
 
       var options = "";
       for(var i=0; i<layers.length; i++){
