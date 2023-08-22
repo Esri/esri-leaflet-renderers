@@ -1,6 +1,8 @@
 import './FeatureLayerHook';
 
-export { version as VERSION } from '../package.json';
+import packageInfo from '../package.json';
+var version = packageInfo.version;
+export { version as VERSION };
 
 export { Renderer } from './Renderers/Renderer';
 export { SimpleRenderer, simpleRenderer } from './Renderers/SimpleRenderer';
