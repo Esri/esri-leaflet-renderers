@@ -6,6 +6,13 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased]
 
+## [3.0.1] - 2023-08-28
+
+### Updated
+
+* Updated dependencies ([#191](https://github.com/Esri/esri-leaflet-renderers/pull/191))
+* Updated version export style ([#190](https://github.com/Esri/esri-leaflet-renderers/pull/190))
+
 ## [3.0.0] - 2022-06-24
 
 ### Changed
@@ -47,15 +54,18 @@ This change log adheres to standards from [Keep a CHANGELOG](http://keepachangel
 ## [2.0.6] - 2017-06-02
 
 ### Fixed
+
 * bug that mangled server side color interpretation
 
 ## [2.0.5] - 2017-06-02
 
 ### Added
+
 * support for loading via AMD
 * support for Node 7
 
 ### Fixed
+
 * ensure that point geometry layers are assigned to Leaflet's `markerPane` by default
 
 ## [2.0.4] - 2016-08-17
@@ -177,22 +187,27 @@ This is expected to be the last (and only) stable release of Esri Leaflet Render
 * support for transparency applied to the entire renderer
 
 ### Fixed
+
 * ensured that tokens are passed through in requests for picture marker symbols
 
 ## [0.0.1-beta.3] - 2015-03-24
+
 * Render from the new visualVariables objects in the renderer JSON
 * Still backwards compatible with classic renderers
 
 ## [0.0.1-beta.2] - 2015-03-02
+
 * Fix to work with Browserify
 * Update to work with esri-leaflet 1.0.0-rc.5
 * Still backwards compatible with esri-leaflet 1.0.0-rc.4
 
 ## 0.0.1-beta.1 - 2015-01-29
+
 * First Beta release
 * Works with esri-leaflet 1.0.0-rc.4
 
-[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/Esri/esri-leaflet-renderers/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/Esri/esri-leaflet-renderers/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.3...v3.0.0
 [2.1.3]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/Esri/esri-leaflet-renderers/compare/v2.1.1...v2.1.2
