@@ -1,3 +1,5 @@
+> This repository has been archived. If you're an active user, please feel free to fork it.
+
 # Esri Leaflet Renderers
 
 Leaflet plugin for [ArcGIS Feature Services](http://developers.arcgis.com). Esri Leaflet Renderers works in conjunction with the Esri Leaflet Plugin to draw [feature services](https://developers.arcgis.com/esri-leaflet/samples/simple-feature-layer/) using renderers defined by the service.
